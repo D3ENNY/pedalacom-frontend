@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  valueOK: boolean = true;
+
   remember: boolean = false;
   
   constructor( private registration : CustomerApiServiceService, private router: Router){}
@@ -23,6 +25,31 @@ export class RegisterComponent {
 
   ngOnInit(){
     this.redirect()
+  }
+
+  checkValue(Title: string, FirstName: string, LastName: string, Email: string, PhoneNumber: string){
+    this.valueOK = true;
+    if(Title == null){
+      this.valueOK = false;
+    }
+
+    if(!FirstName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}$")){
+      this.valueOK = false;
+    }
+
+    if(!LastName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}$")){
+      this.valueOK = false;
+    }
+
+    if(!Email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$")){
+      this.valueOK = false;
+    }
+
+    if(PhoneNumber.length < 10 || PhoneNumber.length > 13){
+      this.valueOK = false;
+    }
+
+    
   }
   
   PasswordCheck(password: string, checkPassword: string){

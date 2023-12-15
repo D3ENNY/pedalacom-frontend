@@ -14,12 +14,18 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LoginComponent {
 
+  setDisplay = "none";
+
+  userFound = "none"
+
   constructor (private loginService: CustomerApiServiceService, private router: Router) {}
 
   remember: boolean = false;
 
   runLogin(event: Event, email: string, password: string) 
   {
+    this.setDisplay = "none"
+    this.userFound = "none"
     this.loginService.loginCustomer(email, password).subscribe({
       next:(data: any) => {
         console.log(data)
@@ -27,7 +33,12 @@ export class LoginComponent {
         this.redirect()
       },
       error: (err: any)=>{
-        console.log(err)
+        console.log(err.error)
+        if(err.error == "wrongPassword"){
+          this.setDisplay = "block";
+        } else if (err.error == "userNotFound"){
+          this.userFound = "block";
+        }
       }
     })
     event.preventDefault()
