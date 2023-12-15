@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-9">
       <label for="firstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Obi" required #FirstName>
+      <input type="text" class="form-control" id="firstName" placeholder="Obi" required #FirstName (input)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value)">
     </div>
     <div class="col-md-4">
       <label for="middleName" class="form-label">Middle Name</label>
@@ -21,11 +21,11 @@
     </div>
     <div class="col-md-8">
       <label for="lastName" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Kenobi" required #LastName>
+      <input type="text" class="form-control" id="lastName" placeholder="Kenobi" required #LastName (input)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value)">
     </div>
     <div class="col-12">
       <label for="inputEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="obi.kenobi@stars.it" required #Email>
+      <input type="email" class="form-control" id="inputEmail" placeholder="obi.kenobi@stars.it" required #Email (input)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value)">
     </div>
     <div class="col-12">
       <label for="inputPassword" class="form-label">Password</label>
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-6">
       <label for="phoneNumber" class="form-label">Phone Number</label>
-      <input type="text" class="form-control" id="phoneNumber" placeholder="+393405069955" #PhoneNumber>
+      <input type="number" class="form-control" id="phoneNumber" placeholder="+393405069955" #PhoneNumber (input)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value)">
     </div>
     <div class="col-12 mt-3">
       <div class="form-check text-start my-3">
@@ -52,8 +52,7 @@
       </div>
     </div>
     <div class="col-12 mb-3">
-      <div *ngIf="samePassword; then Ok else Ko"></div>
-      <div>{{samePassword}}</div>
+      <div *ngIf="samePassword && valueOK; then Ok else Ko"></div>
       <ng-template #Ok>
         <button type="submit"(click)="sendRegistration(Title.value, FirstName.value, MiddleName.value, LastName.value, Email.value, Password.value, CompanyName.value, PhoneNumber.value)" class="btn">Confirm Registration <i class="fa-solid fa-check"></i></button>
       </ng-template>
