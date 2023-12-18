@@ -37,7 +37,7 @@ export class RegisterComponent {
       this.valueOK = false;
     }
 
-    if(!LastName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}$")){
+    if(!LastName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}+$")){
       this.valueOK = false;
     }
 
