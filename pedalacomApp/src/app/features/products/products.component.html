@@ -25,124 +25,127 @@
 		</div>
 	</div>
 </div>
-<div class="d-flex mb-4">
-	<div class="d-md-none d-sm-none d-none d-lg-block flex-column filter-bar p-2 border shadow-lg">
-		<div class="container fw-bolder">
-			Filter:
-		</div>
 
-		<div>
-			<p class="py-1 m-0">Categorie: </p>
-			<ng-container *ngFor="let item of categoryList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
+<div class="mx-1">
+	<div class="d-flex mb-4">
+		<div class="d-md-none d-sm-none d-none d-lg-block flex-column filter-bar p-2 border shadow-lg">
+			<div class="container fw-bolder">
+				Filter:
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Categorie: </p>
+				<ng-container *ngFor="let item of categoryList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
-					<div class=" w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Componenti: </p>
-			<ng-container *ngFor="let item of componentsList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Componenti: </p>
+				<ng-container *ngFor="let item of componentsList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Vestiario: </p>
-			<ng-container *ngFor="let item of clothingsList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Vestiario: </p>
+				<ng-container *ngFor="let item of clothingsList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Accessori: </p>
-			<ng-container *ngFor="let item of accessoriesList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Accessori: </p>
+				<ng-container *ngFor="let item of accessoriesList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
-					<div class=" w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
+				</ng-container>
+			</div>
+	
 		</div>
-
+		<main class="border border-info">
+			
+		</main>	
 	</div>
-	<main class="border border-info">
-
-	</main>
+	
+	<ng-template #content>
+		<div class="offcanvas-header">
+			<h4 class="offcanvas-title">Filtra per: </h4>
+			<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="container d-flex flex-row gap-3">
+				<button #v1 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v1' }" (click)="mobileFilterData(v1, 'v1')">In Evidenza</button>
+				<button #v2 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v2' }" (click)="mobileFilterData(v2, 'v2')">Prezzo: In ordine crescente</button>
+				<button #v3 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v3' }" (click)="mobileFilterData(v3, 'v3')">Prezzo: In ordine decrescente</button>
+				<button #v4 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v4' }" (click)="mobileFilterData(v4, 'v4')">Ultimi arrivi</button>
+			</div>
+			<div>
+				<p class="py-1 m-0">Categorie: </p>
+				<ng-container *ngFor="let item of categoryList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
+					</div>
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Componenti: </p>
+				<ng-container *ngFor="let item of componentsList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10 border-bottom">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
+					</div>
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Vestiario: </p>
+				<ng-container *ngFor="let item of clothingsList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
+					</div>
+				</ng-container>
+			</div>
+	
+			<div>
+				<p class="py-1 m-0">Accessori: </p>
+				<ng-container *ngFor="let item of accessoriesList">
+					<div class="d-flex flex-row w-100">
+						<div class="p-1 w-10">
+							<input class="form-check-input mt-0" type="checkbox">
+						</div>
+						<div class="w-100 border-bottom">{{ item.ita }}</div>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+	</ng-template>
 </div>
-
-<ng-template #content>
-	<div class="offcanvas-header">
-		<h4 class="offcanvas-title">Filtra per: </h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
-	</div>
-	<div class="offcanvas-body">
-		<div class="container d-flex flex-row gap-3">
-			<button #v1 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v1' }" (click)="mobileFilterData(v1, 'v1')">In Evidenza</button>
-			<button #v2 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v2' }" (click)="mobileFilterData(v2, 'v2')">Prezzo: In ordine crescente</button>
-			<button #v3 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v3' }" (click)="mobileFilterData(v3, 'v3')">Prezzo: In ordine decrescente</button>
-			<button #v4 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v4' }" (click)="mobileFilterData(v4, 'v4')">Ultimi arrivi</button>
-		</div>
-		<div>
-			<p class="py-1 m-0">Categorie: </p>
-			<ng-container *ngFor="let item of categoryList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
-					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Componenti: </p>
-			<ng-container *ngFor="let item of componentsList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10 border-bottom">
-						<input class="form-check-input mt-0" type="checkbox">
-					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Vestiario: </p>
-			<ng-container *ngFor="let item of clothingsList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
-					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-
-		<div>
-			<p class="py-1 m-0">Accessori: </p>
-			<ng-container *ngFor="let item of accessoriesList">
-				<div class="d-flex flex-row w-100">
-					<div class="p-1 w-10">
-						<input class="form-check-input mt-0" type="checkbox">
-					</div>
-					<div class="w-100 border-bottom">{{ item.ita }}</div>
-				</div>
-			</ng-container>
-		</div>
-	</div>
-</ng-template>
