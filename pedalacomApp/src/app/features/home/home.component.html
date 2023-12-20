@@ -10,18 +10,18 @@
             </ng-template>
 
 
-<app-carousel></app-carousel>
-<app-saleSection></app-saleSection>
-
-
-<ngx-slick-carousel class="carousel" 
-  #slickModal="slick-carousel" 
-  [config]="slideConfig"
-  style="background: var(--main-background)">
-<div ngxSlickItem *ngFor="let item of [1,2,3,4,5,6]" class="slide">
-<div style="padding: 10px;">
-  <app-card></app-card>
-</div>
-</div>
-</ngx-slick-carousel>
+            <app-carousel></app-carousel>
+            
+            
+            <ngx-slick-carousel class="carousel" 
+            #slickModal="slick-carousel" 
+            [config]="slideConfig"
+            style="background: var(--main-background)">
+            <div ngxSlickItem *ngFor="let item of [1,2,3,4,5,6]" class="slide">
+              <div style="padding: 10px;">
+                <app-card></app-card>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+          <app-saleSection></app-saleSection>
 
