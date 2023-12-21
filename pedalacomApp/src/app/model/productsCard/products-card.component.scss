@@ -13,7 +13,9 @@
 }
 
 .img-top {
-  max-width: 200px;
+  max-width: 300px!important;
+  width: 300px!important;
   height: auto;
   border-radius: 8px 0 0 8px;
+  mix-blend-mode: multiply;
 }
