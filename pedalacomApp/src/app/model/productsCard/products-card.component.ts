@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../shared/dataModel/products';
+import { infoProduct } from '../../shared/dataModel/products';
 
 @Component({
   selector: 'app-products-card',
@@ -12,6 +12,5 @@ import { Product } from '../../shared/dataModel/products';
 export class ProductsCardComponent {
 
   // Recive Input product from father Component products.component
-  @Input() product: Product = new Product;
-  
+  @Input() product: infoProduct = new infoProduct;
 }

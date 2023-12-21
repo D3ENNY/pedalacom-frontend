@@ -34,4 +34,12 @@ export class ProductModel {
     rowguid: string = '';
     modifiedDate: Date = new Date();
 }
+
+export class infoProduct {
+
+    productName: string = ""
+    productId: number = 0
+    productPrice: number = 0.0
+    photo: any = ""
+}
   
