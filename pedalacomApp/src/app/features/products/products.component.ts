@@ -1,10 +1,11 @@
-import { Component, TemplateRef, inject, OnInit } from '@angular/core';
+import { Component, TemplateRef, inject, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsCardComponent } from '../../model/productsCard/products-card.component';
 import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
 import { ImageService } from '../../shared/services/image-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-products',
@@ -16,11 +17,17 @@ import { ImageService } from '../../shared/services/image-service.service';
 })
 export class ProductsComponent {
 
-	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas) {
-	}
+	searchData : string | null = "";
+	filterParams : any[] = [];
 
+	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas, private route : ActivatedRoute) {
+		console.log(this.route);
+		// this.searchData = this.route.snapshot.state.data
+	}
+	
 	ngOnInit(): void {
-		this.GetProducts();
+		this.searchData = this.route.snapshot.paramMap.get('data');
+		console.log(this.searchData)
 	}
 
 	products: infoProduct[] = [];
@@ -29,8 +36,17 @@ export class ProductsComponent {
 	btnID: string = ''
 	page: number = 1;
 	totalPage: number = 49;
-	search: string = 'biciclette'
 
+	popolarFilter(param : string){
+		let obj : any = {"categoryName" : param}
+		if (this.filterParams.find(x => x.categoryName === obj.categoryName)){
+			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
+		} else {
+			this.filterParams.push(obj)
+		}
+		this.GetProducts(this.searchData, this.filterParams)
+	}
+	
 	open(content: TemplateRef<any>) {
 
 		this.offcanvasService.open(content, { position: 'bottom', ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
@@ -59,8 +75,8 @@ export class ProductsComponent {
 
 	}
 
-	GetProducts() {
-		this.productService.getProductFiltered("", [{ "categoryName": "Mountain Bikes" }]).subscribe({
+	GetProducts(searchData : string | null, filterParams : any) {
+		this.productService.getProductFiltered(searchData, filterParams).subscribe({
 			next: (data: infoProduct[]) => {
 
 				data.forEach(e => {

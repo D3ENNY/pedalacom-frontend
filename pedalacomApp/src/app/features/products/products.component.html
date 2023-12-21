@@ -1,6 +1,6 @@
 <div class="header-element py-0 mb-3">
 	<div class="d-flex flex-wrap justify-content-between align-items-center header-container mx-5 py-2">
-		<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ search }}</span></p>
+		<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ searchData }}</span></p>
 		<div class="btn-group d-md-none d-sm-none d-none d-lg-block">
 			<button type="button" class="dropdown-toggle btn rounded-lg shadow p-0 px-2" data-bs-toggle="dropdown"
 				aria-expanded="false">
@@ -39,7 +39,7 @@
 				<ng-container *ngFor="let item of categoryList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -51,7 +51,7 @@
 				<ng-container *ngFor="let item of componentsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -63,7 +63,7 @@
 				<ng-container *ngFor="let item of clothingsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -75,7 +75,7 @@
 				<ng-container *ngFor="let item of accessoriesList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -112,7 +112,7 @@
 				<ng-container *ngFor="let item of categoryList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -124,7 +124,7 @@
 				<ng-container *ngFor="let item of componentsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10 border-bottom">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -136,7 +136,7 @@
 				<ng-container *ngFor="let item of clothingsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -148,7 +148,7 @@
 				<ng-container *ngFor="let item of accessoriesList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" type="checkbox">
+							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
