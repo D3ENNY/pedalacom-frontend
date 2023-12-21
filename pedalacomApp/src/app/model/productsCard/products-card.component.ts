@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../shared/dataModel/products';
 
 @Component({
   selector: 'app-products-card',
@@ -10,4 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsCardComponent {
 
+  // Recive Input product from father Component products.component
+  @Input() product: Product = new Product;
+  
 }

@@ -28,6 +28,7 @@
 
 <div class="mx-1">
 	<div class="d-flex mb-4">
+		<!-- FILTER SIDE BAR -->
 		<div class="d-md-none d-sm-none d-none d-lg-block flex-column filter-bar p-2 border shadow-lg">
 			<div class="container fw-bolder">
 				Filter:
@@ -82,8 +83,15 @@
 			</div>
 	
 		</div>
-		<main class="border border-info">
-			
+		<!-- MAIN DISPLAY PRODUCTS -->
+		<main class="">
+			<div class="row card-container">
+				<!-- Iterate each products as product -->
+				<div *ngFor="let product of products" class="col-12">
+					<!-- Share product info foreach product-card -->
+					<app-products-card [product]="product"></app-products-card>
+				</div>
+			</div>
 		</main>	
 	</div>
 	
