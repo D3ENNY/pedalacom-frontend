@@ -1,7 +1,9 @@
-import { Component, TemplateRef, inject } from '@angular/core';
+import { Component, TemplateRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsCardComponent } from '../../model/productsCard/products-card.component';
+import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
+import { Product } from '../../shared/dataModel/products';
 
 @Component({
 	selector: 'app-products',
@@ -9,9 +11,34 @@ import { ProductsCardComponent } from '../../model/productsCard/products-card.co
 	imports: [CommonModule, NgbModule, ProductsCardComponent],
 	templateUrl: './products.component.html',
 	styleUrls: ['./products.component.scss'],
+	providers: [ProductApiServiceService]
 })
 export class ProductsComponent {
-[x: string]: any;
+
+	products:Product[] = [];
+	
+	constructor(private productService: ProductApiServiceService) {
+	}
+
+	GetProducts() {
+		this.productService.getProducts().subscribe({
+			next: (data:any) => {
+				this.products = data;
+				console.log(this.products);
+			},
+			error: (err:any) => {
+				console.log(err)
+			}
+		})
+	}
+
+	ngOnInit(): void {
+		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+		//Add 'implements OnInit' to the class.
+		this.GetProducts();
+	}
+
+	[x: string]: any;
 	private offcanvasService = inject(NgbOffcanvas);
 	isOffcanvasOpen: boolean = false;
 

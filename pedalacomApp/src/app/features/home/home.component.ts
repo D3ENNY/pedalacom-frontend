@@ -5,7 +5,7 @@ import { CarouselComponent } from '../../model/carousel/carousel.component';
 
 import { CardComponent } from '../../model/homeCard/card.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
+import { SalesSectionComponent } from '../../model/salesSection/SalesSection.component';
 // IMPORT SERVICES
 import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
 

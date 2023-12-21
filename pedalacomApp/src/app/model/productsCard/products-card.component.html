@@ -1,1 +1,18 @@
-<p>products-card works!</p>
+<div class="container my-2 product-card">
+    <div class="mycard d-flex flex-row">
+        <img src="https://www.bikeshopmore.com/img/cms/imgblog/bici-da-corsa-pistidda.jpg" class="img-top img-fluid" alt="Card image cap">
+        <div class="">
+            <div class="">
+                <h5 class="card-title">{{product.name}}</h5>
+                <div class="card-text">
+                    <b>Color:</b> <span class="text-muted">{{product.color}}</span><br>
+                    <b>List price:</b> <span class="text-muted">€{{product.listPrice}}</span><br>
+                    <b>Size:</b> <span class="text-muted">{{product.size}}</span><br>
+                    <b>Weight:</b> <span class="text-muted">{{product.weight}} kg</span><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
