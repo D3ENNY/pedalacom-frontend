@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class ProductApiServiceService {
   // Get a product by ID
   getProductsbyId(): Observable<any> {
     return this.http.get(`https://localhost:7150/api/Products/${this.product}`);
+  }
+
+  getProductFiltered(searchData: string, bodyReq: any): Observable<any> {
+    return this.http.post(`https://localhost:7150/api/Products/info?searchData=${searchData}`, bodyReq, {headers : new HttpHeaders({ contantType: 'application/json' })})
   }
 
   // Add a new product w OBJECT Injection
