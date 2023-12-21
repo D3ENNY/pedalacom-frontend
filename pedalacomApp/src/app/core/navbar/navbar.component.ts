@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationExtras, RouterModule } from '@angular/router';
 import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service';
 import { Router } from '@angular/router';
 
@@ -35,6 +35,15 @@ export class NavbarComponent {
     else{
       this.userLogged = false
     }
+  }
+
+  redirect( searchParam : string){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: searchParam
+      }
+    }
+    this.router.navigate(['/products'],navigationExtras)
   }
 
 
