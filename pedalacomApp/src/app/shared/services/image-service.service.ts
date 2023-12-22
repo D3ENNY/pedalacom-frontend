@@ -60,14 +60,4 @@ export class ImageService {
 		})
 	}
 
-	getBlobPromise(): Promise<Blob> {
-		return new Promise((resolve) => {
-		  // Simuliamo un'operazione asincrona che restituisce un blob dopo un certo tempo
-		  setTimeout(() => {
-			const blob = new Blob(['Contenuto del blob'], { type: 'text/plain' });
-			resolve(blob);
-		  }, 1000);
-		});
-	  }
-
 }
