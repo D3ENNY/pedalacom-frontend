@@ -89,6 +89,18 @@ export class ProductsComponent {
 			}
 		})
 	}
+	myImg: any
+	getFile(event: any) {
+		const img = event.target.files[0]
+		this.imgService.imgToBlob(img).then((blob) => {
+			return this.imgService.blobToBase64(blob)
+		}).then((base64) => {
+			console.log(base64);
+			this.myImg = this.imgService.blobToUrl(base64.split("data:image/png;base64,")[1])
+		})
+
+
+	}
 
 	categoryList = [
 		{ data: "Mountain Bikes", ita: "Mountain Bikes" },
