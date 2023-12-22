@@ -25,7 +25,8 @@ export class ProductsComponent {
 	}
 	
 	ngOnInit(): void {
-		console.log(this.searchData)
+		this.route.queryParams.subscribe(params => this.searchData = params['searchParam'])
+		console.log(this.searchData)	
 	}
 
 	products: infoProduct[] = [];
