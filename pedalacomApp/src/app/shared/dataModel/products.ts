@@ -1,5 +1,4 @@
 export class Product {
-    productID: number = 0;
     name: string = '';
     productNumber: string = '';
     color: string = '';
@@ -7,14 +6,8 @@ export class Product {
     listPrice: number = 0;
     size: string = '';
     weight: number = 0;
-    productCategory: ProductCategory[] = []; // Relation ONE-TO-MANY
-    productModel: ProductModel[] = []; // Relation ONE-TO-MANY
-    sellStartDate: Date = new Date();
-    sellEndDate: Date = new Date();
-    discontinuedDate: Date = new Date();
-    thumbNailPhoto: string = '';
+    productCategoryId: number = 0;
     thumbnailPhotoFileName: string = '';
-    rowguid: string = '';
     modifiedDate: Date = new Date();
 }
 
