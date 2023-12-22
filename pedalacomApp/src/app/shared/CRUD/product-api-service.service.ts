@@ -10,6 +10,11 @@ export class ProductApiServiceService {
 
   constructor(private http: HttpClient) { }
 
+  headerOptions = new HttpHeaders({
+    contentType: 'application/json',
+    responseType: 'text'
+  })
+
   // string initialization 
   product: string = "";
 
@@ -32,7 +37,7 @@ export class ProductApiServiceService {
   }
   // Add a new product w OBJECT Injection
   postProducts(obj: Object): Observable<any> {
-    return this.http.post('https://localhost:7150/api/Products', obj);
+    return this.http.post('https://localhost:7150/api/Products', obj, { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });
   }
 
   // Update a product w string Injection & OBJECT Injection
