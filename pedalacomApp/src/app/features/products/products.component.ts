@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductsComponent {
 
-	searchData : string | null = "";
+	searchData : string = "";
 	filterParams : any[] = [];
 
 	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas, private route : ActivatedRoute) {
@@ -26,7 +26,6 @@ export class ProductsComponent {
 	}
 	
 	ngOnInit(): void {
-		this.searchData = this.route.snapshot.paramMap.get('data');
 		console.log(this.searchData)
 	}
 
@@ -75,7 +74,7 @@ export class ProductsComponent {
 
 	}
 
-	GetProducts(searchData : string | null, filterParams : any) {
+	GetProducts(searchData : string, filterParams : any) {
 		this.productService.getProductFiltered(searchData, filterParams).subscribe({
 			next: (data: infoProduct[]) => {
 
