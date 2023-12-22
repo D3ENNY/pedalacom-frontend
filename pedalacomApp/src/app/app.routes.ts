@@ -8,6 +8,7 @@ import { ContactsComponent } from './features/contacts/contacts.component';
 import { BikepageComponent } from './features/bikePage/bikepage.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 import { AddProductsComponent } from './features/admin/add-products/add-products.component';
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     // IN-PAGE ROUTES
     {path: 'products/bike', component: BikepageComponent},
-    //{path:'', redirectTo: 'home', pathMatch: 'full'} redirect path!
     {path: 'add_product', component: AddProductsComponent},
+    {path: '**', component: NotFoundComponent },
+    {path:'', redirectTo: 'home', pathMatch: 'full'}
 ];

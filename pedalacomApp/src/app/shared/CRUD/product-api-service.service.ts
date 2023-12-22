@@ -28,10 +28,13 @@ export class ProductApiServiceService {
     return this.http.get(`https://localhost:7150/api/Products/${this.product}`);
   }
 
-  getProductFiltered(searchData: string | null, bodyReq: any): Observable<any> {
+  getProductFiltered(searchData: string, bodyReq: any): Observable<any> {
     return this.http.post(`https://localhost:7150/api/Products/info?searchData=${searchData}`, bodyReq, {headers : new HttpHeaders({ contantType: 'application/json' })})
   }
 
+  getHomeProductInfo(): Observable<any> {
+    return this.http.get('https://localhost:7150/api/Products/info', {headers : new HttpHeaders({ contantType: 'application/json' })})
+  }
   // Add a new product w OBJECT Injection
   postProducts(obj: Object): Observable<any> {
     return this.http.post('https://localhost:7150/api/Products', obj, { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });

@@ -38,12 +38,7 @@ export class NavbarComponent {
   }
 
   redirect( searchParam : string){
-    const navigationExtras: NavigationExtras = {
-      state: {
-        data: searchParam
-      }
-    }
-    this.router.navigate(['/products'],navigationExtras)
+    this.router.navigateByUrl(`/products?searchParam=${searchParam}`)
   }
 
 

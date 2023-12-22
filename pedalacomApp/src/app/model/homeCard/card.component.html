@@ -2,28 +2,20 @@
     <img
       class="card-img-top img-fluid"
       alt="..."
-      src="https://i.ebayimg.com/images/g/EFgAAOSwuE9fvOXd/s-l1200.jpg"
+      [src]="product.photo"
     />
     <div class="card-body">
-      <span class="fw-semibold bike-model">Model: {{product.name}}</span>
-      <h5 class="pt-1 bike-name">Barbie Most Wanted Ultra</h5>
+      <span class="fw-semibold bike-model">Id Prodotto: {{ product.productId }}</span>
+      <h5 class="pt-1 bike-name">{{product.productName}}</h5>
       <div class="btn-container">
         <a type="button" class="btn btn-outline-secondary btn-sm me-3 w-100" routerLink="/products/bike">Bike descriptions</a>
       </div>
     </div>
     <div class="info-container">
-      <span class="badge text-bg-warning">399.00<span> €</span></span>
+      <span class="badge text-bg-warning">{{ product.productPrice }} €</span>
       <div class="mt-2 text-center">
         <span class="text-success stock-check d-none">Avaiable</span>
         <span class="text-danger stock-check">Out of Stock</span>
       </div>
     </div>
 </div>
-  
-  <!-- TO INSERT IN FATHER COMPONENT
-      <div class="row card-container">
-          <div *ngFor="let item of items" class="col-lg-3 col-md-4 col-sm-6 col-12">
-              <app-card></app-card>
-          </div>
-      </div>
-  -->

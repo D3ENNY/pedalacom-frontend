@@ -5,7 +5,7 @@ import { ProductsCardComponent } from '../../model/productsCard/products-card.co
 import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
 import { ImageService } from '../../shared/services/image-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-products',
@@ -17,17 +17,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductsComponent {
 
-	searchData : string | null = "";
+	searchData : string = "";
 	filterParams : any[] = [];
 
 	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas, private route : ActivatedRoute) {
 		console.log(this.route);
-		// this.searchData = this.route.snapshot.state.data
 	}
 	
 	ngOnInit(): void {
-		this.searchData = this.route.snapshot.paramMap.get('data');
-		console.log(this.searchData)
+		this.route.queryParams.subscribe(params => this.searchData = params['searchParam'])
+		console.log(this.searchData)	
 	}
 
 	products: infoProduct[] = [];
@@ -75,7 +74,7 @@ export class ProductsComponent {
 
 	}
 
-	GetProducts(searchData : string | null, filterParams : any) {
+	GetProducts(searchData : string, filterParams : any) {
 		this.productService.getProductFiltered(searchData, filterParams).subscribe({
 			next: (data: infoProduct[]) => {
 
@@ -90,16 +89,26 @@ export class ProductsComponent {
 			}
 		})
 	}
+	myImg: any
+	getFile(event: any) {
+		const img = event.target.files[0]
+		this.imgService.imgToBlob(img).then((blob) => {
+			return this.imgService.blobToBase64(blob)
+		}).then((base64) => {
+			console.log(base64);
+			this.myImg = this.imgService.blobToUrl(base64.split("data:image/png;base64,")[1])
+		})
+
+
+	}
 
 	categoryList = [
-		{ data: "Bikes", ita: "Biciclette" },
 		{ data: "Mountain Bikes", ita: "Mountain Bikes" },
 		{ data: "Road Bikes", ita: "Bici da strada" },
 		{ data: "Touring Bikes", ita: "Bici da turismo" }
 	]
 
 	accessoriesList = [
-		{ data: "Accessories", ita: "Accessori" },
 		{ data: "Bike Stands", ita: "Portabici" },
 		{ data: "Bottles and Cages", ita: "Borraccia & Porta borraccia" },
 		{ data: "Cleaners", ita: "kit di pulizia" },
@@ -109,7 +118,6 @@ export class ProductsComponent {
 	]
 
 	clothingsList = [
-		{ data: "Clothing", ita: "Vestiti" },
 		{ data: "Bib-Shorts", ita: "Pantaloncini con bretelle" },
 		{ data: "Gloves", ita: "Guanti" },
 		{ data: "Headsets", ita: "Cuffie" },
@@ -124,7 +132,6 @@ export class ProductsComponent {
 	]
 
 	componentsList = [
-		{ data: "Components", ita: "Componenti" },
 		{ data: "Bottom Brackets", ita: "Staffe inferiori" },
 		{ data: "Brakes", ita: "Freni" },
 		{ data: "Caps", ita: "Tappi" },
