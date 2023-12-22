@@ -5,7 +5,7 @@ import { ProductsCardComponent } from '../../model/productsCard/products-card.co
 import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
 import { ImageService } from '../../shared/services/image-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-products',
@@ -22,7 +22,6 @@ export class ProductsComponent {
 
 	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas, private route : ActivatedRoute) {
 		console.log(this.route);
-		// this.searchData = this.route.snapshot.state.data
 	}
 	
 	ngOnInit(): void {
@@ -91,14 +90,12 @@ export class ProductsComponent {
 	}
 
 	categoryList = [
-		{ data: "Bikes", ita: "Biciclette" },
 		{ data: "Mountain Bikes", ita: "Mountain Bikes" },
 		{ data: "Road Bikes", ita: "Bici da strada" },
 		{ data: "Touring Bikes", ita: "Bici da turismo" }
 	]
 
 	accessoriesList = [
-		{ data: "Accessories", ita: "Accessori" },
 		{ data: "Bike Stands", ita: "Portabici" },
 		{ data: "Bottles and Cages", ita: "Borraccia & Porta borraccia" },
 		{ data: "Cleaners", ita: "kit di pulizia" },
@@ -108,7 +105,6 @@ export class ProductsComponent {
 	]
 
 	clothingsList = [
-		{ data: "Clothing", ita: "Vestiti" },
 		{ data: "Bib-Shorts", ita: "Pantaloncini con bretelle" },
 		{ data: "Gloves", ita: "Guanti" },
 		{ data: "Headsets", ita: "Cuffie" },
@@ -123,7 +119,6 @@ export class ProductsComponent {
 	]
 
 	componentsList = [
-		{ data: "Components", ita: "Componenti" },
 		{ data: "Bottom Brackets", ita: "Staffe inferiori" },
 		{ data: "Brakes", ita: "Freni" },
 		{ data: "Caps", ita: "Tappi" },
