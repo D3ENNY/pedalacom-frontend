@@ -98,8 +98,6 @@ export class ProductsComponent {
 			console.log(base64);
 			this.myImg = this.imgService.blobToUrl(base64.split("data:image/png;base64,")[1])
 		})
-
-
 	}
 
 	categoryList = [

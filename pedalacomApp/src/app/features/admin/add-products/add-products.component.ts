@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductApiServiceService } from '../../../shared/CRUD/product-api-service.service';
 import { Product } from '../../../shared/dataModel/products';
+import { ImageService } from '../../../shared/services/image-service.service';
 
 
 @Component({
@@ -15,9 +16,20 @@ import { Product } from '../../../shared/dataModel/products';
   providers: [ProductApiServiceService]
 })
 export class AddProductsComponent {
-  constructor(private productService: ProductApiServiceService){}
+  constructor(private productService: ProductApiServiceService, private imgService: ImageService){}
 
-  sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, ThumbNailPhoto: string, Weight: string, Size: string){
+  myImg: string = '';
+
+  getFile(event: any) {
+		const img = event.target.files[0]
+		this.imgService.imgToBlob(img).then((blob) => {
+			return this.imgService.blobToBase64(blob)
+		}).then((base64) => {
+			this.myImg = base64
+		})
+	}
+
+  sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
 
     let newProduct: Product = new Product()
 
@@ -29,7 +41,7 @@ export class AddProductsComponent {
       listPrice : parseInt(ListPrice),
       size : Size,
       productCategoryId : parseInt(Category),
-      thumbnailPhotoFileName: ThumbNailPhoto,
+      thumbnailPhotoFileName: this.myImg,
       weight : parseInt(Weight),
       modifiedDate : new Date() 
     }
