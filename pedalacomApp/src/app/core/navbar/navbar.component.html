@@ -6,14 +6,16 @@
         <button class="single-link btn" routerLink="/">Home</button>
         <button class="single-link btn" routerLink="/products">Prodotti</button>
         <button class="single-link btn" routerLink="/contacts" >Contatti</button>
-        <button class="single-link btn" routerLink="/add_product">Aggiungi prodotti</button>
+        <button class="single-link btn" routerLink="/addProduct">Aggiungi prodotti</button>
       </div>
     </div>
     <div class="mid-side">
+
       <form class="d-flex" role="search">
         <input #btnSearch class="form-control" type="search" placeholder="Cerca una bici" aria-label="Search">
-        <button class="btn btn-outline-success btn-cerca" (click)="redirect(btnSearch.value)" type="submit">Cerca</button>
+        <button class="btn btn-outline-success btn-cerca" (click)="redirect(btnSearch.value)" routerLinkActive="router-link-active"  type="submit">Cerca</button>
       </form>
+      
     </div>
     <div class="right-side d-flex">
       <!-- <button class="btn" style="font-size: 1.3em;">

@@ -25,7 +25,12 @@ export class ProductsComponent {
 	}
 	
 	ngOnInit(): void {
-		this.route.queryParams.subscribe(params => this.searchData = params['searchParam'])
+		this.GetProducts(this.searchData, this.filterParams)
+		this.route.paramMap.subscribe(params => {
+			const param = params.get('searchParam');
+			if(param !== null) this.searchData = param
+		})
+		
 		console.log(this.searchData)	
 	}
 
@@ -83,6 +88,8 @@ export class ProductsComponent {
 				})
 
 				this.products = data;
+				console.log(this.productService);
+				
 			},
 			error: (err: any) => {
 				console.log(err)
