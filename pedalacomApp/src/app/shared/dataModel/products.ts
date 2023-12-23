@@ -34,5 +34,6 @@ export class infoProduct {
     productId: number = 0
     productPrice: number = 0.0
     photo: any = ""
+    productCategory: string = ""
 }
   
