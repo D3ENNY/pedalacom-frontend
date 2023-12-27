@@ -98,6 +98,7 @@ export class ProductsComponent {
 		})
 	}
 	myImg: any
+  
 	getFile(event: any) {
 		const img = event.target.files[0]
 		this.imgService.imgToBlob(img).then((blob) => {

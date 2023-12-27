@@ -89,7 +89,7 @@
       </div>
       <div class="col-12">
         <label for="ThumbNailPhoto" class="form-label">Url immagine*</label>
-        <input type="text" class="form-control" id="ThumbNailPhoto" name="ThumbNailPhoto" required #ThumbNailPhoto>
+        <input #test type="file" (change)="getFile($event)">
       </div>
       <div class="col-md-6">
         <label for="Weight" class="form-label">Peso</label>
@@ -121,6 +121,6 @@
         </div>
       <div class="col-12 mt-3">
       </div>
-      <button type="submit" (click)="sendProduct(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value, StandardCost.value, ThumbNailPhoto.value, Weight.value, Size.value )" class="btn">Aggiungi <i class="fa-solid fa-check"></i></button>
+      <button type="submit" (click)="sendProduct(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value, StandardCost.value, Weight.value, Size.value )" class="btn">Aggiungi <i class="fa-solid fa-check"></i></button>
     </form>
   </div>
