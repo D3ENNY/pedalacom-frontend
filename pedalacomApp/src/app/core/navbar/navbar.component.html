@@ -6,7 +6,11 @@
         <button class="single-link btn" routerLink="/">Home</button>
         <button class="single-link btn" routerLink="/products">Prodotti</button>
         <button class="single-link btn" routerLink="/contacts" >Contatti</button>
-        <button class="single-link btn" routerLink="/addProduct">Aggiungi prodotti</button>
+        <ng-container *ngIf="true; then ok;"></ng-container>
+        <ng-template #ok>
+          |
+          <button class="single-link btn" routerLink="/admin">Pannello Admin</button>
+        </ng-template>
       </div>
     </div>
     <div class="mid-side">

@@ -9,7 +9,8 @@ import { BikepageComponent } from './features/bikePage/bikepage.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
-import { AddProductsComponent } from './features/admin/add-products/add-products.component';
+import { AdminPanelComponent } from './admin/features/admin-panel/admin-panel.component';
+import { AddProductsComponent } from './admin/models/add-products/add-products.component';
 
 export const routes: Routes = [
     // NAVBAR ROUTES
@@ -19,12 +20,14 @@ export const routes: Routes = [
     {path: 'contacts', component: ContactsComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'addProduct', component: AddProductsComponent},
+    {path: 'admin', component: AdminPanelComponent},
     // IN-PAGE ROUTES
     {path: 'products/bike', component: BikepageComponent},
     // QUERY PARAM
     {path: 'products/:searchParam', component: ProductsComponent},
     // DEFAULT REDIRECT E 404 PAGE
     {path: '**', component: NotFoundComponent },
-    {path:'', redirectTo: 'home', pathMatch: 'full'}
+    {path:'', redirectTo: 'home', pathMatch: 'full'},
+    //ADMIN
+    {path: 'addProducts', component: AddProductsComponent}
 ];

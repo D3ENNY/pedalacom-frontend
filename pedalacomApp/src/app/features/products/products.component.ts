@@ -2,7 +2,7 @@ import { Component, TemplateRef, inject, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsCardComponent } from '../../model/productsCard/products-card.component';
-import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
+import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
 import { ImageService } from '../../shared/services/image-service.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 	imports: [CommonModule, NgbModule, ProductsCardComponent],
 	templateUrl: './products.component.html',
 	styleUrls: ['./products.component.scss'],
-	providers: [ProductApiServiceService, ImageService]
+	providers: [ProductApiService, ImageService]
 })
 export class ProductsComponent {
 
@@ -21,7 +21,7 @@ export class ProductsComponent {
 	filterParams : any[] = [];
 
 	constructor(
-		private productService: ProductApiServiceService, 
+		private productService: ProductApiService, 
 		private imgService: ImageService, 
 		private offcanvasService: NgbOffcanvas, 
 		private route : ActivatedRoute

@@ -1,0 +1,35 @@
+<div class="mx-1">
+	<div class="d-flex mb-4">
+        <!--sidebar-->
+		<div class="d-md-none d-sm-none d-none d-lg-block flex-column admin-sideBar p-2 border shadow-lg border border-danger">
+            <div routerLink="addProducts">
+                <p>aggiungi prodotto</p>
+            </div>
+
+            <div (click)="insertPanel('removeProducts')">
+                <p>rimuovi prodotto</p>
+            </div>
+
+            <div (click)="insertPanel('editProducts')">
+                <p>modifica prodotto</p>
+            </div>
+
+            <div (click)="insertPanel('removeUser')">
+                <p>elimina utente</p>
+            </div>
+
+            <div (click)="insertPanel('viewLow')">
+                <p>visuallizza log</p>
+            </div>
+
+            <div (click)="insertPanel('viewAppError')">
+                <p>visualizza errori</p>
+            </div>
+		</div>
+		<!-- MAIN DISPLAY form -->
+        <!-- <app-admin-main-panel></app-admin-main-panel> -->
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+	</div>
+</div>

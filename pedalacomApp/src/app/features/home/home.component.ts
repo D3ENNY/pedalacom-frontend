@@ -8,7 +8,7 @@ import { CarouselComponent } from '../../model/carousel/carousel.component';
 import { CardComponent } from '../../model/homeCard/card.component';
 import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
 // IMPORT SERVICES
-import { ProductApiServiceService } from '../../shared/CRUD/product-api-service.service';
+import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
 
 
@@ -18,11 +18,11 @@ import { infoProduct } from '../../shared/dataModel/products';
 	imports: [SlickCarouselModule, CommonModule, CarouselComponent, SalesSectionComponent, CardComponent],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
-	providers: [ProductApiServiceService]
+	providers: [ProductApiService]
 })
 export class HomeComponent {
 
-	constructor(private ProductService: ProductApiServiceService, private imgService: ImageService) { }
+	constructor(private ProductService: ProductApiService, private imgService: ImageService) { }
 
 	ngOnInit() {
 

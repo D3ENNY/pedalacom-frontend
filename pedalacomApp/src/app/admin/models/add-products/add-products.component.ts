@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductApiServiceService } from '../../../shared/CRUD/product-api-service.service';
+import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
 import { Product } from '../../../shared/dataModel/products';
 import { ImageService } from '../../../shared/services/image-service.service';
 
@@ -13,10 +13,10 @@ import { ImageService } from '../../../shared/services/image-service.service';
   imports: [CommonModule, FormsModule],
   templateUrl: './add-products.component.html',
   styleUrl: './add-products.component.scss',
-  providers: [ProductApiServiceService]
+  providers: [ProductApiService]
 })
 export class AddProductsComponent {
-  constructor(private productService: ProductApiServiceService, private imgService: ImageService){}
+  constructor(private productService: ProductApiService, private imgService: ImageService){}
 
   myImg: string = '';
 
