@@ -39,7 +39,7 @@
 				<ng-container *ngFor="let item of categoryList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -51,7 +51,7 @@
 				<ng-container *ngFor="let item of componentsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -63,7 +63,7 @@
 				<ng-container *ngFor="let item of clothingsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -75,7 +75,7 @@
 				<ng-container *ngFor="let item of accessoriesList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class=" w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -93,8 +93,8 @@
 				</div>
 			</div>
 
-				<input #test type="file" (change)="getFile($event)">
-				<img [src]="myImg" alt="test">
+				<!-- <input #test type="file" (change)="getFile($event)">
+				<img [src]="myImg" alt="test"> -->
 		</main>	
 	</div>
 	
@@ -102,7 +102,7 @@
 		<div class="offcanvas-header">
 			<h4 class="offcanvas-title">Filtra per: </h4>
 			<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
-		</div>
+		</div>populateFilter
 		<div class="offcanvas-body">
 			<div class="container d-flex flex-row gap-3">
 				<button #v1 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v1' }" (click)="mobileFilterData(v1, 'v1')">In Evidenza</button>
@@ -115,7 +115,7 @@
 				<ng-container *ngFor="let item of categoryList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -127,7 +127,7 @@
 				<ng-container *ngFor="let item of componentsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10 border-bottom">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -139,7 +139,7 @@
 				<ng-container *ngFor="let item of clothingsList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>
@@ -151,7 +151,7 @@
 				<ng-container *ngFor="let item of accessoriesList">
 					<div class="d-flex flex-row w-100">
 						<div class="p-1 w-10">
-							<input class="form-check-input mt-0" (change)="popolarFilter(item.data)" type="checkbox">
+							<input class="form-check-input mt-0" (change)="populateFilter(item.data)" type="checkbox">
 						</div>
 						<div class="w-100 border-bottom">{{ item.ita }}</div>
 					</div>

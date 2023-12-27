@@ -19,9 +19,12 @@ export const routes: Routes = [
     {path: 'contacts', component: ContactsComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
+    {path: 'addProduct', component: AddProductsComponent},
     // IN-PAGE ROUTES
     {path: 'products/bike', component: BikepageComponent},
-    {path: 'add_product', component: AddProductsComponent},
+    // QUERY PARAM
+    {path: 'products/:searchParam', component: ProductsComponent},
+    // DEFAULT REDIRECT E 404 PAGE
     {path: '**', component: NotFoundComponent },
     {path:'', redirectTo: 'home', pathMatch: 'full'}
 ];

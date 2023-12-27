@@ -20,13 +20,22 @@ export class ProductsComponent {
 	searchData : string = "";
 	filterParams : any[] = [];
 
-	constructor(private productService: ProductApiServiceService, private imgService: ImageService, private offcanvasService: NgbOffcanvas, private route : ActivatedRoute) {
-		console.log(this.route);
-	}
+	constructor(
+		private productService: ProductApiServiceService, 
+		private imgService: ImageService, 
+		private offcanvasService: NgbOffcanvas, 
+		private route : ActivatedRoute
+	) { }
 	
 	ngOnInit(): void {
-		this.route.queryParams.subscribe(params => this.searchData = params['searchParam'])
-		console.log(this.searchData)	
+
+		this.route.paramMap.subscribe(params => {
+			const param = params.get('searchParam');
+			if(param) this.searchData = param
+		})
+
+		this.GetProducts(this.searchData, this.filterParams)
+
 	}
 
 	products: infoProduct[] = [];
@@ -36,25 +45,20 @@ export class ProductsComponent {
 	page: number = 1;
 	totalPage: number = 49;
 
-	popolarFilter(param : string){
+	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
-		if (this.filterParams.find(x => x.categoryName === obj.categoryName)){
+		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
-		} else {
-			this.filterParams.push(obj)
-		}
+		else this.filterParams.push(obj)
+
 		this.GetProducts(this.searchData, this.filterParams)
 	}
 	
 	open(content: TemplateRef<any>) {
 
 		this.offcanvasService.open(content, { position: 'bottom', ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
-			(result) => {
-				this.toggleIcon()
-			},
-			(reason) => {
-				this.toggleIcon()
-			},
+			(result) => this.toggleIcon(),
+			(reason) => this.toggleIcon(),
 		);
 		this.toggleIcon()
 	}
@@ -70,34 +74,36 @@ export class ProductsComponent {
 	mobileFilterData(btn: HTMLButtonElement, id: string) {
 		this.valueFilter = btn.value
 		this.btnID = id
-		console.log(this.btnID);
-
 	}
 
 	GetProducts(searchData : string, filterParams : any) {
-		this.productService.getProductFiltered(searchData, filterParams).subscribe({
+
+		const productObservable = filterParams && filterParams.length > 0 ?
+			this.productService.getProductFiltered(searchData, filterParams) :
+			this.productService.getProductFiltered(searchData);
+
+		console.log(searchData, filterParams);
+		
+		productObservable.subscribe({
 			next: (data: infoProduct[]) => {
 
-				data.forEach(e => {
-					e.photo = this.imgService.blobToUrl(e.photo)
-				})
+				data.forEach(e => e.photo = this.imgService.blobToUrl(e.photo))
 
 				this.products = data;
+				
 			},
 			error: (err: any) => {
-				console.log(err)
+				console.error(err)
 			}
 		})
 	}
 	myImg: any
+  
 	getFile(event: any) {
 		const img = event.target.files[0]
 		this.imgService.imgToBlob(img).then((blob) => {
 			return this.imgService.blobToBase64(blob)
-		}).then((base64) => {
-			console.log(base64);
-			this.myImg = this.imgService.blobToUrl(base64.split("data:image/png;base64,")[1])
-		})
+		}).then((base64) => this.myImg = this.imgService.blobToUrl(base64.split(",")[1]))
 	}
 
 	categoryList = [
