@@ -5,41 +5,41 @@ import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-servic
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+	selector: 'app-navbar',
+	standalone: true,
+	imports: [CommonModule, RouterModule],
+	templateUrl: './navbar.component.html',
+	styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
 
-  constructor (private router: Router){}
+	constructor(private router: Router) { }
 
-  userLogged = false
+	userLogged = false
 
-  logout(){
-    sessionStorage.clear()
-    localStorage.clear()
-    this.checkLogged()
-    this.router.navigate(['/']);
-  }
+	logout() {
+		sessionStorage.clear()
+		localStorage.clear()
+		this.checkLogged()
+		this.router.navigate(['/']);
+	}
 
-  ngOnInit(){
-    this.checkLogged()
-  }
+	ngOnInit() {
+		this.checkLogged()
+	}
 
-  checkLogged(){
-    if(localStorage.getItem("username") != null || sessionStorage.getItem("username") != null){
-      this.userLogged = true
-    }
-    else{
-      this.userLogged = false
-    }
-  }
+	checkLogged() {
+		if (localStorage.getItem("username") != null || sessionStorage.getItem("username") != null) {
+			this.userLogged = true
+		}
+		else {
+			this.userLogged = false
+		}
+	}
 
-  redirect( searchParam : string){
-    this.router.navigateByUrl(`/products/${searchParam}`)
-  }
+	redirect(searchParam: string) {
+		this.router.navigateByUrl(`/products/${searchParam}`)
+	}
 
 
 }

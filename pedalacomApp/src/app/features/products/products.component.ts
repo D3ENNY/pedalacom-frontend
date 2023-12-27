@@ -45,7 +45,7 @@ export class ProductsComponent {
 	page: number = 1;
 	totalPage: number = 49;
 
-	popolarFilter(param : string){
+	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
@@ -90,8 +90,6 @@ export class ProductsComponent {
 				data.forEach(e => e.photo = this.imgService.blobToUrl(e.photo))
 
 				this.products = data;
-
-				console.log('-->',this.products);
 				
 			},
 			error: (err: any) => {
