@@ -11,4 +11,5 @@ export class PanelManagerService {
   setAction(action: string) {
     this.source.next(action);
   }
+  
 }
