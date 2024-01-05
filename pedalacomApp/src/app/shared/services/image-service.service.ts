@@ -25,6 +25,8 @@ export class ImageService {
 		return this.sanitaizer.bypassSecurityTrustUrl(objUrl)
 	}
 
+
+	
 	imgToBlob(img: File): Promise<Blob> {
 		return new Promise((resolve, rejected) => {
 			const reader = new FileReader()

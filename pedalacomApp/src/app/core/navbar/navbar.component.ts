@@ -38,7 +38,7 @@ export class NavbarComponent {
 	}
 
 	redirect(searchParam: string) {
-		this.router.navigateByUrl(`/products/${searchParam}`)
+		this.router.navigateByUrl(`/search/${searchParam}`)
 	}
 
 
