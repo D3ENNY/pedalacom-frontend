@@ -19,6 +19,9 @@ export class ProductsComponent {
 
 	searchData : string = "";
 	filterParams : any[] = [];
+	pageNumber : number = 1;
+	paginationInfo: any;
+	totalPage: number = 1;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -34,7 +37,7 @@ export class ProductsComponent {
 			if(param) this.searchData = param
 		})
 
-		this.GetProducts(this.searchData, this.filterParams)
+		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 
 	}
 
@@ -43,7 +46,6 @@ export class ProductsComponent {
 	valueFilter: string = 'Prezzo: In ordine crescente'
 	btnID: string = ''
 	page: number = 1;
-	totalPage: number = 49;
 
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
@@ -51,7 +53,7 @@ export class ProductsComponent {
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
 		else this.filterParams.push(obj)
 
-		this.GetProducts(this.searchData, this.filterParams)
+		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
 	
 	open(content: TemplateRef<any>) {
@@ -76,27 +78,72 @@ export class ProductsComponent {
 		this.btnID = id
 	}
 
-	GetProducts(searchData : string, filterParams : any) {
-
+	GetProducts(searchData: string, pageNumber: number = 1, filterParams: any) {
 		const productObservable = filterParams && filterParams.length > 0 ?
-			this.productService.getProductFiltered(searchData, filterParams) :
-			this.productService.getProductFiltered(searchData);
-
+			this.productService.getProductFiltered(searchData, pageNumber, filterParams) :
+			this.productService.getProductFiltered(searchData, pageNumber);
+	
 		console.log(searchData, filterParams);
-		
+	
 		productObservable.subscribe({
-			next: (data: infoProduct[]) => {
-
-				data.forEach(e => e.photo = this.imgService.blobToUrl(e.photo))
-
-				this.products = data;
-				
+			next: (data: any) => {
+				if (data) {
+					this.products = data.products;
+					this.paginationInfo = data.paginationInfo;
+					this.totalPage = data.paginationInfo.totalPages;
+					this.page = data.paginationInfo.pageNumber;
+			
+					data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
+				} else {
+					// Gestione dell'errore o log in base a come desideri gestire questa situazione
+					console.error("La risposta del backend non contiene l'array 'Products'.", data);
+				}
+			
+				// Aggiungi la gestione delle informazioni sulla paginazione
+				this.paginationInfo = data ? data.paginationInfo : null;
 			},
 			error: (err: any) => {
-				console.error(err)
+				console.error(err);
 			}
-		})
+		});
 	}
+
+	getPages(): number[] {
+		const { pageNumber, totalPages } = this.paginationInfo || {};
+		
+		if (!pageNumber || !totalPages) {
+			return [];
+		}
+		this.pageNumber = this.paginationInfo.pageNumber;
+		const allPages = Array.from({ length: totalPages }, (_, i) => i + 1);
+		let start = Math.max(1, pageNumber - 2);
+		let end = Math.min(totalPages, pageNumber + 2);
+	
+		if (pageNumber <= 2) {
+			// Se siamo nelle prime due pagine, visualizza le prime 5 pagine
+			end = Math.min(5, totalPages);
+		} else if (pageNumber >= totalPages - 1) {
+			// Se siamo nelle ultime due pagine, visualizza le ultime 5 pagine
+			start = Math.max(1, totalPages - 4);
+		}
+	
+		return allPages.slice(start - 1, end);
+	}
+	
+	
+	
+	changePage(page: number): void {
+		if (!this.paginationInfo || !this.paginationInfo.pageNumber || !this.paginationInfo.totalPages) {
+			console.error("Le informazioni sulla paginazione non sono valide.", this.paginationInfo);
+			return;
+		}
+	
+		const { searchData, filterParams } = this;
+		this.GetProducts(searchData, page, filterParams);
+	}
+	
+	
+
 	myImg: any
   
 	getFile(event: any) {

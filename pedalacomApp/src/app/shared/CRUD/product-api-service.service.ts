@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,9 +28,14 @@ export class ProductApiService {
     return this.http.get(`https://localhost:7150/api/Products/${this.product}`);
   }
 
-  getProductFiltered(searchData: string, bodyReq: any = null): Observable<any> {
-    return this.http.post(`https://localhost:7150/api/Products/info?searchData=${searchData}`, bodyReq, {headers : new HttpHeaders({ contantType: 'application/json' })})
+  getProductFiltered(searchData: string, pageNumber: number = 1, bodyReq: any = null): Observable<any> {
+    const params = new HttpParams()
+        .set('searchData', searchData)
+        .set('pageNumber', pageNumber.toString());
+
+    return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params });
   }
+
 
   getHomeProductInfo(): Observable<any> {
     return this.http.get('https://localhost:7150/api/Products/info', {headers : new HttpHeaders({ contantType: 'application/json' })})

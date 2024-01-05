@@ -95,6 +95,14 @@
 
 				<!-- <input #test type="file" (change)="getFile($event)">
 				<img [src]="myImg" alt="test"> -->
+				<div class="pagination">		
+					<!-- Pulsanti delle pagine -->
+					<button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber">
+						{{ page }}
+					</button>
+				</div>
+				
+					
 		</main>	
 	</div>
 	
