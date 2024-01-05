@@ -52,6 +52,7 @@ export class ProductsComponent {
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
 		else this.filterParams.push(obj)
+		this.pageNumber = 1
 
 		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
