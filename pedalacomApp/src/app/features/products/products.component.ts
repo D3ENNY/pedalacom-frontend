@@ -17,11 +17,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent {
 
+	// variables
 	searchData : string = "";
 	filterParams : any[] = [];
 	pageNumber : number = 1;
 	paginationInfo: any;
 	totalPage: number = 1;
+	myImg: any;
+	products: infoProduct[] = [];
+	isOffcanvasOpen: boolean = false;
+	valueFilter: string = 'Prezzo: In ordine crescente';
+	btnID: string = '';
+	page: number = 1;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -41,19 +48,15 @@ export class ProductsComponent {
 
 	}
 
-	products: infoProduct[] = [];
-	isOffcanvasOpen: boolean = false;
-	valueFilter: string = 'Prezzo: In ordine crescente'
-	btnID: string = ''
-	page: number = 1;
-
+	// functions
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
 		else this.filterParams.push(obj)
+		
 		this.pageNumber = 1
-
+		this.products = []
 		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
 	
@@ -84,20 +87,21 @@ export class ProductsComponent {
 			this.productService.getProductFiltered(searchData, pageNumber, filterParams) :
 			this.productService.getProductFiltered(searchData, pageNumber);
 	
-		console.log(searchData, filterParams);
-	
 		productObservable.subscribe({
 			next: (data: any) => {
 				if (data) {
-					this.products = data.products;
-					this.paginationInfo = data.paginationInfo;
-					this.totalPage = data.paginationInfo.totalPages;
-					this.page = data.paginationInfo.pageNumber;
-			
-					data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
-				} else {
-					// Gestione dell'errore o log in base a come desideri gestire questa situazione
-					console.error("La risposta del backend non contiene l'array 'Products'.", data);
+					console.log(data)
+					if(data.products)
+					{
+						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
+						this.products = data.products;
+					}
+					if(data.paginationInfo) 
+					{
+						this.paginationInfo = data.paginationInfo;
+						this.totalPage = data.paginationInfo.totalPages;
+						this.page = data.paginationInfo.pageNumber;
+					}
 				}
 			
 				// Aggiungi la gestione delle informazioni sulla paginazione
@@ -130,8 +134,7 @@ export class ProductsComponent {
 	
 		return allPages.slice(start - 1, end);
 	}
-	
-	
+		
 	
 	changePage(page: number): void {
 		if (!this.paginationInfo || !this.paginationInfo.pageNumber || !this.paginationInfo.totalPages) {
@@ -143,9 +146,6 @@ export class ProductsComponent {
 		this.GetProducts(searchData, page, filterParams);
 	}
 	
-	
-
-	myImg: any
   
 	getFile(event: any) {
 		const img = event.target.files[0]
