@@ -1,6 +1,11 @@
 <div class="header-element py-0 mb-3">
 	<div class="d-flex flex-wrap justify-content-between align-items-center header-container mx-5 py-2">
-		<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ searchData }}</span></p>
+		<div *ngIf="products && products.length > 0; else noProducts">
+			<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ searchData }}</span></p>
+		</div>
+		<ng-template #noProducts>
+			<p class="m-0">Nessun prodotto disponibile</p>
+		</ng-template>	
 		<div class="btn-group d-md-none d-sm-none d-none d-lg-block">
 			<button type="button" class="dropdown-toggle btn rounded-lg shadow p-0 px-2" data-bs-toggle="dropdown"
 				aria-expanded="false">
@@ -85,19 +90,32 @@
 		</div>
 		<!-- MAIN DISPLAY PRODUCTS -->
 		<main class="">
-			<div class="row card-container">
-				<!-- Iterate each products as product -->
-				<div *ngFor="let product of products" class="col-12">
-					<!-- Share product info foreach product-card -->
-					<app-products-card [product]="product"></app-products-card>
+			<div *ngIf="products && products.length > 0; else noPageProducts">
+				<div class="row card-container">
+					<!-- Iterate each product as product -->
+					<div *ngFor="let product of products" class="col-12">
+						<!-- Share product info for each product-card -->
+						<app-products-card [product]="product"></app-products-card>
+					</div>
 				</div>
 			</div>
+			<ng-template #noPageProducts>
+				<div class="d-flex justify-content-center">
+					<h4 class="m-0">Nessun prodotto disponibile</h4>
+				</div>
+			</ng-template>			
 
-				<!-- <input #test type="file" (change)="getFile($event)">
-				<img [src]="myImg" alt="test"> -->
+			<!-- <input #test type="file" (change)="getFile($event)">
+			<img [src]="myImg" alt="test"> -->
+
+			<div class="pagination">		
+				<!-- Pulsanti delle pagine -->
+				<button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber">
+					{{ page }}
+				</button>
+			</div>	
 		</main>	
-	</div>
-	
+	</div>	
 	<ng-template #content>
 		<div class="offcanvas-header">
 			<h4 class="offcanvas-title">Filtra per: </h4>
