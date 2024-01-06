@@ -26,7 +26,7 @@ export const routes: Routes = [
     {path: 'product', component: ProductPageComponent},
     // QUERY PARAM
     {path: 'search/:searchParam', component: ProductsComponent},
-    {path: 'product/:id', component: ProductPageComponent},
+    {path: 'productPage/:productId', component: ProductPageComponent},
 
     // DEFAULT REDIRECT E 404 PAGE
     {path: '**', component: NotFoundComponent },

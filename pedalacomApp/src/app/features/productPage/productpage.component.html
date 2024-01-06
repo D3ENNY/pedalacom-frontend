@@ -1,13 +1,17 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-md-5 image-container h-100">
-            <img src="https://rubik.chegiochi.it/GIO/420/683/0887961376838.jpg" alt="Mountain Bike" class="img-fluid">
+            <!-- Use Angular binding to dynamically set the image source -->
+            <img [src]="productData.thumbNailPhoto" [alt]="productData.name" class="img-fluid">
         </div>
         <div class="col-md-7 description-container px-4">
             <div class="d-flex flex-column justify-content-center h-100">
-                <h2>Mountain Bike</h2>
-                <p class="text-muted">High-performance mountain bike for all terrains.</p>
-                <p><strong>Price: $399.99</strong></p>
+                <!-- Use Angular binding to dynamically set the product name -->
+                <h2>{{ productData.name }}</h2>
+                <!-- Use Angular binding to dynamically set the product description -->
+                <p class="text-muted">{{ productData.description }}</p>
+                <!-- Use Angular binding to dynamically set the product price -->
+                <p><strong>Price: ${{ productData.listPrice }}</strong></p>
                 <div>
                     <button class="btn me-4" id="addToCartBtn">Add to Cart</button>
                     <button class="btn" id="buyNowBtn">Buy Now</button>
@@ -15,12 +19,16 @@
                 <!-- Quantity Input (you may use a dropdown or other input types based on your design) -->
                 <div class="form-group my-3">
                     <label for="quantity">Quantity:</label>
+                    <!-- Use Angular binding to dynamically set the initial quantity -->
                     <input type="number" id="quantity" class="form-control mt-2" value="1" min="1">
                 </div>
-                <div class="details-continer">
+                <div class="details-container">
                     <h3>Product Details</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo neque nec turpis convallis, vitae
-                        consectetur dolor feugiat. Nullam vel aliquet libero.</p>
+                    <!-- Use Angular binding to dynamically set the product details -->
+                    <p>{{ productData.productModel.productModelProductDescriptions[0].productDescription.description}}</p>
+                    <!-- <div *ngFor="let description of productData.productModel.productModelProductDescriptions">
+                        <p>{{ description.productDescription?.description || 'Description not available' }}</p>
+                    </div> -->
                 </div>
             </div>
         </div>

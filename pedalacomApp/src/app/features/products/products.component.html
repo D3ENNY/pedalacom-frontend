@@ -93,7 +93,7 @@
 			<div *ngIf="products && products.length > 0; else noPageProducts">
 				<div class="row card-container">
 					<!-- Iterate each product as product -->
-					<div *ngFor="let product of products" class="col-12">
+					<div *ngFor="let product of products" class="col-12" (click)="navigateToProductPage(product.productId)">
 						<!-- Share product info for each product-card -->
 						<app-products-card [product]="product"></app-products-card>
 					</div>

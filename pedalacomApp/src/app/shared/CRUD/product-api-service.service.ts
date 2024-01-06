@@ -24,9 +24,10 @@ export class ProductApiService {
   }
 
   // Get a product by ID
-  getProductsbyId(): Observable<any> {
-    return this.http.get(`https://localhost:7150/api/Products/${this.product}`);
+  getProductById(productId: number): Observable<any> {
+    return this.http.get(`https://localhost:7150/api/Products/${productId}`);
   }
+  
 
   getProductFiltered(searchData: string, pageNumber: number = 1, bodyReq: any = null): Observable<any> {
     const params = new HttpParams()
