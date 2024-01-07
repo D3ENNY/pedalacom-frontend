@@ -59,6 +59,15 @@ export class ProductsComponent {
 		this.products = []
 		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
+
+	populateFilterView(str: string){
+		if(this.filterView.includes(str))
+			this.filterView.splice(this.filterParams.indexOf(str), 1)
+		else this.filterView.push(str)
+
+		console.log("filterView", this.filterView);
+		
+	}
 	
 	open(content: TemplateRef<any>) {
 
