@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 // NAVBAR ROUTES
 import { HomeComponent } from './features/home/home.component';
-import { ProductsComponent } from './features/products/products.component';
+import { SearchComponent } from './features/search/search.component';
 import { CartComponent } from './features/cart/cart.component';
 import { ContactsComponent } from './features/contacts/contacts.component';
 // IN-PAGE ROUTES
@@ -16,7 +16,7 @@ import { RemoveProductComponent } from './admin/models/remove-product/remove-pro
 export const routes: Routes = [
     // NAVBAR ROUTES
     {path: '', component: HomeComponent},
-    {path: 'search', component: ProductsComponent},
+    {path: 'search', component: SearchComponent},
     {path: 'cart', component: CartComponent},
     {path: 'contacts', component: ContactsComponent},
     {path: 'login', component: LoginComponent},
@@ -25,7 +25,7 @@ export const routes: Routes = [
     // IN-PAGE ROUTES
     {path: 'product', component: ProductPageComponent},
     // QUERY PARAM
-    {path: 'search/:searchParam', component: ProductsComponent},
+    {path: 'search/:searchParam', component: SearchComponent},
     {path: 'product/:id', component: ProductPageComponent},
 
     // DEFAULT REDIRECT E 404 PAGE

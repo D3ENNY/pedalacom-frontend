@@ -11,11 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 	selector: 'app-products',
 	standalone: true,
 	imports: [CommonModule, NgbModule, ProductsCardComponent],
-	templateUrl: './products.component.html',
-	styleUrls: ['./products.component.scss'],
+	templateUrl: './search.component.html',
+	styleUrls: ['./search.component.scss'],
 	providers: [ProductApiService, ImageService]
 })
-export class ProductsComponent {
+export class SearchComponent {
 
 	// variables
 	searchData : string = "";
