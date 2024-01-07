@@ -19,6 +19,14 @@ export class ProductsComponent {
 
 	searchData : string = "";
 	filterParams : any[] = [];
+	myImg: any
+	filterView: string[] = [] 
+	products: infoProduct[] = [];
+	isOffcanvasOpen: boolean = false;
+	valueFilter: string = 'Prezzo: In ordine crescente'
+	btnID: string = ''
+	page: number = 1;
+	totalPage: number = 49;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -38,12 +46,14 @@ export class ProductsComponent {
 
 	}
 
-	products: infoProduct[] = [];
-	isOffcanvasOpen: boolean = false;
-	valueFilter: string = 'Prezzo: In ordine crescente'
-	btnID: string = ''
-	page: number = 1;
-	totalPage: number = 49;
+	populateFilterView(str: string){
+		if(this.filterView.includes(str))
+			this.filterView.splice(this.filterParams.indexOf(str), 1)
+		else this.filterView.push(str)
+
+		console.log("filterView", this.filterView);
+		
+	}
 
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
@@ -97,7 +107,6 @@ export class ProductsComponent {
 			}
 		})
 	}
-	myImg: any
   
 	getFile(event: any) {
 		const img = event.target.files[0]
