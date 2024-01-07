@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent {
 
+	// variables
 	searchData : string = "";
 	filterParams : any[] = [];
 	myImg: any
@@ -27,6 +28,8 @@ export class ProductsComponent {
 	btnID: string = ''
 	page: number = 1;
 	totalPage: number = 49;
+	pageNumber : number = 1;
+  paginationInfo: any;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -42,17 +45,8 @@ export class ProductsComponent {
 			if(param) this.searchData = param
 		})
 
-		this.GetProducts(this.searchData, this.filterParams)
+		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 
-	}
-
-	populateFilterView(str: string){
-		if(this.filterView.includes(str))
-			this.filterView.splice(this.filterParams.indexOf(str), 1)
-		else this.filterView.push(str)
-
-		console.log("filterView", this.filterView);
-		
 	}
 
 	populateFilter(param : string){
@@ -60,8 +54,10 @@ export class ProductsComponent {
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
 		else this.filterParams.push(obj)
-
-		this.GetProducts(this.searchData, this.filterParams)
+		
+		this.pageNumber = 1
+		this.products = []
+		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
 	
 	open(content: TemplateRef<any>) {
@@ -86,27 +82,69 @@ export class ProductsComponent {
 		this.btnID = id
 	}
 
-	GetProducts(searchData : string, filterParams : any) {
-
+	GetProducts(searchData: string, pageNumber: number = 1, filterParams: any) {
 		const productObservable = filterParams && filterParams.length > 0 ?
-			this.productService.getProductFiltered(searchData, filterParams) :
-			this.productService.getProductFiltered(searchData);
-
-		console.log(searchData, filterParams);
-		
+			this.productService.getProductFiltered(searchData, pageNumber, filterParams) :
+			this.productService.getProductFiltered(searchData, pageNumber);
+	
 		productObservable.subscribe({
-			next: (data: infoProduct[]) => {
-
-				data.forEach(e => e.photo = this.imgService.blobToUrl(e.photo))
-
-				this.products = data;
-				
+			next: (data: any) => {
+				if (data) {
+					console.log(data)
+					if(data.products)
+					{
+						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
+						this.products = data.products;
+					}
+					if(data.paginationInfo) 
+					{
+						this.paginationInfo = data.paginationInfo;
+						this.totalPage = data.paginationInfo.totalPages;
+						this.page = data.paginationInfo.pageNumber;
+					}
+				}
+			
+				// Aggiungi la gestione delle informazioni sulla paginazione
+				this.paginationInfo = data ? data.paginationInfo : null;
 			},
 			error: (err: any) => {
-				console.error(err)
+				console.error(err);
 			}
-		})
+		});
 	}
+
+	getPages(): number[] {
+		const { pageNumber, totalPages } = this.paginationInfo || {};
+		
+		if (!pageNumber || !totalPages) {
+			return [];
+		}
+		this.pageNumber = this.paginationInfo.pageNumber;
+		const allPages = Array.from({ length: totalPages }, (_, i) => i + 1);
+		let start = Math.max(1, pageNumber - 2);
+		let end = Math.min(totalPages, pageNumber + 2);
+	
+		if (pageNumber <= 2) {
+			// Se siamo nelle prime due pagine, visualizza le prime 5 pagine
+			end = Math.min(5, totalPages);
+		} else if (pageNumber >= totalPages - 1) {
+			// Se siamo nelle ultime due pagine, visualizza le ultime 5 pagine
+			start = Math.max(1, totalPages - 4);
+		}
+	
+		return allPages.slice(start - 1, end);
+	}
+		
+	
+	changePage(page: number): void {
+		if (!this.paginationInfo || !this.paginationInfo.pageNumber || !this.paginationInfo.totalPages) {
+			console.error("Le informazioni sulla paginazione non sono valide.", this.paginationInfo);
+			return;
+		}
+	
+		const { searchData, filterParams } = this;
+		this.GetProducts(searchData, page, filterParams);
+}
   
 	getFile(event: any) {
 		const img = event.target.files[0]
