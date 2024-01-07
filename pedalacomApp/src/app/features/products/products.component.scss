@@ -1,3 +1,16 @@
+main{
+    width: 85%;
+}
+
+.pressedBtn {
+    background-color: var(--accent) !important;
+    border: 1.5px solid var(--darker-accent) !important;
+}
+
+#v1:hover, #v2:hover, #v3:hover, #v4:hover {
+    background-color: var(--core-darker-background);
+}
+
 div.header-element {
     background-color: var(--core-background) !important;
     >div.header-container {
@@ -29,18 +42,6 @@ div.header-element {
     }
 }
 
-#v1:hover, #v2:hover, #v3:hover, #v4:hover {
-    background-color: var(--core-darker-background);
-}
-
-div.filter-bar{
-    width: 15%;
-}
-
-main{
-    width: 85%;
-}
-
 div.offcanvas-body {
     .container > button {
         background-color: var(--primary);
@@ -50,12 +51,30 @@ div.offcanvas-body {
     }
 }
 
-.pressedBtn {
-    background-color: var(--accent) !important;
-    border: 1.5px solid var(--darker-accent) !important;
+div.filter-bar{
+    width: 15%;
+    height: 100%;
+    min-height: 560px;
+
+    @media (max-width: 2560px) and (min-width: 1900px) {
+        min-height: 827px;
+    }
+
+    div:not([class]){
+        margin-bottom: 5px;
+
+        p:first-child{
+            &:hover { 
+                background-color: var(--core-darker-background);
+            }
+
+            &:active {
+                background-color: var(--section-background);
+            }
+        }
+    }
 }
 
-/* Aggiungi questo al tuo file CSS o stile Angular */
 .pagination {
     display: flex;
     justify-content: center;
@@ -81,4 +100,3 @@ div.offcanvas-body {
         background-color: #2980b9;
     }
 }
-

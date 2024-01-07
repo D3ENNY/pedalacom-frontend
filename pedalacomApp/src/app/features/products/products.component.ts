@@ -20,15 +20,16 @@ export class ProductsComponent {
 	// variables
 	searchData : string = "";
 	filterParams : any[] = [];
-	pageNumber : number = 1;
-	paginationInfo: any;
-	totalPage: number = 1;
-	myImg: any;
+	myImg: any
+	filterView: string[] = [] 
 	products: infoProduct[] = [];
 	isOffcanvasOpen: boolean = false;
-	valueFilter: string = 'Prezzo: In ordine crescente';
-	btnID: string = '';
+	valueFilter: string = 'Prezzo: In ordine crescente'
+	btnID: string = ''
 	page: number = 1;
+	totalPage: number = 49;
+	pageNumber : number = 1;
+  paginationInfo: any;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -48,7 +49,6 @@ export class ProductsComponent {
 
 	}
 
-	// functions
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
@@ -144,8 +144,7 @@ export class ProductsComponent {
 	
 		const { searchData, filterParams } = this;
 		this.GetProducts(searchData, page, filterParams);
-	}
-	
+}
   
 	getFile(event: any) {
 		const img = event.target.files[0]
