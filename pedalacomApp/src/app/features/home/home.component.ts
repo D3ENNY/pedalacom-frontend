@@ -3,6 +3,7 @@ import { Product } from './../../shared/dataModel/products';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { Router } from '@angular/router';
 // IMPORT CUSTOM COMPONENTS
 import { CarouselComponent } from '../../model/carousel/carousel.component';
 import { CardComponent } from '../../model/homeCard/card.component';
@@ -22,7 +23,7 @@ import { infoProduct } from '../../shared/dataModel/products';
 })
 export class HomeComponent {
 
-	constructor(private ProductService: ProductApiService, private imgService: ImageService) { }
+	constructor(private ProductService: ProductApiService, private imgService: ImageService, private router: Router) { }
 
 	ngOnInit() {
 
@@ -93,8 +94,9 @@ export class HomeComponent {
 		});
 	}
 	  
-	  
-	  
+	navigateToProductPage(productId: number) {
+		this.router.navigate(['/product', productId])
+	} 
 	
 }
 
