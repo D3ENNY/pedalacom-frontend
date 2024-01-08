@@ -6,11 +6,6 @@
         <button class="single-link btn" routerLink="/">Home</button>
         <button class="single-link btn" routerLink="/search">Prodotti</button>
         <button class="single-link btn" routerLink="/contacts" >Contatti</button>
-        <ng-container *ngIf="true; then ok;"></ng-container>
-        <ng-template #ok>
-          |
-          <button class="single-link btn" routerLink="/admin">Pannello Admin</button>
-        </ng-template>
       </div>
     </div>
     <div class="mid-side">
@@ -38,7 +33,8 @@
             </ng-template>
             <ng-template #Ko>
               <li><a class="dropdown-item" routerLink="/login">Accedi</a></li>
-              <li><a class="dropdown-item" routerLink="/register">Registrati</a></li>
+              <li><a class="dropdown-item" routerLink="/register">Registrati</a></li>    
+              <li *ngIf="true"><a class="dropdown-item" routerLink="/admin">Admin</a></li>
             </ng-template>
           </ul>
       <a class="btn" style="font-size: 1.3em;" routerLink="/cart">
@@ -55,20 +51,25 @@
       
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-          <div class="offcanvas-title" id="offcanvasExampleLabel">PedroBike</div>
+          <div class="offcanvas-title" id="offcanvasExampleLabel" routerLink="/" data-bs-dismiss="offcanvas">PedroBike</div>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <div class="link-small d-flex align-items-center flex-column">
-            <div class="single-link-small btn" routerLink="/">Home</div>
-            <div class="single-link-small btn" routerLink="/products">Prodotti</div>
-            <div class="single-link-small btn" routerLink="/contacts" >Contatti</div>
+            <div #btn1 class="single-link-small btn fade-out" [style.opacity]="managementFade ? '0' : '1'" routerLink="/" data-bs-dismiss="offcanvas">Home</div>
+            <div #btn2 class="single-link-small btn fade-out" [style.opacity]="managementFade ? '0' : '1'" routerLink="/search" data-bs-dismiss="offcanvas">Prodotti</div>
+            <div #btn3 class="single-link-small btn fade-out" [style.opacity]="managementFade ? '0' : '1'" routerLink="/contacts"  data-bs-dismiss="offcanvas">Contatti</div>
+            <div #btn4 class="single-link-small btn fade-out" [style.opacity]="!managementFade ? '0' : '1'" routerLink="/register"  data-bs-dismiss="offcanvas">Registrati</div>
+            <div #btn5 class="single-link-small btn fade-out" [style.opacity]="!managementFade ? '0' : '1'" outerLink="/login"  data-bs-dismiss="offcanvas">Login</div>
             <div class="d-flex">
-              <button class="btn" style="font-size: 1.5em;">
+              <button class="btn" style="font-size: 1.5em;" (click)="toggleFade(btn1, btn2, btn3, btn4, btn5)">
                 <i class="fa-solid fa-user"></i>
               </button>
-              <button class="btn" style="font-size: 1.5em;">
+              <button class="btn" style="font-size: 1.5em;" routerLink="/cart" data-bs-dismiss="offcanvas">
                 <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+              <button class="btn" style="font-size: 1.5em;" routerLink="/admin" data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-wrench"></i>
               </button>
             </div>
           </div>
@@ -76,7 +77,7 @@
       </div>
     </div>
     <div class="mid-small-size" >
-      <button class="btn" style="font-size: 2em;">
+      <button class="btn" style="font-size: 2em;" routerLink="/">
         <i class="fa-brands fa-facebook"></i>
       </button>
     </div>
