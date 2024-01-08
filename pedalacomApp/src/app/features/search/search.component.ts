@@ -63,7 +63,7 @@ export class SearchComponent {
 	}
 
 	navigateToProductPage(productId: number) {
-		this.router.navigate(['/productPage', productId])
+		this.router.navigate(['/product', productId])
 	}
 	
 	populateFilterView(str: string){
