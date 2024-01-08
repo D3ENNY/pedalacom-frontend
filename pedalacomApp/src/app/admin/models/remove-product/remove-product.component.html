@@ -1,1 +1,4 @@
-<p>remove-product works!</p>
+<input #searchParams type="text" name="SearchParams" id="SearchParams">
+<button (click)="getProductByName(searchParams.value, paginationInfo['pageNumber'])">Cerca Prodotto</button>
+
+<app-table [products]="products" [paginationInfo]="paginationInfo"></app-table>
