@@ -20,11 +20,27 @@ export class ProductPageComponent {
   constructor(private route: ActivatedRoute, private productService: ProductApiService) { }
 
   ngOnInit() {
-    const productId = +this.route.snapshot.params['productId'];
+    this.fetchProductData();
+  }
 
-    this.productService.getProductById(productId).subscribe(productData => {
-      this.productData = productData;
-      console.log(this.productData);
+  private fetchProductData() {
+    this.route.params.subscribe(params => {
+      const productId = +params['productId'];
+
+      if (!isNaN(productId)) {
+        this.productService.getProductById(productId).subscribe({
+          next: productData => {
+            this.productData = productData;
+            console.log(this.productData);
+          },
+          error: err => {
+            console.error('Error fetching product:', err);
+          }
+        });
+      } else {
+        console.error('Invalid productId:', params['productId']);
+      }
     });
   }
+
 }

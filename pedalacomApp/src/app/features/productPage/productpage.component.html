@@ -2,16 +2,16 @@
     <div class="row">
         <div class="col-md-5 image-container h-100">
             <!-- Use Angular binding to dynamically set the image source -->
-            <img [src]="productData.thumbNailPhoto" [alt]="productData.name" class="img-fluid">
+            <img [src]="productData?.thumbNailPhoto" [alt]="productData?.name" class="img-fluid">
         </div>
         <div class="col-md-7 description-container px-4">
             <div class="d-flex flex-column justify-content-center h-100">
                 <!-- Use Angular binding to dynamically set the product name -->
-                <h2>{{ productData.name }}</h2>
+                <h2>{{ productData?.name }}</h2>
                 <!-- Use Angular binding to dynamically set the product description -->
-                <p class="text-muted">{{ productData.description }}</p>
+                <p class="text-muted">{{ productData?.description }}</p>
                 <!-- Use Angular binding to dynamically set the product price -->
-                <p><strong>Price: ${{ productData.listPrice }}</strong></p>
+                <p><strong>Price: ${{ productData?.listPrice }}</strong></p>
                 <div>
                     <button class="btn me-4" id="addToCartBtn">Add to Cart</button>
                     <button class="btn" id="buyNowBtn">Buy Now</button>
@@ -25,8 +25,8 @@
                 <div class="details-container">
                     <h3>Product Details</h3>
                     <!-- Use Angular binding to dynamically set the product details -->
-                    <p>{{ productData.productModel.productModelProductDescriptions[0].productDescription.description}}</p>
-                    <!-- <div *ngFor="let description of productData.productModel.productModelProductDescriptions">
+                    <p>{{ productData?.productModel?.productModelProductDescriptions[0]?.productDescription?.description || 'Description not available' }}</p>
+                    <!-- <div *ngFor="let description of productData?.productModel?.productModelProductDescriptions">
                         <p>{{ description.productDescription?.description || 'Description not available' }}</p>
                     </div> -->
                 </div>
