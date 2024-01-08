@@ -12,24 +12,25 @@ import { Router } from '@angular/router';
 	selector: 'app-products',
 	standalone: true,
 	imports: [CommonModule, NgbModule, ProductsCardComponent],
-	templateUrl: './products.component.html',
-	styleUrls: ['./products.component.scss'],
+	templateUrl: './search.component.html',
+	styleUrls: ['./search.component.scss'],
 	providers: [ProductApiService, ImageService]
 })
-export class ProductsComponent {
+export class SearchComponent {
 
 	// variables
 	searchData : string = "";
 	filterParams : any[] = [];
-	pageNumber : number = 1;
-	paginationInfo: any;
-	totalPage: number = 1;
-	myImg: any;
+	myImg: any
+	filterView: string[] = [] 
 	products: infoProduct[] = [];
 	isOffcanvasOpen: boolean = false;
-	valueFilter: string = 'Prezzo: In ordine crescente';
-	btnID: string = '';
+	valueFilter: string = 'Prezzo: In ordine crescente'
+	btnID: string = ''
 	page: number = 1;
+	totalPage: number = 49;
+	pageNumber : number = 1;
+  paginationInfo: any;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -50,7 +51,6 @@ export class ProductsComponent {
 
 	}
 
-	// functions
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
@@ -63,7 +63,15 @@ export class ProductsComponent {
 	}
 
 	navigateToProductPage(productId: number) {
-		this.router.navigate(['/productPage', productId]);
+		this.router.navigate(['/productPage', productId])
+	}
+	
+	populateFilterView(str: string){
+		if(this.filterView.includes(str))
+			this.filterView.splice(this.filterParams.indexOf(str), 1)
+		else this.filterView.push(str)
+
+		console.log("filterView", this.filterView);
 	}
 	
 	open(content: TemplateRef<any>) {
@@ -150,8 +158,7 @@ export class ProductsComponent {
 	
 		const { searchData, filterParams } = this;
 		this.GetProducts(searchData, page, filterParams);
-	}
-	
+}
   
 	getFile(event: any) {
 		const img = event.target.files[0]
