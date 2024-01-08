@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  errorList: string[] = [];
+
   valueOK: boolean = true;
 
   remember: boolean = false;
@@ -29,34 +31,51 @@ export class RegisterComponent {
 
   checkValue(Title: string, FirstName: string, LastName: string, Email: string, PhoneNumber: string){
     this.valueOK = true;
-    if(Title == null){
+
+    this.errorList = []
+
+    if(Title == "Choose..."){
       this.valueOK = false;
+      this.errorList.push("Devi scegliere almeno un titolo")
     }
 
-    if(!FirstName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}$")){
+    if(!FirstName.match("^([a-zA-Z\u00C0-\u00FF\s]{3,}\s?)+$")){
       this.valueOK = false;
+      if(FirstName != ""){
+        this.errorList.push("Il nome non è valido")
+      }
     }
+    
 
-    if(!LastName.match("^[a-zA-Z\u00C0-\u00FF\s]{3,}+$")){
+    if(!LastName.match("^([a-zA-Z\u00C0-\u00FF\s]{3,}\s?)+$")){
       this.valueOK = false;
+      if(LastName != ""){
+        this.errorList.push("Il cognome non è valido")
+      }
     }
 
     if(!Email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$")){
       this.valueOK = false;
+      if(Email != ""){
+        this.errorList.push("Email non valida")
+      }
     }
 
     if(PhoneNumber.length < 10 || PhoneNumber.length > 13){
       this.valueOK = false;
+      if(PhoneNumber != ""){
+        this.errorList.push("Il numero di telefono non è valido")
+      }
     }
-
-    
   }
   
   PasswordCheck(password: string, checkPassword: string){
+    this.errorList = []
     if(password === checkPassword && password != ''){
       this.samePassword = true;
     } else{
       this.samePassword = false;
+      this.errorList.push("Le password non coincidono")
     }
   }
 
