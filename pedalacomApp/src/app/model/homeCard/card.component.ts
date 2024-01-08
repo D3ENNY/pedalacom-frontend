@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 // IMPORT SERVICES
-import { Product } from '../../shared/dataModel/products';
+import { infoProduct } from '../../shared/dataModel/products';
 
 @Component({
   selector: 'app-card',
@@ -14,8 +14,9 @@ import { Product } from '../../shared/dataModel/products';
 export class CardComponent {
 
   constructor() {
-    this.product = new Product();
+    this.product = new infoProduct();
   }
 
-  @Input() product: Product;
+  @Input() product: infoProduct;
+  
 }

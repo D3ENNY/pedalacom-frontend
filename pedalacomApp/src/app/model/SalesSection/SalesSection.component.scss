@@ -21,6 +21,11 @@
                 }
             }
         }
+.desc-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
         @media (max-width: 1360px) and (min-width: 1070px) {
             .rows{
                 border: 1px solid blue;

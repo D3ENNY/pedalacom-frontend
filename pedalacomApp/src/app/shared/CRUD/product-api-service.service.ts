@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ProductApiServiceService {
+export class ProductApiService {
 
   constructor(private http: HttpClient) { }
+
+  headerOptions = new HttpHeaders({
+    contentType: 'application/json',
+    responseType: 'text'
+  })
 
   // string initialization 
   product: string = "";
@@ -23,9 +28,21 @@ export class ProductApiServiceService {
     return this.http.get(`https://localhost:7150/api/Products/${this.product}`);
   }
 
+  getProductFiltered(searchData: string, pageNumber: number = 1, bodyReq: any = null): Observable<any> {
+    const params = new HttpParams()
+        .set('searchData', searchData)
+        .set('pageNumber', pageNumber.toString());
+
+    return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params });
+  }
+
+
+  getHomeProductInfo(): Observable<any> {
+    return this.http.get('https://localhost:7150/api/Products/info', {headers : new HttpHeaders({ contantType: 'application/json' })})
+  }
   // Add a new product w OBJECT Injection
   postProducts(obj: Object): Observable<any> {
-    return this.http.post('https://localhost:7150/api/Products', obj);
+    return this.http.post('https://localhost:7150/api/Products', obj, { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });
   }
 
   // Update a product w string Injection & OBJECT Injection

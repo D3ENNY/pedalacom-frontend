@@ -43,7 +43,7 @@ export class CustomerApiServiceService {
   
   // Delete a customer
   deleteCustomer(customerId: string): Observable<any> {
-    return this.http.delete(`https://localhost:7150/api/Customers/${customerId}`);
+    return this.http.delete(`https://localhost:7150/api/CwCustomers/${customerId}`);
   }
 
   loginCustomer(email: string, password: string)

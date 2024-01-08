@@ -1,0 +1,65 @@
+<div class="mx-1">
+	<div class="d-flex mb-4">
+        <!--sidebar-->
+		<div class="d-md-none d-sm-none d-none d-lg-block flex-column admin-sideBar p-2 border shadow-lg border border-danger">
+            <div (click)="stringPage= 'addProducts'" class="pointer">
+                <p>aggiungi prodotto</p>
+            </div>
+
+            <div (click)="stringPage ='removeProducts'" class="pointer">
+                <p>rimuovi prodotto</p>
+            </div>
+
+            <div (click)="stringPage='editProducts'" class="pointer">
+                <p>modifica prodotto</p>
+            </div>
+
+            <div (click)="stringPage='removeUser'" class="pointer">
+                <p>elimina utente</p>
+            </div>
+
+            <div (click)="stringPage='viewLog'" class="pointer">
+                <p>visuallizza log</p>
+            </div>
+
+            <div (click)="stringPage ='viewAppError'" class="pointer">
+                <p>visualizza errori</p>
+            </div>
+		</div>
+		<!-- MAIN DISPLAY form -->
+        <!-- <app-admin-main-panel></app-admin-main-panel> -->
+        <main>
+            <div *ngIf="stringPage == 'addProducts'; then addProducts else Ko"></div>
+            <ng-template #addProducts>
+                <app-add-products></app-add-products>
+            </ng-template>
+            <ng-template #Ko>
+            </ng-template>
+            <!--   **************************************    -->
+            <div *ngIf="stringPage == 'removeProducts'; then removeProducts else Ko"></div>
+            <ng-template #removeProducts>
+                <app-remove-product></app-remove-product>
+            </ng-template>
+
+            <div *ngIf="stringPage == 'editProducts'; then editProducts else Ko"></div>
+            <ng-template #editProducts>
+                <app-edit-product></app-edit-product>
+            </ng-template>
+
+            <div *ngIf="stringPage == 'removeUser'; then removeUser else Ko"></div>
+            <ng-template #removeUser>
+                <app-delete-user></app-delete-user>
+            </ng-template>
+
+            <div *ngIf="stringPage == 'viewLog'; then viewLog else Ko"></div>
+            <ng-template #viewLog>
+                <app-view-log></app-view-log>
+            </ng-template>
+
+            <div *ngIf="stringPage == 'viewAppError'; then viewAppError else Ko"></div>
+            <ng-template #viewAppError>
+                <app-view-error></app-view-error>
+            </ng-template>
+        </main>
+	</div>
+</div>

@@ -1,27 +1,23 @@
 <!-- Per primo Login -->
 <div *ngIf="firstAccess; then OkLogin"></div>
-            <ng-template #OkLogin>
-              <div class="alert alert-success">Login effettuato con successo, bravo</div>
-            </ng-template>
+<ng-template #OkLogin>
+  <div class="alert alert-success">Login effettuato con successo!</div>
+</ng-template>
 <!-- Per prima registrazione -->
 <div *ngIf="firstRegistration; then OkRegister"></div>
-            <ng-template #OkRegister>
-              <div class="alert alert-success">Registrazione effettuato con successo, bravo</div>
-            </ng-template>
-
+<ng-template #OkRegister>
+  <div class="alert alert-success">Registrazione effettuato con successo!</div>
+</ng-template>
 
 <app-carousel></app-carousel>
-<app-saleSection></app-saleSection>
 
-
-<ngx-slick-carousel class="carousel" 
-  #slickModal="slick-carousel" 
-  [config]="slideConfig"
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
   style="background: var(--main-background)">
-<div ngxSlickItem *ngFor="let item of [1,2,3,4,5,6]" class="slide">
-<div style="padding: 10px;">
-  <app-card></app-card>
-</div>
-</div>
+  <div ngxSlickItem *ngFor="let item of products" class="slide">
+    <div style="padding: 10px;">
+      <app-card [product]="item"></app-card>
+    </div>
+  </div>
 </ngx-slick-carousel>
 
+<app-saleSection></app-saleSection>

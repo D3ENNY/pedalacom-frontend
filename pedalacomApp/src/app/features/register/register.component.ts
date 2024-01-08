@@ -29,7 +29,7 @@ export class RegisterComponent {
     this.redirect()
   }
 
-  checkValue(Title: string, FirstName: string, LastName: string, Email: string, PhoneNumber: string){
+  checkValue(Title: string, FirstName: string, LastName: string, Email: string, PhoneNumber: string, password: string, checkPassword: string){
     this.valueOK = true;
 
     this.errorList = []
@@ -78,6 +78,11 @@ export class RegisterComponent {
       this.errorList.push("Le password non coincidono")
     }
   }
+  
+  /* PasswordCheck(password: string, checkPassword: string){
+    this.errorList = []
+    
+  } */
 
   redirect(){
     if(localStorage.getItem("username") || sessionStorage.getItem("username")){

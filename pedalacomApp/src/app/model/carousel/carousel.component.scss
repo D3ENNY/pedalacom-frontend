@@ -1,9 +1,20 @@
 #carousel{
-    height: calc(100vh - 64px); // view Height - navbar's Height
-        display: grid;
-        justify-content: center;
-        align-content: center;
+        height: calc(100vh - 63px); // view Height - navbar's Height
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
         color: whitesmoke;
+        text-shadow: 1px 1px 2px black;
+        padding-top: 160px;
+        gap: 150px;
+        #Title{
+            font-size: 4em;
+        }
+        #subTitle{
+            font-size: 2em;
+            text-align: center;
+        }
 }
 #carousel-box{
     background-position: center; 
@@ -11,52 +22,13 @@
     background-size: cover;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    #Title{
-        font-size: xx-large;
-    }
-    #subTitle{
-        font-size: x-large;
-    }
+.carousel-item{
+    background-image: url("../../../assets/Image/jumbo.jpg");
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    #Title{
-        font-size: x-large;
-    }
-    #subTitle{
-        font-size: large;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    h1{
-        font-size: large;
-    }
-    p{
-        font-size: medium;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    h1{
-        font-size: medium;
-    }
-    p{
-        font-size: small;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    h1{
-        font-size: small;
-    }
-    p{
-        font-size: x-small;
+@media (max-width: 600px) {
+    #carousel{
+        padding-top: 50px;
+        gap: 100px;
     }
 }
