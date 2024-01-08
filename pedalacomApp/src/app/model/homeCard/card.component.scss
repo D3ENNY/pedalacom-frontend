@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  height: 300px;
 
   .info-container {
     position: absolute;
@@ -11,6 +12,10 @@
     span {
       font-size: 11px;
     }
+  }
+
+  .popular-check {
+    margin-right: 4px;
   }
 }
 

@@ -37,6 +37,12 @@ export class ProductApiService {
     return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params });
   }
 
+  getProductByName(searchData : string, pageNumber: number = 1) : Observable<any> {
+    const params = new HttpParams()
+    .set('searchData', searchData)
+    .set('pageNumber', pageNumber.toString());
+    return this.http.get(`https://localhost:7150/api/Products/info`, {params : params})
+  }
 
   getHomeProductInfo(): Observable<any> {
     return this.http.get('https://localhost:7150/api/Products/info', {headers : new HttpHeaders({ contantType: 'application/json' })})
