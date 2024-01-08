@@ -62,6 +62,7 @@ div.filter-bar{
 
     div:not([class]){
         margin-bottom: 5px;
+        cursor: pointer;
 
         p:first-child{
             &:hover { 
