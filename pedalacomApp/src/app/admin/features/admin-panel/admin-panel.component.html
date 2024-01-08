@@ -1,33 +1,37 @@
-<div class="mx-1">
-	<div class="d-flex mb-4">
-        <!--sidebar-->
-		<div class="d-md-none d-sm-none d-none d-lg-block flex-column admin-sideBar p-2 border shadow-lg border border-danger">
-            <div (click)="stringPage= 'addProducts'" class="pointer">
-                <p>aggiungi prodotto</p>
-            </div>
+<div class="background">
+	<div class="main_container">
+        <div class="title container">
+            <h1 *ngIf="stringPage == ''" class="py-2" style="text-align: center;">-- Sezione Admin --</h1>
+        </div>
+        <!--navbar-->
+		<div *ngIf="stringPage == ''" class="admin_navbar">
+            <button class="btn" (click)="stringPage= 'addProducts'">
+                Aggiungi Prodotto
+            </button>
 
-            <div (click)="stringPage ='removeProducts'" class="pointer">
-                <p>rimuovi prodotto</p>
-            </div>
+            <button class="btn" (click)="stringPage ='removeProducts'">
+                Rimuovi Prodotto
+            </button>
 
-            <div (click)="stringPage='editProducts'" class="pointer">
-                <p>modifica prodotto</p>
-            </div>
-
-            <div (click)="stringPage='removeUser'" class="pointer">
-                <p>elimina utente</p>
-            </div>
-
-            <div (click)="stringPage='viewLog'" class="pointer">
-                <p>visuallizza log</p>
-            </div>
-
-            <div (click)="stringPage ='viewAppError'" class="pointer">
-                <p>visualizza errori</p>
-            </div>
+            <button class="btn" (click)="stringPage='editProducts'">
+                Modifica Prodotto
+            </button>
+            
+            <button class="btn" (click)="stringPage='removeUser'">
+                Elimina Utente
+            </button>
+            
+            <button class="btn" (click)="stringPage='viewLog'">
+                Visualizza Log
+            </button>
+            
+            <button class="btn" (click)="stringPage ='viewAppError'">
+                Visualizza Errori
+            </button>
 		</div>
 		<!-- MAIN DISPLAY form -->
         <!-- <app-admin-main-panel></app-admin-main-panel> -->
+        <button class="btn align-self-center" *ngIf="stringPage != ''" (click)="stringPage =''"><i class="fa-solid fa-arrow-left"></i></button>
         <main>
             <div *ngIf="stringPage == 'addProducts'; then addProducts else Ko"></div>
             <ng-template #addProducts>

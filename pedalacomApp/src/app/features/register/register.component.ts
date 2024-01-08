@@ -61,6 +61,14 @@ export class RegisterComponent {
       }
     }
 
+    if(password === checkPassword && password != ''){
+      this.samePassword = true;
+    } else{
+      if(password != "" && checkPassword != ""){
+        this.errorList.push("Le password non coincidono")
+      }
+    }
+
     if(PhoneNumber.length < 10 || PhoneNumber.length > 13){
       this.valueOK = false;
       if(PhoneNumber != ""){

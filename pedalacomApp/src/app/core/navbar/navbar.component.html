@@ -5,11 +5,11 @@
       <div class="link d-flex gap-2 align-items-center">
         <button class="single-link btn" routerLink="/">Home</button>
         <button class="single-link btn" routerLink="/search">Prodotti</button>
-        <button class="single-link btn" routerLink="/contacts" >Contatti</button>
+        <button class="single-link btn" routerLink="/search" >Contatti</button>
         <ng-container *ngIf="true; then ok;"></ng-container>
         <ng-template #ok>
           |
-          <button class="single-link btn" routerLink="/admin">Pannello Admin</button>
+          <button class="single-link btn" routerLink="/admin"> Admin</button>
         </ng-template>
       </div>
     </div>
