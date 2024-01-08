@@ -67,13 +67,15 @@ export class RegisterComponent {
         this.errorList.push("Il numero di telefono non è valido")
       }
     }
-
+  }
+  
+  PasswordCheck(password: string, checkPassword: string){
+    this.errorList = []
     if(password === checkPassword && password != ''){
       this.samePassword = true;
     } else{
-      if(password != "" && checkPassword != ""){
-        this.errorList.push("Le password non coincidono")
-      }
+      this.samePassword = false;
+      this.errorList.push("Le password non coincidono")
     }
   }
   

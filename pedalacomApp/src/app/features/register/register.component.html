@@ -6,9 +6,9 @@
       <span style="font-size: 0.7em; color: red;">I campi * sono obbligatori</span>
     </div>
     <div class="col-md-3">
-      <label for="inputTitle" class="form-label">Titolo*</label>
-      <select id="inputTitle" class="form-select" #Title (change)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value, Password.value, CheckPassword.value)">
-        <option selected required>Scegli...</option>
+      <label for="inputTitle" class="form-label">Title</label>
+      <select id="inputTitle" class="form-select" #Title (change)="checkValue(Title.value, FirstName.value, LastName.value, Email.value, PhoneNumber.value)">
+        <option selected required>Choose...</option>
         <option>Mr.</option>
         <option>Mrs.</option>
       </select>
