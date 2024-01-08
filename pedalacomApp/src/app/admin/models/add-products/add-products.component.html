@@ -1,4 +1,4 @@
-<div class="singup-container mx-auto mb-5 pt-5">
+<div class="singup-container mx-auto mb-5 pt-3">
     <form class="row g-3 p-3" #frm="ngForm">
       <div>
         <h3 class="h3 mb-3 fw-normal d-inline">Aggiungi un prodotto</h3>
@@ -88,7 +88,8 @@
         <input type="text" class="form-control" placeholder="123,00€" id="StandardCost" name="password" required #StandardCost>
       </div>
       <div class="col-12">
-        <label for="ThumbNailPhoto" class="form-label">Url immagine*</label>
+        <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
+        <br>
         <input #test type="file" (change)="getFile($event)">
       </div>
       <div class="col-md-6">
