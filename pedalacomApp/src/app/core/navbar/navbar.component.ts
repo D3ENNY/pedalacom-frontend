@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationExtras, RouterModule } from '@angular/router';
 import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service';
@@ -13,19 +13,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-	constructor(private router: Router) { }
-
 	userLogged = false
+	managementFade = false
+	
+	constructor(private router: Router, private renderer: Renderer2) { }
+
+	ngOnInit() {
+		this.checkLogged()
+	}
 
 	logout() {
 		sessionStorage.clear()
 		localStorage.clear()
 		this.checkLogged()
 		this.router.navigate(['/']);
-	}
-
-	ngOnInit() {
-		this.checkLogged()
 	}
 
 	checkLogged() {
@@ -41,5 +42,22 @@ export class NavbarComponent {
 		this.router.navigateByUrl(`/search/${searchParam}`)
 	}
 
-
+	toggleFade(b1: HTMLDivElement,b2: HTMLDivElement,b3: HTMLDivElement,b4: HTMLDivElement,b5: HTMLDivElement) {
+		this.managementFade = !this.managementFade
+		setTimeout(() => {
+			if(!this.managementFade){
+				b4.classList.add('d-none')
+				b5.classList.add('d-none')
+				b1.classList.remove('d-none')
+				b2.classList.remove('d-none')
+				b3.classList.remove('d-none')
+			}else{
+				b1.classList.add('d-none')
+				b2.classList.add('d-none')
+				b3.classList.add('d-none')
+				b4.classList.remove('d-none')
+				b5.classList.remove('d-none')
+			}
+		}, 500)
+	}
 }

@@ -28,14 +28,9 @@
 
 }
 
-
 .small_navbar{
     display: none;
 }
-
-
-
-
 
 @media screen and (max-width: 900px) {
     .big_navbar{
@@ -53,6 +48,12 @@
                 width: 100%;
                 font-size: 1.5em;
             }
+
+            .fade-out{
+                transition: opacity 0.5s ease-in-out;
+                opacity: 1;
+                display: block;
+            }
         }
         .offcanvas-title{
             width: 100%;
@@ -62,4 +63,4 @@
             font-weight: bold;
         }
     }
-  }
+}
