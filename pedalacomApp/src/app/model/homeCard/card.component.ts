@@ -2,21 +2,27 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 // IMPORT SERVICES
-import { infoProduct } from '../../shared/dataModel/products';
+import { ImageService } from '../../shared/services/image-service.service';
+
 
 @Component({
   selector: 'app-card',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
+  providers: [ImageService]
 })
 export class CardComponent {
 
-  constructor() {
-    this.product = new infoProduct();
+
+  constructor(private imgService: ImageService) {
   }
 
-  @Input() product: infoProduct;
+  ngOnInit(): void {
+    this.product.thumbNailPhoto = this.imgService.blobToUrl(this.product.thumbNailPhoto)
+  }
+
+  @Input() product: any;
   
 }
