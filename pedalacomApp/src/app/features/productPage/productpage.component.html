@@ -11,8 +11,8 @@
                 <!-- Use Angular binding to dynamically set the product description -->
                 <div class="mb-2">
                     <p class="mb-2"><strong>Price: $</strong>{{ productData?.listPrice }}</p>
-                    <span class="me-2"><strong>Size:</strong> {{ productData?.size }} </span>
-                    <span><strong> Weight:</strong> {{ productData?.weight }} gr.</span>
+                    <span *ngIf="productData?.size" class="me-2"><strong>Size:</strong> {{ productData.size }} </span>
+                    <span *ngIf="productData?.weight" class="me-2"><strong> Weight:</strong> {{ productData.weight }} gr.</span>
                 </div>
                 <div class="details-container my-2">
                     <h3>Product Details</h3>

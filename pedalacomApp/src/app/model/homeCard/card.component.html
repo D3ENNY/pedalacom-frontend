@@ -4,14 +4,13 @@
       [alt]="product.name"
       [src]="product.thumbNailPhoto"
     />
-    <div class="card-body">
-      <h5 class="pt-1 bike-name">{{product.productModel.name}}</h5>
+    <div class="card-body text-center">
+      <h5 class="pt-1 bike-name">{{product.name}}</h5>
     </div>
     <div class="info-container">
-      <span class="badge text-bg-warning">{{ product.listPrice }} €</span>
+      <span class="badge text-bg-warning fs-6">{{ product.listPrice }} €</span>
       <div class="mt-2 text-center">
-        <span class="text-success stock-check d-none">Avaiable</span>
-        <span class="text-danger stock-check">Out of Stock</span>
+        <span class="popular-check">Most Popular <span class="text-warning"><i class="fa-solid fa-star"></i> </span> </span>
       </div>
     </div>
 </div>
