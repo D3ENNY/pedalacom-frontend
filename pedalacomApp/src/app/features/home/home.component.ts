@@ -6,7 +6,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 // IMPORT CUSTOM COMPONENTS
 import { CarouselComponent } from '../../model/carousel/carousel.component';
 import { CardComponent } from '../../model/homeCard/card.component';
-import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
+import { SalesSectionComponent } from '../../model/salesSection/SalesSection.component';
 // IMPORT SERVICES
 import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
@@ -79,21 +79,22 @@ export class HomeComponent {
 	}
 
 	getProductCard() {
-		this.ProductService.getHomeProductInfo().subscribe({
-			next: (data: infoProduct[]) => {
-
-				data.forEach(e => {
-					e.photo = this.imgService.blobToUrl(e.photo)
-				})
-
-				this.products = data;
-			},
-
-			error: (err: any) => {
-				console.error(err)
-			}
-		})
+		this.ProductService.getProducts().subscribe({
+		  next: (data: any) => {
+			console.log('Products data:', data);
+			this.products = data;
+		  },
+		  error: (err: any) => {
+			console.error('Error fetching products:', err);
+		  },
+		  complete: () => {
+			console.log('Product retrieval completed.');
+		  }
+		});
 	}
+	  
+	  
+	  
 	
 }
 

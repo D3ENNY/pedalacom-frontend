@@ -6,6 +6,7 @@ import { ProductApiService } from '../../shared/CRUD/product-api-service.service
 import { infoProduct } from '../../shared/dataModel/products';
 import { ImageService } from '../../shared/services/image-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-products',
@@ -35,7 +36,8 @@ export class SearchComponent {
 		private productService: ProductApiService, 
 		private imgService: ImageService, 
 		private offcanvasService: NgbOffcanvas, 
-		private route : ActivatedRoute
+		private route : ActivatedRoute,
+		private router: Router
 	) { }
 	
 	ngOnInit(): void {
@@ -60,13 +62,16 @@ export class SearchComponent {
 		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
 	}
 
+	navigateToProductPage(productId: number) {
+		this.router.navigate(['/productPage', productId])
+	}
+	
 	populateFilterView(str: string){
 		if(this.filterView.includes(str))
 			this.filterView.splice(this.filterParams.indexOf(str), 1)
 		else this.filterView.push(str)
 
 		console.log("filterView", this.filterView);
-		
 	}
 	
 	open(content: TemplateRef<any>) {
