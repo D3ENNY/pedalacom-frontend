@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../../shared/dataModel/products';
-import { TableComponent } from '../../../model/table/table.component';
+import { TableComponent } from '../table/table.component';
+
+
 
 @Component({
   selector: 'app-remove-product',
@@ -18,24 +20,21 @@ export class RemoveProductComponent {
   products : infoProduct [] = [];
   paginationInfo : any;
   totalPage: number = 49;
-  page = 1;
+  page : number = 1;
 
   ngOnInit(){
-    this.getProductByName("", this.page)
+    this.getProductByName("")
   }
   
 
-  getProductByName(searchData : string, pageNumber : number){
-    this.productApi.getProductByName(searchData).subscribe({
+  getProductByName(searchData : string){
+    this.productApi.getProductByName(searchData, 1).subscribe({
       next: (data : any) =>{
-        this.products= data['products']
-        this.paginationInfo = data['paginationInfo']
+        this.products = data.products
         if(data.paginationInfo)
 					{
-            console.log(data)
 						this.paginationInfo = data.paginationInfo;
 						this.totalPage = data.paginationInfo.totalPages;
-						this.page = data.paginationInfo.pageNumber;
 					}
       },
       error: (err : any) => {
@@ -44,4 +43,21 @@ export class RemoveProductComponent {
     })
   }
   
+  changePageByName(searchData : string, pageNumber : number){
+    this.productApi.getProductByName(searchData, pageNumber).subscribe({
+      next: (data : any) =>{
+        this.products = data.products
+        if(data.paginationInfo)
+					{
+						this.paginationInfo = data.paginationInfo;
+						this.totalPage = data.paginationInfo.totalPages;
+						data.paginationInfo.pageNumber = pageNumber;
+					}
+      },
+      error: (err : any) => {
+        console.log(err)
+      }
+    })
+  }
+
 }
