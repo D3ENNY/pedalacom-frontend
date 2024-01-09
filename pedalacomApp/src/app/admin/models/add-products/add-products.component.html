@@ -1,127 +1,189 @@
 <div class="singup-container mx-auto mb-5 pt-3">
-    <form class="row g-3 p-3" #frm="ngForm">
-      <div>
-        <h3 class="h3 mb-3 fw-normal d-inline">Aggiungi un prodotto</h3>
-        <br>
-        <span style="font-size: 0.7em; color: red;">I campi * sono obbligatori</span>
+  <form class="row g-3 p-3" #frm="ngForm">
+    <div>
+      <h3 class="h3 mb-3 fw-normal d-inline">Aggiungi un prodotto</h3>
+      <br />
+      <span style="font-size: 0.7em; color: red"
+        >I campi * sono obbligatori</span
+      >
+    </div>
+    <div class="col-md-3">
+      <label for="inputCategory" class="form-label">Categoria*</label>
+      <select id="inputCategory" class="form-select" #Category>
+        <option selected required>Scegli...</option>
+        <option value="1">Biciclette</option>
+        <option value="2">Componenti</option>
+        <option value="3">Abbigliamento</option>
+        <option value="4">Accessori</option>
+        <option value="5">Mountain Bike</option>
+        <option value="6">Bici da Strada</option>
+        <option value="7">Bici da Touring</option>
+        <option value="8">Manubri</option>
+        <option value="9">Movimenti Centrali</option>
+        <option value="10">Freni</option>
+        <option value="11">Catene</option>
+        <option value="12">Guarniture</option>
+        <option value="13">Deragliatori</option>
+        <option value="14">Forcelle</option>
+        <option value="15">Movimenti di Sterzo</option>
+        <option value="16">Telai Mountain Bike</option>
+        <option value="17">Pedali</option>
+        <option value="18">Telai da Strada</option>
+        <option value="19">Selle</option>
+        <option value="20">Telai da Touring</option>
+        <option value="21">Ruote</option>
+        <option value="22">Pantaloncini a Bretelle</option>
+        <option value="23">Berretti</option>
+        <option value="24">Guanti</option>
+        <option value="25">Maglie</option>
+        <option value="26">Pantaloni Corti</option>
+        <option value="27">Calze</option>
+        <option value="28">Calzamaglie</option>
+        <option value="29">Gilet</option>
+        <option value="30">Portabici</option>
+        <option value="31">Supporti per Bici</option>
+        <option value="32">Bottiglie e Portaborraccia</option>
+        <option value="33">Detergenti</option>
+        <option value="34">Parafanghi</option>
+        <option value="35">Caschi</option>
+        <option value="36">Zaini Idrici</option>
+        <option value="37">Luci</option>
+        <option value="38">Lucchetti</option>
+        <option value="39">Pannieri</option>
+        <option value="40">Pompe</option>
+        <option value="41">Copertoni e Camere d'Aria</option>
+      </select>
+    </div>
+    <div class="col-md-9">
+      <label for="Name" class="form-label">Nome*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Mountain Tire Tube"
+        required
+        #Name
+      />
+    </div>
+    <div class="col-md-3">
+      <label for="inputColor" class="form-label">Colore*</label>
+      <select id="inputColor" class="form-select" #Color>
+        <option selected required>Scegli...</option>
+        <option value="White">Bianco</option>
+        <option value="Black">Nero</option>
+        <option value="Gray">Grigio</option>
+        <option value="Red">Rosso</option>
+        <option value="Blue">Blu</option>
+        <option value="Green">Verde</option>
+        <option value="Yellow">Giallo</option>
+        <option value="Orange">Arancione</option>
+        <option value="Brown">Marrone</option>
+        <option value="Beige">Beige</option>
+        <option value="Pink">Rosa</option>
+        <option value="Fucsia">Fucsia</option>
+        <option value="Multi">Multicolore</option>
+      </select>
+    </div>
+    <div class="col-md-8">
+      <label for="ProductNumber" class="form-label">Codice*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ProductNumber"
+        placeholder="BK-R89R-58"
+        required
+        #ProductNumber
+      />
+    </div>
+    <div class="col-6">
+      <label for="ListPrice" class="form-label">Prezzo di listino*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ListPrice"
+        placeholder="123,00€"
+        required
+        #ListPrice
+      />
+    </div>
+    <div class="col-6">
+      <label for="StandardCost" class="form-label">Prezzo attuale*</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="123,00€"
+        id="StandardCost"
+        name="password"
+        required
+        #StandardCost
+      />
+    </div>
+    <div class="col-12">
+      <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
+      <br />
+      <input #test type="file" (change)="getFile($event)" />
+    </div>
+    <div class="col-md-6">
+      <label for="Weight" class="form-label">Peso</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Weight"
+        placeholder="1000,00gr"
+        #Weight
+      />
+    </div>
+    <div class="col-md-6">
+      <label for="inputSize" class="form-label">Dimensioni*</label>
+      <select id="inputSize" class="form-select" #Size>
+        <option selected required>Scegli...</option>
+        <option value="60">60</option>
+        <option value="58">58</option>
+        <option value="56">56</option>
+        <option value="54">54</option>
+        <option value="52">52</option>
+        <option value="50">50</option>
+        <option value="48">48</option>
+        <option value="46">46</option>
+        <option value="44">44</option>
+        <option value="42">42</option>
+        <option value="40">40</option>
+        <option value="38">38</option>
+        <option value="XXL">XXL</option>
+        <option value="XL">XL</option>
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="S">S</option>
+        <option value="XS">XS</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      (click)="
+        sendProduct(
+          Category.value,
+          Name.value,
+          Color.value,
+          ProductNumber.value,
+          ListPrice.value,
+          StandardCost.value,
+          Weight.value,
+          Size.value
+        )
+      "
+      class="btn"
+    >
+      Aggiungi <i class="fa-solid fa-check"></i>
+    </button>
+
+    <ng-container *ngIf="showMessage">
+      <div class="pt-2" style="color: green" *ngIf="okStatus">
+        Prodotto aggiunto con sucesso
       </div>
-      <div class="col-md-3">
-        <label for="inputCategory" class="form-label">Categoria*</label>
-        <select id="inputCategory" class="form-select" #Category>
-          <option selected required>Scegli...</option>
-          <option value="1">Biciclette</option>
-          <option value="2">Componenti</option>
-          <option value="3">Abbigliamento</option>
-          <option value="4">Accessori</option>
-          <option value="5">Mountain Bike</option>
-          <option value="6">Bici da Strada</option>
-          <option value="7">Bici da Touring</option>
-          <option value="8">Manubri</option>
-          <option value="9">Movimenti Centrali</option>
-          <option value="10">Freni</option>
-          <option value="11">Catene</option>
-          <option value="12">Guarniture</option>
-          <option value="13">Deragliatori</option>
-          <option value="14">Forcelle</option>
-          <option value="15">Movimenti di Sterzo</option>
-          <option value="16">Telai Mountain Bike</option>
-          <option value="17">Pedali</option>
-          <option value="18">Telai da Strada</option>
-          <option value="19">Selle</option>
-          <option value="20">Telai da Touring</option>
-          <option value="21">Ruote</option>
-          <option value="22">Pantaloncini a Bretelle</option>
-          <option value="23">Berretti</option>
-          <option value="24">Guanti</option>
-          <option value="25">Maglie</option>
-          <option value="26">Pantaloni Corti</option>
-          <option value="27">Calze</option>
-          <option value="28">Calzamaglie</option>
-          <option value="29">Gilet</option>
-          <option value="30">Portabici</option>
-          <option value="31">Supporti per Bici</option>
-          <option value="32">Bottiglie e Portaborraccia</option>
-          <option value="33">Detergenti</option>
-          <option value="34">Parafanghi</option>
-          <option value="35">Caschi</option>
-          <option value="36">Zaini Idrici</option>
-          <option value="37">Luci</option>
-          <option value="38">Lucchetti</option>
-          <option value="39">Pannieri</option>
-          <option value="40">Pompe</option>
-          <option value="41">Copertoni e Camere d'Aria</option>                    
-        </select>
+      <div class="pt-2" style="color: red" *ngIf="!okStatus">
+        Errore nell'aggiunta del prodotto
       </div>
-      <div class="col-md-9">
-        <label for="Name" class="form-label">Nome*</label>
-        <input type="text" class="form-control" id="name" placeholder="Mountain Tire Tube" required #Name>
-      </div>
-      <div class="col-md-3">
-        <label for="inputColor" class="form-label">Colore*</label>
-        <select id="inputColor" class="form-select" #Color>
-            <option selected required>Scegli...</option>
-            <option value="White">Bianco</option>
-            <option value="Black">Nero</option>
-            <option value="Gray">Grigio</option>
-            <option value="Red">Rosso</option>
-            <option value="Blue">Blu</option>
-            <option value="Green">Verde</option>
-            <option value="Yellow">Giallo</option>
-            <option value="Orange">Arancione</option>
-            <option value="Brown">Marrone</option>
-            <option value="Beige">Beige</option>
-            <option value="Pink">Rosa</option>
-            <option value="Fucsia">Fucsia</option>
-            <option value="Multi">Multicolore</option>        
-        </select>
-      </div>
-      <div class="col-md-8">
-        <label for="ProductNumber" class="form-label">Codice*</label>
-        <input type="text" class="form-control" id="ProductNumber" placeholder="BK-R89R-58" required #ProductNumber>
-      </div>
-      <div class="col-6">
-        <label for="ListPrice" class="form-label">Prezzo di listino*</label>
-        <input type="text" class="form-control" id="ListPrice" placeholder="123,00€" required #ListPrice>
-      </div>
-      <div class="col-6">
-        <label for="StandardCost" class="form-label">Prezzo attuale*</label>
-        <input type="text" class="form-control" placeholder="123,00€" id="StandardCost" name="password" required #StandardCost>
-      </div>
-      <div class="col-12">
-        <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
-        <br>
-        <input #test type="file" (change)="getFile($event)">
-      </div>
-      <div class="col-md-6">
-        <label for="Weight" class="form-label">Peso</label>
-        <input type="text" class="form-control" id="Weight" placeholder="1000,00gr" #Weight>
-      </div>
-      <div class="col-md-6">
-        <label for="inputSize" class="form-label">Dimensioni*</label>
-        <select id="inputSize" class="form-select" #Size>
-            <option selected required>Scegli...</option>
-            <option value="60">60</option>
-            <option value="58">58</option>
-            <option value="56">56</option>
-            <option value="54">54</option>
-            <option value="52">52</option>
-            <option value="50">50</option>
-            <option value="48">48</option>
-            <option value="46">46</option>
-            <option value="44">44</option>
-            <option value="42">42</option>
-            <option value="40">40</option>
-            <option value="38">38</option>
-            <option value="XXL">XXL</option>
-            <option value="XL">XL</option>
-            <option value="L">L</option>
-            <option value="M">M</option>
-            <option value="S">S</option>
-            <option value="XS">XS</option>
-        </select>
-        </div>
-      <div class="col-12 mt-3">
-      </div>
-      <button type="submit" (click)="sendProduct(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value, StandardCost.value, Weight.value, Size.value )" class="btn">Aggiungi <i class="fa-solid fa-check"></i></button>
-    </form>
-  </div>
+    </ng-container>
+  </form>
+</div>

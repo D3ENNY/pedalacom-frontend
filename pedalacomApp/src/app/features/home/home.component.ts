@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 // IMPORT CUSTOM COMPONENTS
 import { CarouselComponent } from '../../model/carousel/carousel.component';
 import { CardComponent } from '../../model/homeCard/card.component';
-import { SalesSectionComponent } from '../../model/salesSection/SalesSection.component';
+import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
 // IMPORT SERVICES
 import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
 import { infoProduct } from '../../shared/dataModel/products';
