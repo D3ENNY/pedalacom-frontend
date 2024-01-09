@@ -19,6 +19,8 @@ export class AddProductsComponent {
   constructor(private productService: ProductApiService, private imgService: ImageService){}
 
   myImg: string = '';
+  okStatus: boolean = false;
+  showMessage:boolean = false;
 
   getFile(event: any) {
 		const img = event.target.files[0]
@@ -30,6 +32,8 @@ export class AddProductsComponent {
 	}
 
   sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
+
+    this.showMessage = true
 
     let newProduct: Product = new Product()
 
@@ -48,12 +52,13 @@ export class AddProductsComponent {
 
     console.log(newProduct)
 
-    this.productService.postProducts(newProduct).subscribe((resp)=>{
-      if(resp.status == 200 || resp.status == 201){
-        console.log("ok")
-      }
-      else{
-        console.log("Problema")
+    this.productService.postProducts(newProduct).subscribe({
+      next: (data:any) => {
+        this.okStatus = true; 
+      },
+      error: (err:any) =>{
+        this.okStatus = false;
+        console.log(err);
       }
     });
   }
