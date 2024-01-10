@@ -1,9 +1,9 @@
 
-  <button type="button" class="btn" style="background-color: var(--danger); color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Modifica prodotto 
+  <button type="button" class="btn" style="background-color: var(--danger); color: white;" data-bs-toggle="modal" [attr.data-bs-target]=" '#'+ 'c' +  productId"  (click)="getProductByID(productId)">
+    <i class="fa-solid fa-pen"></i>
   </button>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+  <div class="modal fade" [id]=" 'c' + productId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +13,7 @@
           <div class="singup-container mx-auto mb-5 pt-3">
             <form class="row g-3 p-3" #frm="ngForm" >
               <div>
-                <h3 class="h3 mb-3 fw-normal d-inline">Aggiungi un prodotto</h3>
+                <h3 class="h3 mb-3 fw-normal d-inline">Edit un prodot {{productTry.name}}</h3>
                 <br>
                 <span style="font-size: 0.7em; color: red;">I campi * sono obbligatori</span>
               </div>
@@ -151,5 +151,4 @@
       </div>
     </div>
   </div>
-
 

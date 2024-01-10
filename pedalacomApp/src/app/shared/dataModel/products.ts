@@ -36,4 +36,15 @@ export class infoProduct {
     photo: any = ""
     productCategory: string = ""
 }
-  
+
+export class fullInfo extends infoProduct{
+    
+        productNumber: string = '';
+        color: string = '';
+        standardCost: number = 0;
+        size: string = '';
+        weight: number = 0;
+        productCategoryId: number = 0;
+        modifiedDate: Date = new Date();
+    
+}

@@ -3,11 +3,12 @@ import { infoProduct } from '../../../shared/dataModel/products';
 import { CommonModule } from '@angular/common';
 import { RemoveProductComponent } from '../remove-product/remove-product.component';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
+import { EditProductComponent } from '../edit-product/edit-product.component';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, RemoveProductComponent],
+  imports: [CommonModule, RemoveProductComponent, EditProductComponent],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
   providers: [ProductApiService]

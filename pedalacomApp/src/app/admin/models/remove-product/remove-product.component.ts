@@ -17,14 +17,16 @@ export class RemoveProductComponent {
 
   constructor(private productApi : ProductApiService){}
 
-  products : infoProduct [] = [];
+  products : any [] = [];
   paginationInfo : any;
   totalPage: number = 49;
   page : number = 1;
 
   ngOnInit(){
     this.getProductByName("")
+    
   }
+  
   
 
   getProductByName(searchData : string){
