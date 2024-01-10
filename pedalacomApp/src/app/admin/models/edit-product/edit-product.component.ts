@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
@@ -16,9 +16,26 @@ import { Product } from '../../../shared/dataModel/products';
 export class EditProductComponent {
   constructor(private productService: ProductApiService, private imgService: ImageService){}
 
+  @Input () productId: number = 0
+
+  modaleId : string = '';
   myImg: string = '';
   okStatus: boolean = false;
   showMessage:boolean = false;
+  product: any;
+
+  productTry : any = {
+    name: '',
+    productNumber:'',
+    color:'',
+    standardCost: 0,
+    listPrice: 0,
+    size: '',
+    weight: 0,
+    productCategoryId:0,
+    thumbnailPhotoFileName: '',
+    modifiedDate:new Date(),
+  }
 
   getFile(event: any) {
 		const img = event.target.files[0]
@@ -30,39 +47,38 @@ export class EditProductComponent {
 	}
 
   provaCambio(){
+    
     this.showMessage = true
     this.okStatus = true;
   }
 
-  sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
+  getProductByID(productId: number){
 
-    this.showMessage = true
-
-    let newProduct: Product = new Product()
-
-    newProduct = {
-      name : Name,
-      productNumber: ProductNumber,
-      color: Color,
-      standardCost : parseInt(StandardCost),
-      listPrice : parseInt(ListPrice),
-      size : Size,
-      productCategoryId : parseInt(Category),
-      thumbnailPhotoFileName: this.myImg,
-      weight : parseInt(Weight),
-      modifiedDate : new Date() 
-    }
-
-    console.log(newProduct)
-
-    this.productService.postProducts(newProduct).subscribe({
+    this.productService.getProductById(productId).subscribe({
       next: (data:any) => {
-        this.okStatus = true; 
+        this.modaleId = productId.toString()
+        console.log(this.modaleId)
+        this.productTry = {
+          name: data.name,
+          productNumber:data.productNumber,
+          color:data.color,
+         standardCost: data.standardCost,
+        listPrice: data.listPrice,
+    size: data.size,
+    weight:data.weight,
+    productCategoryId:data.productCategoryID,
+    thumbnailPhotoFileName: data.thumbnailPhotoFileName,
+    modifiedDate:new Date(),
+        }
+       
+        
+        console.log(this.productTry)
       },
-      error: (err:any) =>{
-        this.okStatus = false;
-        console.log(err);
+      error: (err:Error) => {
+        console.log(err)
       }
-    });
+    })
   }
+
+  
 }
