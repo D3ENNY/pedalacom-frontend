@@ -1,5 +1,4 @@
 import { ImageService } from './../../shared/services/image-service.service';
-import { Product } from './../../shared/dataModel/products';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlickCarouselModule } from 'ngx-slick-carousel';

@@ -1,4 +1,5 @@
 export class Product {
+    productId: number = 0;
     name: string = '';
     productNumber: string = '';
     color: string = '';
@@ -9,8 +10,9 @@ export class Product {
     productCategoryId: number = 0;
     thumbnailPhotoFileName: string = '';
     modifiedDate: Date = new Date();
+    SellStartDate: Date = new Date();
 }
-
+ 
 export class ProductCategory {
     productCategoryID: number = 0;
     parentProductCategoryID: number = 0;

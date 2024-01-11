@@ -13,14 +13,13 @@
           <div class="singup-container mx-auto mb-5 pt-3">
             <form class="row g-3 p-3" #frm="ngForm" >
               <div>
-                <h3 class="h3 mb-3 fw-normal d-inline">Edit un prodot {{productTry.name}}</h3>
+                <h3 class="h3 mb-3 fw-normal d-inline">Modifica del prodotto {{productId}}</h3>
                 <br>
                 <span style="font-size: 0.7em; color: red;">I campi * sono obbligatori</span>
               </div>
               <div class="col-md-3">
                 <label for="inputCategory" class="form-label">Categoria*</label>
-                <select id="inputCategory" class="form-select" #Category>
-                  <option selected required>Scegli...</option>
+                <select id="inputCategory" class="form-select" #Category [value]="productEdit.productCategoryId" >                 
                   <option value="1">Biciclette</option>
                   <option value="2">Componenti</option>
                   <option value="3">Abbigliamento</option>
@@ -66,12 +65,11 @@
               </div>
               <div class="col-md-9">
                 <label for="Name" class="form-label">Nome*</label>
-                <input type="text" class="form-control" id="name" placeholder="Mountain Tire Tube" required #Name>
+                <input type="text" class="form-control" id="name" placeholder={{productEdit.name}}  value={{productEdit.name}} required #Name>
               </div>
               <div class="col-md-3">
                 <label for="inputColor" class="form-label">Colore*</label>
-                <select id="inputColor" class="form-select" #Color>
-                    <option selected required>Scegli...</option>
+                <select id="inputColor" class="form-select" #Color [value]="productEdit.color">
                     <option value="White">Bianco</option>
                     <option value="Black">Nero</option>
                     <option value="Gray">Grigio</option>
@@ -89,29 +87,33 @@
               </div>
               <div class="col-md-8">
                 <label for="ProductNumber" class="form-label">Codice*</label>
-                <input type="text" class="form-control" id="ProductNumber" placeholder="BK-R89R-58" required #ProductNumber>
+                <input type="text" class="form-control" id="ProductNumber" placeholder={{productEdit.productNumber}} value={{productEdit.productNumber}} required #ProductNumber>
               </div>
               <div class="col-6">
                 <label for="ListPrice" class="form-label">Prezzo di listino*</label>
-                <input type="text" class="form-control" id="ListPrice" placeholder="123,00€" required #ListPrice>
+                <input type="text" class="form-control" id="ListPrice" placeholder={{productEdit.listPrice}} value={{productEdit.listPrice}}  required #ListPrice>
               </div>
               <div class="col-6">
                 <label for="StandardCost" class="form-label">Prezzo attuale*</label>
-                <input type="text" class="form-control" placeholder="123,00€" id="StandardCost" name="password" required #StandardCost>
+                <input type="text" class="form-control" placeholder={{productEdit.standardCost}} value={{productEdit.standardCost}} id="StandardCost" name="password" required #StandardCost>
               </div>
               <div class="col-12">
                 <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
                 <br>
+                <img
+                  class="card-img-top img-fluid"
+                  [alt]="productEdit.name"
+                  [src]="productEdit.thumbNailPhoto"
+                  />
                 <input #test type="file" (change)="getFile($event)" >
               </div>
               <div class="col-md-6">
-                <label for="Weight" class="form-label">Peso</label>
-                <input type="text" class="form-control" id="Weight" placeholder="1000,00gr" #Weight>
+                <label for="Weight" class="form-label">Peso*</label>
+                <input type="text" class="form-control" id="Weight" placeholder={{productEdit.weight}} value={{productEdit.weight}} #Weight>
               </div>
               <div class="col-md-6">
                 <label for="inputSize" class="form-label">Dimensioni*</label>
-                <select id="inputSize" class="form-select" #Size>
-                    <option selected required>Scegli...</option>
+                <select id="inputSize" class="form-select" #Size [value]="productEdit.size">                   
                     <option value="60">60</option>
                     <option value="58">58</option>
                     <option value="56">56</option>
@@ -134,7 +136,14 @@
                 </div>
               <div class="col-12 mt-3">
               </div>
-              <button type="submit" class="btn" (click)="provaCambio()"  data-bs-dismiss="modal">Edit</button> 
+              <button type="submit" class="btn" (click)="postProduct(Category.value,
+              Name.value,
+              Color.value,
+              ProductNumber.value,
+              ListPrice.value,
+              StandardCost.value,
+              Weight.value,
+              Size.value)"  data-bs-dismiss="modal">Edit</button> 
 
               <ng-container *ngIf="showMessage">
                 <div class="pt-2" style="color: green" *ngIf="okStatus" >

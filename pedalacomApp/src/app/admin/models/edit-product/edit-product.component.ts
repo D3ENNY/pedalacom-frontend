@@ -24,7 +24,7 @@ export class EditProductComponent {
   showMessage:boolean = false;
   product: any;
 
-  productTry : any = {
+  productEdit : any = {
     name: '',
     productNumber:'',
     color:'',
@@ -46,33 +46,66 @@ export class EditProductComponent {
 		})
 	}
 
-  provaCambio(){
+  postProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
+    let newProduct: Product = new Product()
     
+    newProduct = {
+      productId : this.productId,
+      name : Name,
+      productNumber: ProductNumber,
+      color: Color,
+      standardCost : parseInt(StandardCost),
+      listPrice : parseInt(ListPrice),
+      size : Size,
+      productCategoryId : parseInt(Category),
+      thumbnailPhotoFileName: this.myImg,
+      weight : parseInt(Weight),
+      modifiedDate : new Date(),
+      SellStartDate: new Date()
+    }
+
+    console.log("thisssss")
+    console.log(newProduct.thumbnailPhotoFileName)
+
+    console.log(newProduct)
+
+    this.productService.putProducts(this.productId,newProduct).subscribe({
+      next: (data:any) => {
+        this.okStatus = true; 
+      },
+      error: (err:any) =>{
+        this.okStatus = false;
+        console.log(err);
+      }
+    });
+    /*
     this.showMessage = true
     this.okStatus = true;
+    */
   }
 
   getProductByID(productId: number){
 
     this.productService.getProductById(productId).subscribe({
       next: (data:any) => {
+        console.log(data)
         this.modaleId = productId.toString()
         console.log(this.modaleId)
-        this.productTry = {
+        this.productEdit = {
           name: data.name,
           productNumber:data.productNumber,
           color:data.color,
-         standardCost: data.standardCost,
-        listPrice: data.listPrice,
-    size: data.size,
-    weight:data.weight,
-    productCategoryId:data.productCategoryID,
-    thumbnailPhotoFileName: data.thumbnailPhotoFileName,
-    modifiedDate:new Date(),
+          standardCost: data.standardCost,
+          listPrice: data.listPrice,
+          size: data.size,
+          weight:data.weight,
+          productCategoryId:data.productCategoryId,
+          thumbNailPhoto: this.imgService.blobToUrl(data.thumbNailPhoto),
+          modifiedDate:new Date(),
         }
        
-        
-        console.log(this.productTry)
+        this.myImg = data.thumbNailPhoto
+        console.log(this.productEdit)
       },
       error: (err:Error) => {
         console.log(err)

@@ -53,7 +53,7 @@ export class ProductApiService {
   }
 
   // Update a product w string Injection & OBJECT Injection
-  putProducts(productId: string, obj: Object): Observable<any> {
+  putProducts(productId: number, obj: Object): Observable<any> {
     return this.http.put(`https://localhost:7150/api/Products/${productId}`, obj);
   }
 
