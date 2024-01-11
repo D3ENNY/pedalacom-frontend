@@ -38,6 +38,7 @@ export class AddProductsComponent {
     let newProduct: Product = new Product()
 
     newProduct = {
+      productId: 0,
       name : Name,
       productNumber: ProductNumber,
       color: Color,
@@ -47,7 +48,8 @@ export class AddProductsComponent {
       productCategoryId : parseInt(Category),
       thumbnailPhotoFileName: this.myImg,
       weight : parseInt(Weight),
-      modifiedDate : new Date() 
+      modifiedDate : new Date(), 
+      SellStartDate : new Date()
     }
 
     console.log(newProduct)
