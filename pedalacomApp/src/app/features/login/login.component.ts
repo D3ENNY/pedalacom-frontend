@@ -30,6 +30,7 @@ export class LoginComponent {
       next:(data: any) => {
         console.log(data)
         this.loginService.setLoggedToken(email, data.body.firstName, data.body.customerId, this.remember)
+        window.location.reload();
         this.redirect()
       },
       error: (err: any)=>{

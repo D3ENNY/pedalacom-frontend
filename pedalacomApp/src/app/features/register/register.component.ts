@@ -118,6 +118,7 @@ export class RegisterComponent {
     this.registration.postCustomer(cst).subscribe((resp)=>{
       if(resp.status == 200 || resp.status == 201){
         this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, resp.body.customerId, this.remember)
+        window.location.reload();
         this.redirect()
       }else{
         console.log("non sei registrato")
