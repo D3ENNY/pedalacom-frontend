@@ -1,27 +1,31 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Codice</th>
-			<th scope="col">Nome</th>
-			<th scope="col">Prezzo</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let product of products;  let i = index">
-			<td>{{product.productId}}</td>
-			<td>{{product.productCode}}</td>
-			<td>{{product.productName}}</td>
-			<td>{{product.productPrice}}</td>
-			<td> 
-				<button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="modalProduct.productId = product.productId; modalProduct.productName = product.productName; modalProduct.productCode = product.productCode">
-					<i class="fa-solid fa-trash"></i>
-				</button>
-			</td>
-			<td><app-edit-product [productId] = "product.productId"></app-edit-product></td>
-		</tr>   
-	</tbody>
-</table>
+<div class="container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Codice</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Prezzo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let product of products;  let i = index">
+				<td>{{product.productId}}</td>
+				<td>{{product.productCode}}</td>
+				<td>{{product.productName}}</td>
+				<td>{{product.productPrice}}</td>
+				<td><app-edit-product [productId] = "product.productId"></app-edit-product> 
+					<button data-bs-toggle="modal" type="button" class="btn ms-4" style="background-color: var(--danger); color: white;"  data-bs-target="#exampleModal" (click)="modalProduct.productId = product.productId; modalProduct.productName = product.productName; modalProduct.productCode = product.productCode">
+						<i class="fa-solid fa-trash"></i>
+					</button>
+				</td>
+			</tr>   
+		</tbody>
+	</table>	
+</div>
+
+<!--Paginazione-->
 <div class="pagination">
 	<!-- Pulsanti delle pagine -->
 	<button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber">

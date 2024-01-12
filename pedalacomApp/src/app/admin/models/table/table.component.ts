@@ -1,21 +1,20 @@
 import { Component, Input } from '@angular/core';
-import { infoProduct } from '../../../shared/dataModel/products';
 import { CommonModule } from '@angular/common';
-import { RemoveProductComponent } from '../remove-product/remove-product.component';
+import { ManagementProductsComponent } from '../management-products/management-products.component';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
 import { EditProductComponent } from '../edit-product/edit-product.component';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, RemoveProductComponent, EditProductComponent],
+  imports: [CommonModule, ManagementProductsComponent, EditProductComponent],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
   providers: [ProductApiService]
 })
 export class TableComponent {
   
-  constructor(private removeProduct : RemoveProductComponent, private productApi : ProductApiService){}
+  constructor(private managementProducts : ManagementProductsComponent, private productApi : ProductApiService){}
   @Input () products : any[] = [];
   @Input () paginationInfo : any;
   @Input () searchData : string = '';
@@ -63,7 +62,7 @@ export class TableComponent {
       return;
     }
     const { searchData } = this;
-    this.removeProduct.changePageByName(searchData, page)
+    this.managementProducts.changePageByName(searchData, page)
   }
   
   deleteProduct(productId : string){

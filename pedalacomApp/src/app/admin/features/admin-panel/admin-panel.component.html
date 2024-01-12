@@ -9,12 +9,8 @@
                 Aggiungi Prodotto
             </button>
 
-            <button class="btn" (click)="stringPage ='removeProducts'">
-                Rimuovi Prodotto
-            </button>
-
-            <button class="btn" (click)="stringPage='editProducts'">
-                Modifica Prodotto
+            <button class="btn" (click)="stringPage ='managementProducts'">
+                Gestione Prodotti
             </button>
             
             <button class="btn" (click)="stringPage='removeUser'">
@@ -40,14 +36,9 @@
             <ng-template #Ko>
             </ng-template>
             <!--   **************************************    -->
-            <div *ngIf="stringPage == 'removeProducts'; then removeProducts else Ko"></div>
+            <div *ngIf="stringPage == 'managementProducts'; then removeProducts else Ko"></div>
             <ng-template #removeProducts>
-                <app-remove-product></app-remove-product>
-            </ng-template>
-
-            <div *ngIf="stringPage == 'editProducts'; then editProducts else Ko"></div>
-            <ng-template #editProducts>
-                <app-edit-product></app-edit-product>
+                <app-management-products></app-management-products>
             </ng-template>
 
             <div *ngIf="stringPage == 'removeUser'; then removeUser else Ko"></div>

@@ -3,7 +3,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { AddProductsComponent } from '../../models/add-products/add-products.component';
 import { PanelManagerService } from '../../shared/services/panel-manager.service';
 import { CommonModule } from '@angular/common';
-import { RemoveProductComponent } from '../../models/remove-product/remove-product.component';
+import { ManagementProductsComponent } from '../../models/management-products/management-products.component';
 import { EditProductComponent } from '../../models/edit-product/edit-product.component';
 import { DeleteUserComponent } from '../../models/delete-user/delete-user.component';
 import { ViewLogComponent } from '../../models/view-log/view-log.component';
@@ -12,7 +12,7 @@ import { ViewErrorComponent } from '../../models/view-error/view-error.component
 @Component({
 	selector: 'app-admin-panel',
 	standalone: true,
-	imports: [AddProductsComponent, RemoveProductComponent, RouterOutlet, RouterLink, CommonModule,EditProductComponent,DeleteUserComponent,
+	imports: [AddProductsComponent, ManagementProductsComponent, RouterOutlet, RouterLink, CommonModule,EditProductComponent,DeleteUserComponent,
 	ViewLogComponent, ViewErrorComponent],
 	templateUrl: './admin-panel.component.html',
 	styleUrl: './admin-panel.component.scss',

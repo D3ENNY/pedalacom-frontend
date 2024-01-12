@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
-import { infoProduct } from '../../../shared/dataModel/products';
 import { TableComponent } from '../table/table.component';
 
 
 
 @Component({
-  selector: 'app-remove-product',
+  selector: 'app-management-products',
   standalone: true,
   imports: [TableComponent],
-  templateUrl: './remove-product.component.html',
-  styleUrl: './remove-product.component.scss',
+  templateUrl: './management-products.component.html',
+  styleUrl: './management-products.component.scss',
   providers : [ProductApiService]
 })
-export class RemoveProductComponent {
+export class ManagementProductsComponent {
 
   constructor(private productApi : ProductApiService){}
 

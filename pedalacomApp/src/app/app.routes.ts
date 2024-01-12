@@ -11,7 +11,7 @@ import { RegisterComponent } from './features/register/register.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { AdminPanelComponent } from './admin/features/admin-panel/admin-panel.component';
 import { AddProductsComponent } from './admin/models/add-products/add-products.component';
-import { RemoveProductComponent } from './admin/models/remove-product/remove-product.component';
+import { ManagementProductsComponent } from './admin/models/management-products/management-products.component';
 
 export const routes: Routes = [
     // NAVBAR ROUTES
@@ -31,8 +31,4 @@ export const routes: Routes = [
     // DEFAULT REDIRECT E 404 PAGE
     {path: '**', component: NotFoundComponent },
     {path:'', redirectTo: 'home', pathMatch: 'full'},
-
-    //ADMIN
-    {path: 'addProducts', component: AddProductsComponent},
-    {path: 'removeProducts', component: RemoveProductComponent}
 ];
