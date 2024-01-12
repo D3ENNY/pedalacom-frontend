@@ -1,1 +1,27 @@
-<p>view-error works!</p>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Errore</th>
+            <th>Messaggio</th>
+            <th>Traccia di pila</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let error of logErrors">
+            <td>{{ error.errorCode }}</td>
+            <td>{{ error.message }}</td>
+            <td>{{ error.stackTrace }}</td>
+            <td>{{ error.timeStamp }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--Paginazione-->
+    <div class="pagination">
+        <!-- Pulsanti delle pagine -->
+        <button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber">
+            {{ page }}
+        </button>
+    </div>	      
+</div>

@@ -30,7 +30,7 @@ export class SearchComponent {
 	page: number = 1;
 	totalPage: number = 49;
 	pageNumber : number = 1;
-  paginationInfo: any;
+  	paginationInfo: any;
 
 	constructor(
 		private productService: ProductApiService, 

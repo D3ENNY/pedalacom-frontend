@@ -25,8 +25,6 @@ export class ManagementProductsComponent {
     this.getProductByName("")
     
   }
-  
-  
 
   getProductByName(searchData : string){
     this.productApi.getProductByName(searchData, 1).subscribe({
