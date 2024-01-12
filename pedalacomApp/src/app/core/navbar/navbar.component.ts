@@ -15,11 +15,23 @@ export class NavbarComponent {
 
 	userLogged = false
 	managementFade = false
+	userAdmin = false
 	
 	constructor(private router: Router, private renderer: Renderer2) { }
 
 	ngOnInit() {
 		this.checkLogged()
+	}
+
+	checkAdmin() {
+		this.userAdmin = false;
+		if(localStorage.getItem("authorization") == btoa('Admin') || sessionStorage.getItem("authorization") == btoa('Admin')){
+			this.userAdmin = true
+			console.log("qui")
+		}
+		else{
+			this.userAdmin = false
+		}
 	}
 
 	logout() {
@@ -32,6 +44,7 @@ export class NavbarComponent {
 	checkLogged() {
 		if (localStorage.getItem("username") != null || sessionStorage.getItem("username") != null) {
 			this.userLogged = true
+			this.checkAdmin()
 		}
 		else {
 			this.userLogged = false

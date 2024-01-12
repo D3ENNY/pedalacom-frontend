@@ -104,7 +104,6 @@ export class RegisterComponent {
   }
 
   sendRegistration(title : string,firstName : string,middleName : string,lastName : string,email : string,password : string,companyName : string,phoneNumber : string){
-    console.log("Ciao bello")
     let cst:  Customer =  new Customer() 
     cst = {
       Title : title ,

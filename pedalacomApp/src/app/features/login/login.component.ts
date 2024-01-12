@@ -34,9 +34,9 @@ export class LoginComponent {
       },
       error: (err: any)=>{
         console.log(err.error)
-        if(err.error == "wrongPassword"){
+        if(err.error == "wrong password"){
           this.setDisplay = "block";
-        } else if (err.error == "userNotFound"){
+        } else if (err.error == "user not found"){
           this.userFound = "block";
         }
       }
