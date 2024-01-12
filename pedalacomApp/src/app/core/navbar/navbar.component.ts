@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
+	activeSearch = false
+	changeModal = false
 	userLogged = false
 	managementFade = false
 	userAdmin = false
@@ -21,6 +23,10 @@ export class NavbarComponent {
 
 	ngOnInit() {
 		this.checkLogged()
+	}
+
+	changeActiveSearch(){
+		this.activeSearch = !this.activeSearch
 	}
 
 	checkAdmin() {
@@ -39,6 +45,7 @@ export class NavbarComponent {
 		localStorage.clear()
 		this.checkLogged()
 		this.router.navigate(['/']);
+		window.location.reload();
 	}
 
 	checkLogged() {
@@ -55,21 +62,45 @@ export class NavbarComponent {
 		this.router.navigateByUrl(`/search/${searchParam}`)
 	}
 
-	toggleFade(b1: HTMLDivElement,b2: HTMLDivElement,b3: HTMLDivElement,b4: HTMLDivElement,b5: HTMLDivElement) {
+	toggleFade(b1: HTMLDivElement,b2: HTMLDivElement,b3: HTMLDivElement,b4: HTMLDivElement,b5: HTMLDivElement, b6: HTMLElement,b7: HTMLElement) {
 		this.managementFade = !this.managementFade
+		this.changeModal = !this.changeModal
 		setTimeout(() => {
-			if(!this.managementFade){
-				b4.classList.add('d-none')
-				b5.classList.add('d-none')
-				b1.classList.remove('d-none')
-				b2.classList.remove('d-none')
-				b3.classList.remove('d-none')
-			}else{
-				b1.classList.add('d-none')
-				b2.classList.add('d-none')
-				b3.classList.add('d-none')
-				b4.classList.remove('d-none')
-				b5.classList.remove('d-none')
+			if(this.userLogged){
+				if(!this.managementFade){
+					b1.classList.remove('d-none')
+					b2.classList.remove('d-none')
+					b3.classList.remove('d-none')
+					b6.classList.add('d-none')
+					b7.classList.add('d-none')
+				}else{
+					b1.classList.add('d-none')
+					b2.classList.add('d-none')
+					b3.classList.add('d-none')
+					b6.classList.remove('d-none')
+					b7.classList.add('d-none')
+					if(this.userAdmin){
+						b7.classList.remove('d-none')
+					}
+				}
+			}
+			else{
+				b6.classList.add('d-none')
+				if(!this.managementFade){
+					b4.classList.add('d-none')
+					b5.classList.add('d-none')
+					b1.classList.remove('d-none')
+					b2.classList.remove('d-none')
+					b3.classList.remove('d-none')
+					b7.classList.add('d-none')
+				}else{
+					b1.classList.add('d-none')
+					b2.classList.add('d-none')
+					b3.classList.add('d-none')
+					b4.classList.remove('d-none')
+					b5.classList.remove('d-none')
+					b7.classList.add('d-none')
+				}
 			}
 		}, 500)
 	}
