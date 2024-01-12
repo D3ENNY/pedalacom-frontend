@@ -118,11 +118,23 @@
         #StandardCost
       />
     </div>
-    <div class="col-12">
+    <div class="col-6">
       <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
       <br />
       <input #test type="file" (change)="getFile($event)" />
     </div>
+
+    <div class="col-6">
+      <label for="Model" class="form-label">Modello</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Model"
+        placeholder="Mountain Tire"
+        #Model
+      />
+    </div>
+
     <div class="col-md-6">
       <label for="Weight" class="form-label">Peso</label>
       <input
@@ -133,6 +145,7 @@
         #Weight
       />
     </div>
+
     <div class="col-md-6">
       <label for="inputSize" class="form-label">Dimensioni*</label>
       <select id="inputSize" class="form-select" #Size>
@@ -158,6 +171,11 @@
       </select>
     </div>
 
+    <div class="col-md-6">
+      <label for="Description" class="form-label">Description</label>
+      <textarea name="Description" id="desc" cols="70" rows="5" #Description></textarea>
+    </div>
+
     <button
       type="submit"
       (click)="
@@ -169,11 +187,10 @@
           ListPrice.value,
           StandardCost.value,
           Weight.value,
-          Size.value
-        )
-      "
-      class="btn"
-    >
+          Size.value,
+          Description.value,
+          Model.value)"
+      class="btn">
       Aggiungi <i class="fa-solid fa-check"></i>
     </button>
 

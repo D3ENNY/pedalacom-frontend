@@ -18,9 +18,6 @@
                     <h3>Product Details</h3>
                     <!-- Use Angular binding to dynamically set the product details -->
                     <p>{{ productData?.productModel?.productModelProductDescriptions[0]?.productDescription?.description || 'Description not available' }}</p>
-                    <!-- <div *ngFor="let description of productData?.productModel?.productModelProductDescriptions">
-                        <p>{{ description.productDescription?.description || 'Description not available' }}</p>
-                    </div> -->
                 </div>
                 <!-- Quantity Input (you may use a dropdown or other input types based on your design) -->
                 <div class="form-group">

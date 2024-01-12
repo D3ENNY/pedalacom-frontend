@@ -48,8 +48,8 @@ export class ProductApiService {
     return this.http.get('https://localhost:7150/api/Products/info', {headers : new HttpHeaders({ contantType: 'application/json' })})
   }
   // Add a new product w OBJECT Injection
-  postProducts(obj: Object): Observable<any> {
-    return this.http.post('https://localhost:7150/api/Products', obj, { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });
+  postProducts(obj: Object, arr: string[]): Observable<any> {
+    return this.http.post('https://localhost:7150/api/Products', [obj, arr], { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });
   }
 
   // Update a product w string Injection & OBJECT Injection

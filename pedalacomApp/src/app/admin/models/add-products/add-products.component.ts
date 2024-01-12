@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule, DecimalPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
 import { Product } from '../../../shared/dataModel/products';
 import { ImageService } from '../../../shared/services/image-service.service';
-
 
 @Component({
   selector: 'app-add-products',
@@ -31,7 +29,7 @@ export class AddProductsComponent {
 		})
 	}
 
-  sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
+  sendProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string, Description: string, Model: string){
 
     this.showMessage = true
 
@@ -51,12 +49,12 @@ export class AddProductsComponent {
       modifiedDate : new Date(), 
       SellStartDate : new Date()
     }
-
-    console.log(newProduct)
-
-    this.productService.postProducts(newProduct).subscribe({
+    console.log(newProduct);
+    
+    this.productService.postProducts(newProduct, [Model, Description]).subscribe({
       next: (data:any) => {
         this.okStatus = true; 
+        console.log("test", data);
       },
       error: (err:any) =>{
         this.okStatus = false;
