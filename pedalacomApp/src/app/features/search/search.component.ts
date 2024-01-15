@@ -25,7 +25,7 @@ export class SearchComponent {
 	filterView: string[] = [] 
 	products: infoProduct[] = [];
 	isOffcanvasOpen: boolean = false;
-	valueFilter: string = 'Prezzo: In ordine crescente'
+	valueFilter: string = 'In Evidenza'
 	btnID: string = ''
 	page: number = 1;
 	totalPage: number = 49;
@@ -47,7 +47,7 @@ export class SearchComponent {
 			if(param) this.searchData = param
 		})
 
-		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
+		this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
 
 	}
 
@@ -59,7 +59,7 @@ export class SearchComponent {
 		
 		this.pageNumber = 1
 		this.products = []
-		this.GetProducts(this.searchData, this.pageNumber, this.filterParams)
+		this.GetProducts(this.searchData, this.pageNumber,this.valueFilter, this.filterParams, )
 	}
 
 	navigateToProductPage(productId: number) {
@@ -94,10 +94,10 @@ export class SearchComponent {
 		this.btnID = id
 	}
 
-	GetProducts(searchData: string, pageNumber: number = 1, filterParams: any) {
+	GetProducts(searchData: string, pageNumber: number = 1, order : string, filterParams: any) {
 		const productObservable = filterParams && filterParams.length > 0 ?
-			this.productService.getProductFiltered(searchData, pageNumber, filterParams) :
-			this.productService.getProductFiltered(searchData, pageNumber);
+			this.productService.getProductFiltered(searchData, pageNumber, order, filterParams) :
+			this.productService.getProductFiltered(searchData, pageNumber,order);
 	
 		productObservable.subscribe({
 			next: (data: any) => {
@@ -154,7 +154,7 @@ export class SearchComponent {
 		}
 	
 		const { searchData, filterParams } = this;
-		this.GetProducts(searchData, page, filterParams);
+		this.GetProducts(searchData, page, this.valueFilter,  filterParams);
 }
   
 	getFile(event: any) {

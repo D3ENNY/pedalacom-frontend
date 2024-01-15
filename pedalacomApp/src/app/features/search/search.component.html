@@ -13,13 +13,15 @@
 			</button>
 			<ul class="dropdown-menu py-0">
 				<li><a #v1 class="dropdown-item border-bottom" [style.display]="v1.text == valueFilter ? 'none' : 'block'"
-						(click)="valueFilter=v1.text" id="v1">In Evidenza</a></li>
+						(click)="valueFilter=v1.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v1">In Evidenza</a></li>
 				<li><a #v2 class="dropdown-item border-bottom" [style.display]="v2.text == valueFilter ? 'none' : 'block'"
-						(click)="valueFilter=v2.text" id="v2">Prezzo: In ordine crescente</a></li>
+						(click)="valueFilter=v2.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v2">Prezzo: In ordine crescente</a></li>
 				<li><a #v3 class="dropdown-item border-bottom" [style.display]="v3.text == valueFilter ? 'none' : 'block'"
-						(click)="valueFilter=v3.text" id="v3">Prezzo: In ordine decrescente</a></li>
+						(click)="valueFilter=v3.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v3">Prezzo: In ordine decrescente</a></li>
 				<li><a #v4 class="dropdown-item" [style.display]="v4.text == valueFilter ? 'none' : 'block'"
-						(click)="valueFilter=v4.text" id="v4">Ultimi arrivi</a></li>
+						(click)="valueFilter=v4.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v4">Nome: In ordine crescente</a></li>
+				<li><a #v5 class="dropdown-item" [style.display]="v5.text == valueFilter ? 'none' : 'block'"
+						(click)="valueFilter=v5.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v5">Nome: In ordine decrescente</a></li>
 			</ul>
 		</div>
 		<div class="d-md-block d-lg-none">
@@ -125,7 +127,8 @@
 				<button #v1 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v1' }" (click)="mobileFilterData(v1, 'v1')">In Evidenza</button>
 				<button #v2 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v2' }" (click)="mobileFilterData(v2, 'v2')">Prezzo: In ordine crescente</button>
 				<button #v3 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v3' }" (click)="mobileFilterData(v3, 'v3')">Prezzo: In ordine decrescente</button>
-				<button #v4 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v4' }" (click)="mobileFilterData(v4, 'v4')">Ultimi arrivi</button>
+				<button #v4 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v4' }" (click)="mobileFilterData(v4, 'v4')">Nome: In ordine crescente</button>
+				<button #v5 type="button" class="btn rounded-lg shadow p-0 px-2" [ngClass]="{ 'pressedBtn': btnID === 'v5' }" (click)="mobileFilterData(v5, 'v5')">Nome: In ordine decrescente</button>
 			</div>
 			<div>
 				<p class="py-1 m-0">Categorie: </p>

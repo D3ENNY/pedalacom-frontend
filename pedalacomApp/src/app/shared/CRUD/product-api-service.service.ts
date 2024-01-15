@@ -30,10 +30,11 @@ export class ProductApiService {
   }
   
 
-  getProductFiltered(searchData: string, pageNumber: number = 1, bodyReq: any = null): Observable<any> {
+  getProductFiltered(searchData: string, pageNumber: number = 1, order : string, bodyReq: any = null): Observable<any> {
     const params = new HttpParams()
         .set('searchData', searchData)
-        .set('pageNumber', pageNumber.toString());
+        .set('pageNumber', pageNumber.toString())
+        .set('order', order);
 
     return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params });
   }
