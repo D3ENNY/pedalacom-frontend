@@ -115,14 +115,17 @@ export class RegisterComponent {
       CompanyName  : companyName,
       Phone  : phoneNumber,
     }
-    this.registration.postCustomer(cst).subscribe((resp)=>{
-      if(resp.status == 200 || resp.status == 201){
-        this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, resp.body.customerId, this.remember)
-        window.location.reload();
+    
+    this.registration.postCustomer(cst).subscribe({
+      next: (data: any) => {
+        this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, data.customerId, this.remember)
         this.redirect()
-      }else{
-        console.log("non sei registrato")
+      },
+      error: (err: any) => {
+        console.error(err);
+        
       }
-    });
+    })
   }
+  
 }

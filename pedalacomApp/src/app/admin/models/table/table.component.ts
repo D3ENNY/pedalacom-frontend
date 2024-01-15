@@ -68,10 +68,10 @@ export class TableComponent {
   deleteProduct(productId : string){
     this.productApi.deleteProducts(productId).subscribe({
       next : (data : any) => {
-        console.log(data)
+
       },
       error : (err : any) => {
-        console.log(err)
+        console.error(err)
       }
     })
   }

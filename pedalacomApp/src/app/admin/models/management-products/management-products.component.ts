@@ -39,7 +39,7 @@ export class ManagementProductsComponent {
 					}
       },
       error: (err : any) => {
-        console.log(err)
+        console.error(err)
       }
     })
   }
@@ -56,7 +56,7 @@ export class ManagementProductsComponent {
 					}
       },
       error: (err : any) => {
-        console.log(err)
+        console.error(err)
       }
     })
   }

@@ -28,7 +28,6 @@ export class LoginComponent {
     this.userFound = "none"
     this.loginService.loginCustomer(email, password).subscribe({
       next:(data: any) => {
-        console.log(data)
         this.loginService.setLoggedToken(email, data.body.firstName, data.body.customerId, this.remember)
         window.location.reload();
         this.redirect()
