@@ -20,9 +20,12 @@
             Remember me
           </label>
         </div>
+        <div *ngIf="needNewRegistration" style="border: 2px dotted red;" class="text-center mt-4 mb-2">
+          <span style="color: red;" class="mt-4 mb-3 p-3">Attenzione!<br>Devi effettuare nuovamente la <a routerLink="/register" class="singup-link">registrazione.</a></span>
+        </div>
         <button class="btn w-100 py-2 mt-2" type="submit" (click)="runLogin($event, email.value, password.value)">Entra <i class="fa-solid fa-bicycle"></i></button>
         <div class="text-center mt-4 mb-2">
-          <span class="mt-4 mb-3">New to Pedalacom? <a routerLink="/register" class="singup-link"> Sign Up Here!</a></span>
+          <span class="mt-4 mb-3">Nuovo su Pedalacom? <a routerLink="/register" class="singup-link"> Registrati!</a></span>
         </div>
       </form>
 </div>
