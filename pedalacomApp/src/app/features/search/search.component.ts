@@ -70,8 +70,6 @@ export class SearchComponent {
 		if(this.filterView.includes(str))
 			this.filterView.splice(this.filterParams.indexOf(str), 1)
 		else this.filterView.push(str)
-
-		console.log("filterView", this.filterView);
 	}
 	
 	open(content: TemplateRef<any>) {
@@ -104,7 +102,6 @@ export class SearchComponent {
 		productObservable.subscribe({
 			next: (data: any) => {
 				if (data) {
-					console.log(data)
 					if(data.products)
 					{
 						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));

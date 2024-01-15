@@ -28,17 +28,14 @@ export class DeleteUserComponent {
   }
 
   deleteUser( email : string) {
-    console.log(email)
     this.userError = false;
     this.userDelete = false;
     this.customer.deleteCustomer(email).subscribe({
       next:(data: any) => {
-        console.log("account eliminato");
-        console.log(data);
         this.userDelete = true;
       },
       error : (err : any) => {
-        console.log(err)
+        console.error(err)
         this.userError = true;
       }
     })

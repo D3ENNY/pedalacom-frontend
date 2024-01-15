@@ -81,7 +81,6 @@ export class HomeComponent {
 	getProductCard() {
 		this.ProductService.getProducts().subscribe({
 		  next: (data: any) => {
-			console.log('Products data:', data);
 			this.products = data;
 		  },
 		  error: (err: any) => {

@@ -97,7 +97,7 @@
                 <label for="StandardCost" class="form-label">Prezzo attuale*</label>
                 <input type="text" class="form-control" placeholder={{productEdit.standardCost}} value={{productEdit.standardCost}} id="StandardCost" name="password" required #StandardCost>
               </div>
-              <div class="col-12">
+              <div class="col-6">
                 <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
                 <br>
                 <img
@@ -107,10 +107,24 @@
                   />
                 <input #test type="file" (change)="getFile($event)" >
               </div>
+
+              <div class="col-6">
+                <label for="Model" class="form-label">Modello</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Model"
+                  placeholder="{{ productEdit.model}}"
+                  value="{{ productEdit.model }}"
+                  #Model
+                />
+              </div>
+
               <div class="col-md-6">
                 <label for="Weight" class="form-label">Peso*</label>
                 <input type="text" class="form-control" id="Weight" placeholder={{productEdit.weight}} value={{productEdit.weight}} #Weight>
               </div>
+
               <div class="col-md-6">
                 <label for="inputSize" class="form-label">Dimensioni*</label>
                 <select id="inputSize" class="form-select" #Size [value]="productEdit.size">                   
@@ -134,16 +148,29 @@
                     <option value="XS">XS</option>
                 </select>
                 </div>
-              <div class="col-12 mt-3">
-              </div>
-              <button type="submit" class="btn" (click)="postProduct(Category.value,
-              Name.value,
-              Color.value,
-              ProductNumber.value,
-              ListPrice.value,
-              StandardCost.value,
-              Weight.value,
-              Size.value)"  data-bs-dismiss="modal">Edit</button> 
+
+                <div class="col-md-6">
+                  <label for="Description" class="form-label">Description</label>
+                  <textarea 
+                  name="Description" id="desc" 
+                  cols="56" rows="5" 
+                  placeholder="{{ productEdit.desc }}" value="{{ productEdit.desc }}"
+                  #Description></textarea>
+                </div>
+
+              <button type="submit" class="btn" (click)="postProduct(
+                Category.value,
+                Name.value,
+                Color.value,
+                ProductNumber.value,
+                ListPrice.value,
+                StandardCost.value,
+                Weight.value,
+                Size.value,
+                Description.value, 
+                Model.value
+                )"
+                data-bs-dismiss="modal">Edit</button> 
 
               <ng-container *ngIf="showMessage">
                 <div class="pt-2" style="color: green" *ngIf="okStatus" >

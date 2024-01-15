@@ -34,7 +34,6 @@ export class AddProductsComponent {
     this.showMessage = true
 
     let newProduct: Product = new Product()
-
     newProduct = {
       productId: 0,
       name : Name,
@@ -47,18 +46,17 @@ export class AddProductsComponent {
       thumbnailPhotoFileName: this.myImg,
       weight : parseInt(Weight),
       modifiedDate : new Date(), 
-      SellStartDate : new Date()
+      SellStartDate : new Date(),
+      ProductModelId: 0
     }
-    console.log(newProduct);
     
     this.productService.postProducts(newProduct, [Model, Description]).subscribe({
       next: (data:any) => {
         this.okStatus = true; 
-        console.log("test", data);
       },
       error: (err:any) =>{
         this.okStatus = false;
-        console.log(err);
+        console.error(err);
       }
     });
   }

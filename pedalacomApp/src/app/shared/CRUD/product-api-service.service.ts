@@ -1,3 +1,4 @@
+import { ProductModel } from './../dataModel/products';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -53,8 +54,16 @@ export class ProductApiService {
   }
 
   // Update a product w string Injection & OBJECT Injection
-  putProducts(productId: number, obj: Object): Observable<any> {
-    return this.http.put(`https://localhost:7150/api/Products/${productId}`, obj);
+  putProducts(productId: number, descriptionId: number, product: Object, description: string, model: string): Observable<any> {
+    const params = new HttpParams().set("productId", productId.toString()).set("descriptionId", descriptionId.toString())
+    
+    return this.http.put(`https://localhost:7150/api/Products/`,     
+    {
+      "model" : model,
+      "description": description, 
+      "product": ProductModel
+    },
+    {params})
   }
 
   // Delete a product  w string Injection

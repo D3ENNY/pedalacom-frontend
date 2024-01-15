@@ -34,7 +34,6 @@ export class ProductPageComponent {
           next: productData => {
             this.productData = productData;
             this.productData.thumbNailPhoto = this.imgService.blobToUrl(this.productData.thumbNailPhoto)
-            console.log(this.productData);
           },
           error: err => {
             console.error('Error fetching product:', err);

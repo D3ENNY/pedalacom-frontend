@@ -35,6 +35,10 @@ export class EditProductComponent {
     productCategoryId:0,
     thumbnailPhotoFileName: '',
     modifiedDate:new Date(),
+    model: '', 
+    desc: '',
+    modelId: 0,
+    descId: 0
   }
 
   getFile(event: any) {
@@ -46,7 +50,7 @@ export class EditProductComponent {
 		})
 	}
 
-  postProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string){
+  postProduct(Category: string, Name: string, Color: string, ProductNumber: string, ListPrice: string, StandardCost: string, Weight: string, Size: string, Desc: string, Model: string){
     let newProduct: Product = new Product()
     
     newProduct = {
@@ -61,21 +65,17 @@ export class EditProductComponent {
       thumbnailPhotoFileName: this.myImg,
       weight : parseInt(Weight),
       modifiedDate : new Date(),
-      SellStartDate: new Date()
+      SellStartDate: new Date(),
+      ProductModelId: this.productEdit.modelId,
     }
 
-    console.log("thisssss")
-    console.log(newProduct.thumbnailPhotoFileName)
-
-    console.log(newProduct)
-
-    this.productService.putProducts(this.productId,newProduct).subscribe({
+    this.productService.putProducts(this.productId, this.productEdit.descId, newProduct, Desc, Model).subscribe({
       next: (data:any) => {
         this.okStatus = true; 
       },
       error: (err:any) =>{
         this.okStatus = false;
-        console.log(err);
+        console.error("errore", err);
       }
     });
     /*
@@ -88,9 +88,10 @@ export class EditProductComponent {
 
     this.productService.getProductById(productId).subscribe({
       next: (data:any) => {
-        console.log(data)
         this.modaleId = productId.toString()
-        console.log(this.modaleId)
+        this.myImg = data.thumbNailPhoto
+        console.log(data);
+        
         this.productEdit = {
           name: data.name,
           productNumber:data.productNumber,
@@ -102,13 +103,14 @@ export class EditProductComponent {
           productCategoryId:data.productCategoryId,
           thumbNailPhoto: this.imgService.blobToUrl(data.thumbNailPhoto),
           modifiedDate:new Date(),
+          desc: data.productModel.productModelProductDescriptions[0].productDescription.description,
+          model: data.productModel.name,
+          modelId: data.productModel.productModelId,
+          descId: data.productModel.productModelProductDescriptions[0].productDescription.productDescriptionId
         }
-       
-        this.myImg = data.thumbNailPhoto
-        console.log(this.productEdit)
       },
       error: (err:Error) => {
-        console.log(err)
+        console.error(err)
       }
     })
   }
