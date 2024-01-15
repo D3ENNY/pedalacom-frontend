@@ -29,13 +29,14 @@ export class LoginComponent {
     this.loginService.loginCustomer(email, password).subscribe({
       next:(data: any) => {
         this.loginService.setLoggedToken(email, data.body.firstName, data.body.customerId, this.remember)
+        window.location.reload();
         this.redirect()
       },
       error: (err: any)=>{
-        console.error(err.error)
-        if(err.error == "wrongPassword"){
+        console.log(err.error)
+        if(err.error == "wrong password"){
           this.setDisplay = "block";
-        } else if (err.error == "userNotFound"){
+        } else if (err.error == "user not found"){
           this.userFound = "block";
         }
       }

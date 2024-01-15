@@ -115,6 +115,7 @@ export class RegisterComponent {
       CompanyName  : companyName,
       Phone  : phoneNumber,
     }
+    
     this.registration.postCustomer(cst).subscribe({
       next: (data: any) => {
         this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, data.customerId, this.remember)
@@ -126,4 +127,5 @@ export class RegisterComponent {
       }
     })
   }
+  
 }

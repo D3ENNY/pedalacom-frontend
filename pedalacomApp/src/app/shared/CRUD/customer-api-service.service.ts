@@ -63,15 +63,33 @@ export class CustomerApiServiceService {
 
   setLoggedToken(email: string, user: string, id: number, remember: boolean)
   {
-    if(remember){
-      localStorage.setItem('username', user)
-      localStorage.setItem('id', id.toString())
-      localStorage.setItem('email', email)
-    }else{
-      sessionStorage.setItem('username', user)
-      sessionStorage.setItem('id', id.toString())
-      sessionStorage.setItem('email', email)
+    let emailSplit = email.split('@')
+
+    if(emailSplit[1].toLowerCase() == "pedalacom.com"){
+      if(remember){
+        localStorage.setItem('username', user)
+        localStorage.setItem('id', id.toString())
+        localStorage.setItem('email', email)
+        localStorage.setItem('authorization', btoa('Admin'))
+      }else{
+        sessionStorage.setItem('username', user)
+        sessionStorage.setItem('id', id.toString())
+        sessionStorage.setItem('email', email)
+        sessionStorage.setItem('authorization', btoa('Admin'))
+      }
+    } else{
+      if(remember){
+        localStorage.setItem('username', user)
+        localStorage.setItem('id', id.toString())
+        localStorage.setItem('email', email)
+      }else{
+        sessionStorage.setItem('username', user)
+        sessionStorage.setItem('id', id.toString())
+        sessionStorage.setItem('email', email)
+      }
     }
+
+    
   }
 
 }
