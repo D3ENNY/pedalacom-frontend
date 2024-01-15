@@ -1,1 +1,27 @@
-<p>view-error works!</p>
+<div class="container">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-sm-2">Errore</th>
+        <th class="col-sm-6">Messaggio</th>
+        <th class="col-sm-4">Traccia di pila</th>
+        <th class="col-sm-2">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let error of logErrors">
+        <td class="align-middle">{{ error.errorCode }}</td>
+        <td class="align-middle">{{ error.message }}</td>
+        <td class="align-middle">{{ error.stackTrace }}</td>
+        <td class="align-middle">{{ error.timeStamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="pagination mt-2 mb-4">
+    <button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber" class="btn btn-outline-primary">
+      {{ page }}
+    </button>
+  </div>
+  
+</div>
