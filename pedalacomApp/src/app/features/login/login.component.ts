@@ -4,6 +4,7 @@ import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-servic
 import { Router, RouterModule } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,6 +14,9 @@ import { Router, RouterModule } from '@angular/router';
   providers: [CustomerApiServiceService]
 })
 export class LoginComponent {
+
+  
+  needNewRegistration = false;
 
   setDisplay = "none";
 
@@ -24,6 +28,7 @@ export class LoginComponent {
 
   runLogin(event: Event, email: string, password: string) 
   {
+    this.needNewRegistration = false
     this.setDisplay = "none"
     this.userFound = "none"
     this.loginService.loginCustomer(email, password).subscribe({
@@ -38,6 +43,8 @@ export class LoginComponent {
           this.setDisplay = "block";
         } else if (err.error == "user not found"){
           this.userFound = "block";
+        } else if (err.error == "user already exist"){
+          this.needNewRegistration = true
         }
       }
     })

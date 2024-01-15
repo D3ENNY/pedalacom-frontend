@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service';
 import { FormsModule } from '@angular/forms';
 import { Customer } from '../../shared/dataModel/customer';
-import { Router } from '@angular/router';
+import { Router, RouterModule} from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   providers: [CustomerApiServiceService]
 })
 export class RegisterComponent {
+
+  alreadyRegister: boolean = false;
 
   errorList: string[] = [];
 
@@ -110,7 +113,7 @@ export class RegisterComponent {
       FirstName  : firstName,
       MiddleName  : middleName,
       LastName  : lastName,
-      EmailAddress  : email,
+      EmailAddress  : email.toLowerCase(),
       PasswordHash  : password,
       CompanyName  : companyName,
       Phone  : phoneNumber,
@@ -123,8 +126,11 @@ export class RegisterComponent {
         this.redirect()
       },
       error: (err: any) => {
-        console.error(err);
-        
+        this.alreadyRegister = false;
+        console.log(err.error)
+        if(err.error == "alreadyRegister"){
+          this.alreadyRegister = true;
+        }
       }
     })
   }

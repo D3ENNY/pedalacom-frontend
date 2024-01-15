@@ -59,6 +59,7 @@
         </label>
       </div>
     </div>
+    <div *ngIf="alreadyRegister" style="color: red;">Sei già registrato. <a routerLink="/login" style="color: rgb(106, 0, 255);">Effettua il login</a></div>
     <div class="col-12 mb-3">
       <div *ngIf="samePassword && valueOK; then Ok else Ko"></div>
       <ng-template #Ok>
