@@ -26,14 +26,15 @@ export class ViewErrorComponent {
     this.getErrors(this.pageNumber);
   }
 
-  getErrors(pageNumber : number) {
-    this.logErrorService.getLogErrors().subscribe({
+  getErrors(pageNumber : number = 1) {
+    this.logErrorService.getLogErrors(pageNumber).subscribe({
       next: (data : any) =>{
         this.logErrors = data.errorLog;
         if(data.paginationInfo)
             {
               this.paginationInfo = data.paginationInfo;
               this.totalPage = data.paginationInfo.totalPages;
+              this.pageNumber = data.paginationInfo.pageNumber;
             }
         console.log(data)
       }, 
@@ -70,7 +71,8 @@ export class ViewErrorComponent {
       console.error("Le informazioni sulla paginazione non sono valide.", this.paginationInfo);
       return;
     }
-    this.getErrors(page)
+      // Update the local page number
+      this.getErrors(page)
   }
   
 }

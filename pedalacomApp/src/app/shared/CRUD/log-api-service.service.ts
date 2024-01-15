@@ -9,7 +9,7 @@ export class LogApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getLogErrors(pageNumber = 1, pageSize = 10): Observable<any> {
+  getLogErrors(pageNumber = 1, pageSize = 2): Observable<any> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString());
