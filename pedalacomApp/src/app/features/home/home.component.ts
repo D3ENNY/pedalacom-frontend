@@ -35,7 +35,6 @@ export class HomeComponent {
 		}
 
 		this.getProductCard()
-		
 	}
 
 	firstAccess: boolean = false;

@@ -118,7 +118,8 @@ export class RegisterComponent {
     
     this.registration.postCustomer(cst).subscribe({
       next: (data: any) => {
-        this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, data.customerId, this.remember)
+        console.log(data)
+        this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, data.body.customerId, this.remember)
         this.redirect()
       },
       error: (err: any) => {
