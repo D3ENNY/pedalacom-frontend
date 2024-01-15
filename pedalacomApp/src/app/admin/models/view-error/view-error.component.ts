@@ -1,5 +1,6 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogApiServiceService } from '../../../shared/CRUD/log-api-service.service';
 // IMPORT DATA MODEL
 import { LogError } from '../../../shared/dataModel/logError';
@@ -19,6 +20,8 @@ export class ViewErrorComponent {
   totalPage: number = 49;
   pageNumber : number = 1;
   page: number = 1;
+  private modalService = inject(NgbModal);
+	closeResult = '';
 
   constructor(private logErrorService: LogApiServiceService) {}
 
@@ -74,5 +77,27 @@ export class ViewErrorComponent {
       // Update the local page number
       this.getErrors(page)
   }
+
+  open(content: TemplateRef<any>) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		switch (reason) {
+			case ModalDismissReasons.ESC:
+				return 'by pressing ESC';
+			case ModalDismissReasons.BACKDROP_CLICK:
+				return 'by clicking on a backdrop';
+			default:
+				return `with: ${reason}`;
+		}
+	}
   
 }
