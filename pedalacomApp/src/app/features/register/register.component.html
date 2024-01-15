@@ -47,7 +47,7 @@
     </div>
     <ng-container *ngIf="errorList.length != 0; then error else notError"></ng-container>
     <ng-template #error>
-      <div style="color: red">{{errorList[0]}}</div>
+      <div style="color: red" [innerHTML]="errorList[0]"></div>
     </ng-template>
     <ng-template #notError>
     </ng-template>
