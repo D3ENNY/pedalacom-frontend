@@ -32,6 +32,11 @@ export class RegisterComponent {
     this.redirect()
   }
 
+  isPasswordValid(password: string): boolean {
+    const passwordRegex: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+    return passwordRegex.test(password);
+  }
+
   checkValue(Title: string, FirstName: string, LastName: string, Email: string, PhoneNumber: string, password: string, checkPassword: string){
     this.valueOK = true;
 
@@ -64,14 +69,14 @@ export class RegisterComponent {
       }
     }
 
-    /* if(!password.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$")){
+    if(!this.isPasswordValid(password)){
       this.valueOK = false;
       if(password != ""){
         this.errorList.push("La password deve contenere:" + "<br>" +
       "- Almeno una lettera maiuscola" + "<br>" + "- Almeno un numero"+ "<br>" + "- Almeno un carattere speciale");
       console.log(password)
       }
-    } */
+    }
     /* console.log(this.errorList[0]) */
 
     if(password === checkPassword && password != ''){
