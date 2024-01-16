@@ -1,6 +1,6 @@
 <div class="background">
 	<div class="main_container">
-        <div class="title container">
+        <div class="title container mt-4">
             <h1 *ngIf="stringPage == ''" class="py-2" style="text-align: center;">-- Sezione Admin --</h1>
         </div>
         <!--navbar-->
@@ -27,8 +27,10 @@
 		</div>
 		<!-- MAIN DISPLAY form -->
         <!-- <app-admin-main-panel></app-admin-main-panel> -->
-        <button class="btn align-self-center" *ngIf="stringPage != ''" (click)="stringPage =''"><i class="fa-solid fa-arrow-left"></i></button>
-        <main>
+            <button class="btn btn-danger align-self-center mt-4" *ngIf="stringPage !== ''" (click)="stringPage = ''">
+                <i class="fas fa-times"></i>
+            </button>
+                  <main>
             <div *ngIf="stringPage == 'addProducts'; then addProducts else Ko"></div>
             <ng-template #addProducts>
                 <app-add-products></app-add-products>
