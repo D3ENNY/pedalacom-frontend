@@ -17,6 +17,8 @@ export class DeleteUserComponent {
 
   constructor (private customer : CustomerApiServiceService) { }
 
+  emailUser = "";
+
   userDelete = false;
 
   userError = false;

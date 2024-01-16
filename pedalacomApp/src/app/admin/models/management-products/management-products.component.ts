@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
 import { TableComponent } from '../table/table.component';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-management-products',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, CommonModule, FormsModule],
   templateUrl: './management-products.component.html',
   styleUrl: './management-products.component.scss',
   providers : [ProductApiService]
@@ -21,6 +22,8 @@ export class ManagementProductsComponent {
   totalPage: number = 49;
   page : number = 1;
 
+  noProduct: boolean = false;
+
   ngOnInit(){
     this.getProductByName("")
     
@@ -29,12 +32,19 @@ export class ManagementProductsComponent {
   getProductByName(searchData : string){
     this.productApi.getProductByName(searchData, 1).subscribe({
       next: (data : any) =>{
-        this.products = data.products
-        if(data.paginationInfo)
-					{
-						this.paginationInfo = data.paginationInfo;
-						this.totalPage = data.paginationInfo.totalPages;
-					}
+        console.log(data)
+        if(data == null){
+          console.log("nessun prodotto")
+          this.noProduct = true
+        }
+        else{
+          this.products = data.products
+          if(data.paginationInfo)
+            {
+              this.paginationInfo = data.paginationInfo;
+              this.totalPage = data.paginationInfo.totalPages;
+            }
+        }
       },
       error: (err : any) => {
         console.error(err)
