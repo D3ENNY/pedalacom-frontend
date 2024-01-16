@@ -74,10 +74,8 @@ export class RegisterComponent {
       if(password != ""){
         this.errorList.push("La password deve contenere:" + "<br>" +
       "- Almeno una lettera maiuscola" + "<br>" + "- Almeno un numero"+ "<br>" + "- Almeno un carattere speciale");
-      console.log(password)
       }
     }
-    /* console.log(this.errorList[0]) */
 
     if(password === checkPassword && password != ''){
       this.samePassword = true;
@@ -136,13 +134,11 @@ export class RegisterComponent {
     
     this.registration.postCustomer(cst).subscribe({
       next: (data: any) => {
-        console.log(data)
         this.registration.setLoggedToken(cst.EmailAddress, cst.FirstName, data.body.customerId, this.remember)
         this.redirect()
       },
       error: (err: any) => {
         this.alreadyRegister = false;
-        console.log(err.error)
         if(err.error == "alreadyRegister"){
           this.alreadyRegister = true;
         }

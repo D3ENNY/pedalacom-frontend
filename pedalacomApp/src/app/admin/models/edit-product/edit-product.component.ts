@@ -90,7 +90,6 @@ export class EditProductComponent {
       next: (data:any) => {
         this.modaleId = productId.toString()
         this.myImg = data.thumbNailPhoto
-        console.log(data);
         
         this.productEdit = {
           name: data.name,
@@ -103,10 +102,10 @@ export class EditProductComponent {
           productCategoryId:data.productCategoryId,
           thumbNailPhoto: this.imgService.blobToUrl(data.thumbNailPhoto),
           modifiedDate:new Date(),
-          desc: data.productModel.productModelProductDescriptions[0].productDescription.description,
-          model: data.productModel.name,
-          modelId: data.productModel.productModelId,
-          descId: data.productModel.productModelProductDescriptions[0].productDescription.productDescriptionId
+          desc: data.productModel != null ? data.productModel.productModelProductDescriptions[0].productDescription.description : null,
+          model: data.productModel != null ? data.productModel.name : null,
+          modelId: data.productModel != null ? data.productModel.productModelId : null,
+          descId: data.productModel != null ? data.productModel.productModelProductDescriptions[0].productDescription.productDescriptionId : null
         }
       },
       error: (err:Error) => {

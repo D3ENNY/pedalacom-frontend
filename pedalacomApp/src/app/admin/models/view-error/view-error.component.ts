@@ -39,10 +39,9 @@ export class ViewErrorComponent {
               this.totalPage = data.paginationInfo.totalPages;
               this.pageNumber = data.paginationInfo.pageNumber;
             }
-        console.log(data)
       }, 
       error: (err : any) => {
-      console.log(err)
+        console.error(err)
       } 
     });
   }
