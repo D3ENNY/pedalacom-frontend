@@ -1,1 +1,33 @@
-<p>view-log works!</p>
+<div class="container">
+  <h2>Sales Statistics Dashboard</h2>
+
+  <div class="row">
+    <div *ngFor="let product of producsSales" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">Product ID: {{ product.productID }}</div>
+        <div class="card-body">
+          <p class="card-text">Last Order ID: {{ product.maxSalesOrderID }}</p>
+          <p class="card-text">Total Sales: {{ product.totalSales }}</p>
+          <p class="card-text">Total Quantity: {{ product.totalQuantity }}</p>
+          <p class="card-text">Total Revenue: {{ product.totalRevenue }}</p>
+
+          <!-- Extra Data Info (Add your custom calculations here) -->
+          <p class="card-text">
+            Average Revenue per Sale:
+            {{ product.totalRevenue / product.totalSales }}
+          </p>
+          <p class="card-text">
+            Produc Price:
+            {{ product.totalRevenue / product.totalQuantity }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination mt-2 mb-4">
+    <button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === pageNumber" class="btn btn-outline-primary">
+      {{ page }}
+    </button>
+  </div>
+</div>

@@ -17,7 +17,7 @@ export class ViewErrorComponent {
 
   logErrors: LogError[] = [];
   paginationInfo : any;
-  totalPage: number = 49;
+  totalPage: number = 1;
   pageNumber : number = 1;
   page: number = 1;
   private modalService = inject(NgbModal);
