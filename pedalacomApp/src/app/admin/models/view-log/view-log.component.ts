@@ -35,10 +35,9 @@ export class ViewLogComponent {
               this.totalPage = data.paginationInfo.totalPages;
               this.pageNumber = data.paginationInfo.pageNumber;
             }
-        console.log("productSales",this.producsSales,"data", data)
       }, 
       error: (err : any) => {
-      console.log(err)
+      console.error(err)
       } 
     });
   }

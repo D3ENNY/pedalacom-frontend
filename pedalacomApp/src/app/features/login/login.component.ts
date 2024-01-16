@@ -38,7 +38,6 @@ export class LoginComponent {
         this.redirect()
       },
       error: (err: any)=>{
-        console.log(err.error)
         if(err.error == "wrong password"){
           this.setDisplay = "block";
         } else if (err.error == "user not found"){

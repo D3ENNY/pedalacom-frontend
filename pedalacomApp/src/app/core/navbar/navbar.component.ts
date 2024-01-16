@@ -33,7 +33,6 @@ export class NavbarComponent {
 		this.userAdmin = false;
 		if(localStorage.getItem("authorization") == btoa('Admin') || sessionStorage.getItem("authorization") == btoa('Admin')){
 			this.userAdmin = true
-			console.log("qui")
 		}
 		else{
 			this.userAdmin = false
