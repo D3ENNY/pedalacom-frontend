@@ -54,6 +54,10 @@ export class TableComponent {
     
     return allPages.slice(start - 1, end);
   }
+
+  reload(){
+    window.location.reload();
+  }
   
   
   changePage(page: number): void {
@@ -68,7 +72,7 @@ export class TableComponent {
   deleteProduct(productId : string){
     this.productApi.deleteProducts(productId).subscribe({
       next : (data : any) => {
-
+        this.reload()
       },
       error : (err : any) => {
         console.error(err)

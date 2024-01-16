@@ -1,5 +1,5 @@
 <div class="singup-container mx-auto mb-5 pt-3">
-  <form class="row g-3 p-3" #frm="ngForm">
+  <form class="row g-3 p-3" #frm="ngForm" *ngIf="showForm">
     <div>
       <h3 class="h3 mb-3 fw-normal d-inline">Aggiungi un prodotto</h3>
       <br />
@@ -9,54 +9,50 @@
     </div>
     <div class="col-md-3">
       <label for="inputCategory" class="form-label">Categoria*</label>
-      <select id="inputCategory" class="form-select" #Category>
-        <option selected required>Scegli...</option>
-        <option value="1">Biciclette</option>
-        <option value="2">Componenti</option>
-        <option value="3">Abbigliamento</option>
-        <option value="4">Accessori</option>
-        <option value="5">Mountain Bike</option>
-        <option value="6">Bici da Strada</option>
-        <option value="7">Bici da Touring</option>
+      <select id="inputCategory" class="form-select" #Category (change)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)">
+        <option value="none" selected required>Scegli...</option>
+        <option value="5">Mountain Bikes</option>
+        <option value="6">Bici da strada</option>
+        <option value="7">Bici da turismo</option>
         <option value="8">Manubri</option>
-        <option value="9">Movimenti Centrali</option>
-        <option value="10">Freni</option>
+        <option value="9">Freni</option>
+        <option value="10">Staffe inferiori</option>
         <option value="11">Catene</option>
         <option value="12">Guarniture</option>
         <option value="13">Deragliatori</option>
-        <option value="14">Forcelle</option>
-        <option value="15">Movimenti di Sterzo</option>
-        <option value="16">Telai Mountain Bike</option>
+        <option value="14">Cuffie</option>
+        <option value="15">Forcelle</option>
+        <option value="16">Telai da mountain bike</option>
         <option value="17">Pedali</option>
-        <option value="18">Telai da Strada</option>
+        <option value="18">Telai da strada</option>
         <option value="19">Selle</option>
-        <option value="20">Telai da Touring</option>
-        <option value="21">Ruote</option>
-        <option value="22">Pantaloncini a Bretelle</option>
-        <option value="23">Berretti</option>
+        <option value="20">Telai da turismo</option>
+        <option value="21">Cerchioni</option>
+        <option value="22">Pantaloncini con bretelle</option>
+        <option value="23">Tappi</option>
         <option value="24">Guanti</option>
         <option value="25">Maglie</option>
-        <option value="26">Pantaloni Corti</option>
+        <option value="26">Pantaloncini</option>
         <option value="27">Calze</option>
-        <option value="28">Calzamaglie</option>
-        <option value="29">Gilet</option>
+        <option value="28">Collant</option>
+        <option value="29">Gillet</option>
         <option value="30">Portabici</option>
-        <option value="31">Supporti per Bici</option>
-        <option value="32">Bottiglie e Portaborraccia</option>
-        <option value="33">Detergenti</option>
+        <option value="31">Portabici</option>
+        <option value="32">Borraccia & Porta borraccia</option>
+        <option value="33">Kit di pulizia</option>
         <option value="34">Parafanghi</option>
         <option value="35">Caschi</option>
-        <option value="36">Zaini Idrici</option>
+        <option value="36">Zaini idrici</option>
         <option value="37">Luci</option>
         <option value="38">Lucchetti</option>
-        <option value="39">Pannieri</option>
+        <option value="39">Borse laterali</option>
         <option value="40">Pompe</option>
-        <option value="41">Copertoni e Camere d'Aria</option>
+        <option value="41">Pneumatici e budelli</option>
       </select>
     </div>
     <div class="col-md-9">
       <label for="Name" class="form-label">Nome*</label>
-      <input
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         id="name"
@@ -67,8 +63,8 @@
     </div>
     <div class="col-md-3">
       <label for="inputColor" class="form-label">Colore*</label>
-      <select id="inputColor" class="form-select" #Color>
-        <option selected required>Scegli...</option>
+      <select id="inputColor" class="form-select" #Color (change)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)">
+        <option value="none" selected required>Scegli...</option>
         <option value="White">Bianco</option>
         <option value="Black">Nero</option>
         <option value="Gray">Grigio</option>
@@ -86,7 +82,7 @@
     </div>
     <div class="col-md-8">
       <label for="ProductNumber" class="form-label">Codice*</label>
-      <input
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         id="ProductNumber"
@@ -97,7 +93,7 @@
     </div>
     <div class="col-6">
       <label for="ListPrice" class="form-label">Prezzo di listino*</label>
-      <input
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         id="ListPrice"
@@ -108,7 +104,7 @@
     </div>
     <div class="col-6">
       <label for="StandardCost" class="form-label">Prezzo attuale*</label>
-      <input
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         placeholder="123,00€"
@@ -118,15 +114,14 @@
         #StandardCost
       />
     </div>
-    <div class="col-6">
+    <div class="col-12">
       <label for="ThumbNailPhoto" class="form-label">Immagine*</label>
-      <br />
-      <input #test type="file" (change)="getFile($event)" />
+      <br>
+      <input #Image type="file" (change)="getFile($event);checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)" />
     </div>
-
     <div class="col-6">
-      <label for="Model" class="form-label">Modello</label>
-      <input
+      <label for="Model" class="form-label">Modello*</label>
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         id="Model"
@@ -136,8 +131,8 @@
     </div>
 
     <div class="col-md-6">
-      <label for="Weight" class="form-label">Peso</label>
-      <input
+      <label for="Weight" class="form-label">Peso*</label>
+      <input (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"
         type="text"
         class="form-control"
         id="Weight"
@@ -148,8 +143,8 @@
 
     <div class="col-md-6">
       <label for="inputSize" class="form-label">Dimensioni*</label>
-      <select id="inputSize" class="form-select" #Size>
-        <option selected required>Scegli...</option>
+      <select id="inputSize" class="form-select" #Size (change)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)">
+        <option value="none" selected required>Scegli...</option>
         <option value="60">60</option>
         <option value="58">58</option>
         <option value="56">56</option>
@@ -171,12 +166,18 @@
       </select>
     </div>
 
-    <div class="col-md-6">
-      <label for="Description" class="form-label">Description</label>
-      <textarea name="Description" id="desc" cols="70" rows="5" #Description></textarea>
+    <div class="col-md-12">
+      <label for="Description" class="form-label">Description*</label>
+      <textarea name="Description" id="desc" cols="70" rows="5" #Description (input)="checkValue(Category.value, Name.value, Color.value, ProductNumber.value, ListPrice.value,StandardCost.value, Image.value, Model.value, Weight.value, Size.value, Description.value)"></textarea>
     </div>
-
+    <ng-container *ngIf="errorList.length != 0; then error else notError"></ng-container>
+    <ng-template #error>
+      <div style="color: red" [innerHTML]="errorList[0]"></div>
+    </ng-template>
+    <ng-template #notError>
+    </ng-template>
     <button
+      [disabled]="!allValueOk"
       type="submit"
       (click)="
         sendProduct(
@@ -193,14 +194,13 @@
       class="btn">
       Aggiungi <i class="fa-solid fa-check"></i>
     </button>
-
-    <ng-container *ngIf="showMessage">
-      <div class="pt-2" style="color: green" *ngIf="okStatus">
-        Prodotto aggiunto con sucesso
-      </div>
-      <div class="pt-2" style="color: red" *ngIf="!okStatus">
-        Errore nell'aggiunta del prodotto
-      </div>
-    </ng-container>
   </form>
+  <ng-container *ngIf="showMessage">
+    <h2 class="pt-2" style="color: green; text-align: center;" *ngIf="okStatus">
+      Prodotto aggiunto con sucesso
+    </h2>
+    <h2 class="pt-2" style="color: red; text-align: center;" *ngIf="!okStatus">
+      Errore nell'aggiunta del prodotto
+    </h2>
+  </ng-container>
 </div>
