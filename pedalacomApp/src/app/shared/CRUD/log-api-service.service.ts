@@ -16,4 +16,8 @@ export class LogApiServiceService {
 
     return this.http.get('https://localhost:7150/api/ErrorLogs', { params: params });
   }
+
+  getProductsSales(): Observable<any> {
+    return this.http.get('https://localhost:7150/api/OrderDetails');
+  }
 }
