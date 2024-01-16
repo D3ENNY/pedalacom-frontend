@@ -14,11 +14,11 @@
           <!-- Extra Data Info (Add your custom calculations here) -->
           <p class="card-text">
             Average Revenue per Sale:
-            {{ product.totalRevenue / product.totalSales }}
+            {{ (product.totalRevenue / product.totalSales) | number:'1.2-2' }}
           </p>
           <p class="card-text">
-            Produc Price:
-            {{ product.totalRevenue / product.totalQuantity }}
+            Product Price:
+            {{ (product.totalRevenue / product.totalQuantity) | number:'1.2-2' }}
           </p>
         </div>
       </div>

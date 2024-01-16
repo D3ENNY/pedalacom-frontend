@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductSales } from '../../../shared/dataModel/productSales';
 import { LogApiServiceService } from '../../../shared/CRUD/log-api-service.service';
-// npm install chart.js --save
-// npm install ng2-charts --save
 
 @Component({
   selector: 'app-view-log',
@@ -37,7 +35,7 @@ export class ViewLogComponent {
               this.totalPage = data.paginationInfo.totalPages;
               this.pageNumber = data.paginationInfo.pageNumber;
             }
-        console.log(data)
+        console.log("productSales",this.producsSales,"data", data)
       }, 
       error: (err : any) => {
       console.log(err)
