@@ -16,7 +16,7 @@
         <td class="align-middle">{{ error.errorCode }}</td>
         <td class="align-middle">{{ error.message }}</td>
         <td class="align-middle truncated-text"><button class="btn btn-sm btn-primary" (click)="open(content)">Open Full Stack-Trace</button></td>
-        <td class="align-middle">{{ error.timeStamp }}</td>
+        <td class="align-middle">{{ error.timeStamp|date:'short' }}</td>
         <ng-template #content let-modal>
           <div class="modal-container">
             <div class="modal-header">
