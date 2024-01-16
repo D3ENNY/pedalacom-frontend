@@ -24,6 +24,9 @@ export class HomeComponent {
 
 	constructor(private ProductService: ProductApiService, private imgService: ImageService, private router: Router) { }
 
+	load: boolean = false;
+	
+	//*ngIf="this.load == false" 
 	ngOnInit() {
 
 		if (localStorage.getItem("login") === "first_access") {
@@ -33,10 +36,13 @@ export class HomeComponent {
 			this.firstRegistration = true
 			localStorage.removeItem("register")
 		}
-
-		this.getProductCard()
+		setTimeout(() => {
+			this.load = true;
+			this.getProductCard()
+			
+		}, 2000)
+		
 	}
-
 	firstAccess: boolean = false;
 	firstRegistration: boolean = false;
 	products: infoProduct[] = []
