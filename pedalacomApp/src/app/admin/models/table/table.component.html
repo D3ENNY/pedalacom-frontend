@@ -14,7 +14,7 @@
 				<td><div class="display_none_small">{{product.productId}}</div></td>
 				<td>{{product.productCode}}</td>
 				<td ><div class="display_none_small">{{product.productName}}</div></td>
-				<td ><div class="display_none_small">{{product.productPrice}}</div></td>
+				<td ><div class="display_none_small">{{product.productPrice}}€</div></td>
 				<td><app-edit-product [productId] = "product.productId"></app-edit-product> 
 					<button data-bs-toggle="modal" type="button" class="btn ms-4" style="background-color: var(--danger); color: white;"  data-bs-target="#exampleModal" (click)="modalProduct.productId = product.productId; modalProduct.productName = product.productName; modalProduct.productCode = product.productCode">
 						<i class="fa-solid fa-trash"></i>

@@ -41,6 +41,76 @@ export class EditProductComponent {
     descId: 0
   }
 
+  allValueOk: boolean = false;
+  errorList: string[] = [];
+  priceRegex = /^\d+\,\d{2,}$/;
+
+  checkValue(Category: string, Name: string, Color: string, Code: string, ListPrice: string, StandardPrice: string, Model: string, Weight: string, Size: string, Description: string) {
+    this.allValueOk = true;
+    this.errorList = [];
+
+    if (!Name.match(/^.{3,}$/)) {
+      this.allValueOk = false;
+      if (Name !== "") {
+        this.errorList.push("Il nome non è valido");
+      }
+    }
+
+    if (!Code.match(/^.{10,}$/)) {
+      this.allValueOk = false;
+      if (Code !== "") {
+        this.errorList.push("Il codice è formato in questo modo BK-R89R-58");
+      }
+    }
+
+    if (!this.priceRegex.test(StandardPrice)) {
+      this.allValueOk = false;
+      if (StandardPrice !== "") {
+        this.errorList.push("Il prezzo attuale è sbagliato, controlla che il formato sia 123,00");
+      }
+    }
+
+    if (!this.priceRegex.test(ListPrice)) {
+      this.allValueOk = false;
+      if (ListPrice !== "") {
+        this.errorList.push("Il prezzo di listino è sbagliato, controlla che il formato sia 123,00");
+      }
+    }
+
+    if (!this.priceRegex.test(Weight)) {
+      this.allValueOk = false;
+      if (Weight !== "") {
+        this.errorList.push("Il peso è sbagliato, controlla che il formato sia 1100,00");
+      }
+    }
+
+    if (!Model.match(/.{4,}/)) {
+      this.allValueOk = false;
+      if (Model !== "") {
+        this.errorList.push("Il modello non è valido");
+      }
+    }
+
+    if (!Description.match(/.{10,}/)) {
+      this.allValueOk = false;
+      if (Description !== "") {
+        this.errorList.push("La descrizione dev'essere più lunga");
+      }
+    }
+
+    if (Color === "none") {
+      this.allValueOk = false;
+    }
+
+    if (Category === "none") {
+      this.allValueOk = false;
+    }
+
+    if (Size === "none") {
+      this.allValueOk = false;
+    }
+  }
+
   getFile(event: any) {
 		const img = event.target.files[0]
 		this.imgService.imgToBlob(img).then((blob) => {
