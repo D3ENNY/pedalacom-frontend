@@ -69,7 +69,7 @@ export class ProductApiService {
         "product": product
       })
     else 
-    return this.http.put(`https://localhost:7150/api/Products/${productId},0`,     
+    return this.http.put(`https://localhost:7150/api/Products/${productId}`,     
     {
       "model" : model,
       "description": description, 
