@@ -28,9 +28,9 @@
       <ul class="dropdown-menu">
         <div *ngIf="userLogged; then Ok else Ko"></div>
         <ng-template #Ok>
-          <button type="submit"(click)="logout()" class="btn">Logout</button>
+          <button type="submit"(click)="logout()" class="btn" style="width: 100%;">Logout</button>
           <br>
-          <button *ngIf="userAdmin" class="btn" routerLink="/admin">Admin</button>
+          <button *ngIf="userAdmin" class="btn" routerLink="/admin" style="width: 100%;">Admin</button>
           <!-- <button *ngIf="userAdmin"><a class="btn" routerLink="/admin">Admin</a></button> -->
         </ng-template>
         <ng-template #Ko>
@@ -80,7 +80,7 @@
     </div>
     <div *ngIf="!activeSearch" class="mid-small-size" >
       <button class="btn" style="font-size: 2em;" routerLink="/">
-        <img src="../../../assets/Image/icons8-bicicletta-100.png" alt="" style="width: 50    %;">
+        <img src="../../../assets/Image/icons8-bicicletta-100.png" alt="" style="width: 50%;">
       </button>
     </div>
     <div *ngIf="!activeSearch" class="right-small-size">
