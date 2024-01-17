@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactsComponent {
 
-  valueOk: boolean = false;
+  valueOk: boolean = true;
 
   messageSend: boolean = false;
 
