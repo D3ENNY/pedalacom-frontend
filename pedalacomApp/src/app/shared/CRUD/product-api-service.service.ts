@@ -62,14 +62,14 @@ export class ProductApiService {
       "product": product
     });
     if(descriptionId != null)
-      return this.http.put(`https://localhost:7150/api/Products/${productId}, ${descriptionId}`,     
+      return this.http.put(`https://localhost:7150/api/Products/${productId},${descriptionId}`,     
       {
         "model" : model,
         "description": description, 
         "product": product
       })
     else 
-    return this.http.put(`https://localhost:7150/api/Products/${productId}`,     
+    return this.http.put(`https://localhost:7150/api/Products/${productId},0`,     
     {
       "model" : model,
       "description": description, 
