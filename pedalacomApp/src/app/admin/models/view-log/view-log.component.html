@@ -1,6 +1,20 @@
 <div class="container">
-  <h2>Sales Statistics Dashboard</h2>
-
+  <div class="container mt-4">
+    <h2 class="mb-4">Sales Statistics Dashboard</h2>
+  
+    <div class="row">
+      <div class="col-md-6 p-0 my-3">
+        <div class="input-group">
+          <label for="productIdInput" class="sr-only">Product ID:</label>
+          <input type="text" class="form-control" id="productIdInput" [(ngModel)]="productId" placeholder="Enter Product ID">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="getSalesDetailsID(productId)">Search</button>
+            <button class="btn btn-secondary ms-2" type="button" (click)="getSalesDetails()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div *ngFor="let product of producsSales" class="col-md-4 mb-4">
       <div class="card">

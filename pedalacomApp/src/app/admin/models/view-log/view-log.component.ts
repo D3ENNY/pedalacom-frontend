@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductSales } from '../../../shared/dataModel/productSales';
 import { LogApiServiceService } from '../../../shared/CRUD/log-api-service.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-view-log',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-log.component.html',
   styleUrl: './view-log.component.scss',
   providers: [LogApiServiceService]
@@ -17,6 +19,7 @@ export class ViewLogComponent {
   paginationInfo : any;
   totalPage: number = 1;
   pageNumber : number = 1;
+  productId: number = 1;
   page: number = 1;
 
   constructor(private productSalesService: LogApiServiceService) {}
@@ -35,6 +38,20 @@ export class ViewLogComponent {
               this.totalPage = data.paginationInfo.totalPages;
               this.pageNumber = data.paginationInfo.pageNumber;
             }
+      }, 
+      error: (err : any) => {
+      console.error(err)
+      } 
+    });
+  }
+
+  getSalesDetailsID(productId : number) {
+    this.producsSales = []
+    this.productId = productId
+    this.productSalesService.getProductSalesId(productId).subscribe({
+      next: (data : any) =>{
+        console.log(data);
+        this.producsSales.push(data)
       }, 
       error: (err : any) => {
       console.error(err)
