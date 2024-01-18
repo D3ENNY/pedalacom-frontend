@@ -22,4 +22,14 @@
     button:hover {
         background-color: #2980b9;
     }
+
+}
+
+.btn-search {
+    background-color: var(--accent);
+    color: white;
+
+    &:hover {
+        background-color: var(--darker-accent);
+    }
 }

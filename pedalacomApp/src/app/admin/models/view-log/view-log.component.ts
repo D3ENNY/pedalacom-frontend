@@ -21,6 +21,7 @@ export class ViewLogComponent {
   pageNumber : number = 1;
   productId: number = 1;
   page: number = 1;
+  showPagination: boolean = true;
 
   constructor(private productSalesService: LogApiServiceService) {}
 
@@ -32,6 +33,7 @@ export class ViewLogComponent {
     this.productSalesService.getProductsSales(pageNumber).subscribe({
       next: (data : any) =>{
         this.producsSales = data.orderDetails;
+        this.showPagination = true;
         if(data.paginationInfo)
             {
               this.paginationInfo = data.paginationInfo;
@@ -46,12 +48,14 @@ export class ViewLogComponent {
   }
 
   getSalesDetailsID(productId : number) {
-    this.producsSales = []
     this.productId = productId
+    this.producsSales = []
+    this.showPagination = false;
     this.productSalesService.getProductSalesId(productId).subscribe({
       next: (data : any) =>{
-        console.log(data);
-        this.producsSales.push(data)
+        this.producsSales = [data]
+        this.showPagination = false;
+        console.log(this.producsSales)
       }, 
       error: (err : any) => {
       console.error(err)
