@@ -17,7 +17,6 @@ import { HomeComponent } from './features/home/home.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pedalacomApp';
-  constructor(private NgbModule: NgbModule) { }
+
 }
 

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Customer } from '../dataModel/customer';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { Customer } from '../dataModel/customer'
 
 
 @Injectable({
@@ -18,32 +18,32 @@ export class CustomerApiServiceService {
   })
   
   // string initialization 
-  customer: string = "";
+  customer: string = ""
   
   // Get all customers
   getCustomers(): Observable<any> {
-    return this.http.get('https://localhost:7150/api/Customers');
+    return this.http.get('https://localhost:7150/api/Customers')
   }
   
   // Get a customer by ID
   getCustomerById(): Observable<any> {
-    return this.http.get(`https://localhost:7150/api/Customers/${this.customer}`);
+    return this.http.get(`https://localhost:7150/api/Customers/${this.customer}`)
   }
   
   // Add a new customer
   postCustomer(obj: Customer): Observable<any> {
     this.setTokenHttpHeader(obj.EmailAddress, obj.PasswordHash)
-    return this.http.post('https://localhost:7150/api/CwCustomers', obj, {headers : this.headerOptions, observe : 'response'});
+    return this.http.post('https://localhost:7150/api/CwCustomers', obj, {headers : this.headerOptions, observe : 'response'})
   }
   
   // Update a customer
   putCustomer(customerId: string, obj: Object): Observable<any> {
-    return this.http.put(`https://localhost:7150/api/Customers/${customerId}`, obj);
+    return this.http.put(`https://localhost:7150/api/Customers/${customerId}`, obj)
   }
   
   // Delete a customer
   deleteCustomer(customerId: string): Observable<any> {
-    return this.http.delete(`https://localhost:7150/api/CwCustomers/${customerId}`);
+    return this.http.delete(`https://localhost:7150/api/CwCustomers/${customerId}`)
   }
 
   loginCustomer(email: string, password: string)
@@ -53,7 +53,7 @@ export class CustomerApiServiceService {
       'PasswordHash': password
     }
     this.setTokenHttpHeader(user.EmailAddress,user.PasswordHash)
-    return this.http.post('https://localhost:7150/Login', user, {headers: this.headerOptions, observe: 'response'});
+    return this.http.post('https://localhost:7150/Login', user, {headers: this.headerOptions, observe: 'response'})
   }
   
   setTokenHttpHeader(user: string, password: string){

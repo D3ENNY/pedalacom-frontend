@@ -1,12 +1,12 @@
-import { Component, TemplateRef, inject, OnInit, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgbModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { ProductsCardComponent } from '../../model/productsCard/products-card.component';
-import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
-import { infoProduct } from '../../shared/dataModel/products';
-import { ImageService } from '../../shared/services/image-service.service';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { Component, TemplateRef, inject, OnInit, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { NgbModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap'
+import { ProductsCardComponent } from '../../model/productsCard/products-card.component'
+import { ProductApiService } from '../../shared/CRUD/product-api-service.service'
+import { infoProduct } from '../../shared/dataModel/products'
+import { ImageService } from '../../shared/services/image-service.service'
+import { ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 
 @Component({
 	selector: 'app-products',
@@ -18,20 +18,19 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent {
 
-	// variables
-	searchData : string = "";
-	filterParams : any[] = [];
+	searchData : string = ""
+	filterParams : any[] = []
 	myImg: any
 	filterView: string[] = [] 
-	products: infoProduct[] = [];
-	isOffcanvasOpen: boolean = false;
+	products: infoProduct[] = []
+	isOffcanvasOpen: boolean = false
 	valueFilter: string = 'In Evidenza'
 	btnID: string = ''
-	page: number = 1;
-	totalPage: number = 49;
-	pageNumber : number = 1;
-  	paginationInfo: any;
-	flagLoad: boolean = true;
+	page: number = 1
+	totalPage: number = 49
+	pageNumber : number = 1
+  	paginationInfo: any
+	flagLoad: boolean = true
 
 	constructor(
 		private productService: ProductApiService, 
@@ -42,24 +41,22 @@ export class SearchComponent {
 	) { }
 	
 	ngOnInit(): void {
-
 		this.route.paramMap.subscribe(params => {
-			const param = params.get('searchParam');
+			const param = params.get('searchParam')
 			if(param) this.searchData = param
 		})
-
 		this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
-		
 	}
 
 	populateFilter(param : string){
 		let obj : any = {"categoryName" : param}
+		this.pageNumber = 1
+		this.products = []
+
 		if (this.filterParams.find(x => x.categoryName === obj.categoryName))
 			this.filterParams.splice(this.filterParams.findIndex(x => x.categoryName === obj.categoryName),1)
 		else this.filterParams.push(obj)
 		
-		this.pageNumber = 1
-		this.products = []
 		this.GetProducts(this.searchData, this.pageNumber,this.valueFilter, this.filterParams, )
 	}
 
@@ -78,7 +75,7 @@ export class SearchComponent {
 		this.offcanvasService.open(content, { position: 'bottom', ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
 			(result) => this.toggleIcon(),
 			(reason) => this.toggleIcon(),
-		);
+		)
 		this.toggleIcon()
 	}
 
@@ -87,7 +84,7 @@ export class SearchComponent {
 	}
 
 	toggleIcon() {
-		this.isOffcanvasOpen = !this.isOffcanvasOpen;
+		this.isOffcanvasOpen = !this.isOffcanvasOpen
 	}
 
 	mobileFilterData(btn: HTMLButtonElement, id: string) {
@@ -98,76 +95,67 @@ export class SearchComponent {
 	GetProducts(searchData: string, pageNumber: number = 1, order : string, filterParams: any) {
 		const productObservable = filterParams && filterParams.length > 0 ?
 			this.productService.getProductFiltered(searchData, pageNumber, order, filterParams) :
-			this.productService.getProductFiltered(searchData, pageNumber,order);
+			this.productService.getProductFiltered(searchData, pageNumber,order)
 		
 		productObservable.subscribe({
 			next: (data: any) => {
 				if (data) {
-					
-					if(data.products)
-					{
-						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
-						this.products = data.products;
+					if(data.products){
+						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo))
+						this.products = data.products
 					}
-					if(data.paginationInfo) 
-					{
-						this.paginationInfo = data.paginationInfo;
-						this.totalPage = data.paginationInfo.totalPages;
-						this.page = data.paginationInfo.pageNumber;
+					if(data.paginationInfo) {
+						this.paginationInfo = data.paginationInfo
+						this.totalPage = data.paginationInfo.totalPages
+						this.page = data.paginationInfo.pageNumber
 					}
-					
 				}
-				
-				// Aggiungi la gestione delle informazioni sulla paginazione
-				this.paginationInfo = data ? data.paginationInfo : null;
+				this.paginationInfo = data ? data.paginationInfo : null
 			},
 			error: (err: any) => {
-				console.error(err);
-				this.flagLoad = false;
+				console.error(err)
 			}
-		});
+		})
 		this.flagLoad = false
 	}
 
 	getPages(): number[] {
-		const { pageNumber, totalPages } = this.paginationInfo || {};
-		
+		const { pageNumber, totalPages } = this.paginationInfo || {}
+		const allPages = Array.from({ length: totalPages }, (_, i) => i + 1)
+		let start = Math.max(1, pageNumber - 2)
+		let end = Math.min(totalPages, pageNumber + 2)
+
 		if (!pageNumber || !totalPages) {
-			return [];
+			return []
 		}
-		this.pageNumber = this.paginationInfo.pageNumber;
-		const allPages = Array.from({ length: totalPages }, (_, i) => i + 1);
-		let start = Math.max(1, pageNumber - 2);
-		let end = Math.min(totalPages, pageNumber + 2);
+		this.pageNumber = this.paginationInfo.pageNumber
 	
-		if (pageNumber <= 2) {
+		if (pageNumber <= 2) 
 			// Se siamo nelle prime due pagine, visualizza le prime 5 pagine
-			end = Math.min(5, totalPages);
-		} else if (pageNumber >= totalPages - 1) {
+			end = Math.min(5, totalPages)
+		else if (pageNumber >= totalPages - 1) 
 			// Se siamo nelle ultime due pagine, visualizza le ultime 5 pagine
-			start = Math.max(1, totalPages - 4);
-		}
+			start = Math.max(1, totalPages - 4)
 	
-		return allPages.slice(start - 1, end);
+		return allPages.slice(start - 1, end)
 	}
 		
 	
 	changePage(page: number): void {
-		if (!this.paginationInfo || !this.paginationInfo.pageNumber || !this.paginationInfo.totalPages) {
-			console.error("Le informazioni sulla paginazione non sono valide.", this.paginationInfo);
-			return;
-		}
-	
-		const { searchData, filterParams } = this;
-		this.GetProducts(searchData, page, this.valueFilter,  filterParams);
-}
-  
-	getFile(event: any) {
-		const img = event.target.files[0]
-		this.imgService.imgToBlob(img).then((blob) => {
-			return this.imgService.blobToBase64(blob)
-		}).then((base64) => this.myImg = this.imgService.blobToUrl(base64.split(",")[1]))
+		const { searchData, filterParams } = this
+
+		if (!this.paginationInfo || !this.paginationInfo.pageNumber || !this.paginationInfo.totalPages) 
+			return console.error("Le informazioni sulla paginazione non sono valide.", this.paginationInfo)
+
+		this.GetProducts(searchData, page, this.valueFilter,  filterParams)
 	}
+  
+	// getFile(event: any) {
+	// 	const img = event.target.files[0]
+	// 	this.imgService.imgToBlob(img).then((blob) => {
+	// 		return this.imgService.blobToBase64(blob)
+	// 	}).then((base64) => this.myImg = this.imgService.blobToUrl(base64.split(",")[1]))
+	// }
 
 	categoryList = [
 		{ data: "Mountain Bikes", ita: "Mountain Bikes" },

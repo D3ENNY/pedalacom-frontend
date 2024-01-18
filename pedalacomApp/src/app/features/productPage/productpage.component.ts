@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Cart } from '../../shared/dataModel/cart';
+import { Component, OnInit } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { ActivatedRoute, Route, Router } from '@angular/router'
+import { Cart } from '../../shared/dataModel/cart'
 // import Services
-import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
-import { ImageService } from '../../shared/services/image-service.service';
-import { CartApiServiceService } from '../../shared/CRUD/cart-api-service.service';
-import { RouterModule } from '@angular/router';
+import { ProductApiService } from '../../shared/CRUD/product-api-service.service'
+import { ImageService } from '../../shared/services/image-service.service'
+import { CartApiServiceService } from '../../shared/CRUD/cart-api-service.service'
+import { RouterModule } from '@angular/router'
 
 @Component({
   selector: 'app-bikepage',
@@ -19,32 +19,38 @@ import { RouterModule } from '@angular/router';
 })
 export class ProductPageComponent {
   
-  flagNotLogged: boolean =  false;
-  productData: any;
-  flagLoad: boolean = false;
+  flagNotLogged: boolean =  false
+  productData: any
+  flagLoad: boolean = false
 
-  constructor(private route: ActivatedRoute, private cartService: CartApiServiceService,private productService: ProductApiService, private imgService: ImageService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private cartService: CartApiServiceService,
+    private productService: ProductApiService,
+    private imgService: ImageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-      this.fetchProductData();
+      this.fetchProductData()
   }
 
   backPage(){
-    window.history.back();
+    window.history.back()
   }
 
   sendCart(){
     let newCart : Cart = new Cart()
-    var valuer: number
+    let valuer: number
 
     if(sessionStorage.getItem('id') != null){
       valuer = Number(sessionStorage.getItem('id'))
       this.router.navigate(['/cart'])
-    }else if(localStorage.getItem('id') != null){
+    }else if(localStorage.getItem('id') != null)
       valuer = Number(localStorage.getItem('id'))
-    }else{
-      this.flagNotLogged = true;
-      return console.log("error")
+    else{
+      this.flagNotLogged = true
+      return console.error("error")
     }
 
     newCart = {
@@ -54,37 +60,28 @@ export class ProductPageComponent {
     }
   
     this.cartService.postCart(newCart).subscribe({
-      next:(data:any) => {
-        console.log(data)
-      },
-      error:(err:Error)=>{
-        console.error(err)
-      }
+      next:() => { },
+      error:(err:Error)=>{ console.error(err) }
     })
-    
   }
 
   private fetchProductData() {
     this.route.params.subscribe(params => {
-      const productId = +params['productId'];
+      const productId = +params['productId']
 
       if (!isNaN(productId)) {
+
         this.productService.getProductById(productId).subscribe({
           next: productData => {
             if(productData){
-            this.productData = productData;
-            this.productData.thumbNailPhoto = this.imgService.blobToUrl(this.productData.thumbNailPhoto)
+              this.productData = productData
+              this.productData.thumbNailPhoto = this.imgService.blobToUrl(this.productData.thumbNailPhoto)
             }
-            this.flagLoad = true;
+            this.flagLoad = true
           },
-          error: err => {
-            console.error('Error fetching product:', err);
-          }
-        });
-      } else {
-        console.error('Invalid productId:', params['productId']);
-      }
-    });
+          error: err => { console.error('Error fetching product:', err) }
+        })
+      } else console.error('Invalid productId:', params['productId'])
+    })
   }
-
 }

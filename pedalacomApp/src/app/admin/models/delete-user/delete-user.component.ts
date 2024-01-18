@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CustomerApiServiceService } from '../../../shared/CRUD/customer-api-service.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core'
+import { CustomerApiServiceService } from '../../../shared/CRUD/customer-api-service.service'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 
 
 
@@ -14,31 +14,28 @@ import { CommonModule } from '@angular/common';
   providers :[CustomerApiServiceService]
 })
 export class DeleteUserComponent {
+  
+  emailUser = ""
+  userDelete = false
+  userError = false
+  userEmail:string =  ''
 
   constructor (private customer : CustomerApiServiceService) { }
 
-  emailUser = "";
-
-  userDelete = false;
-
-  userError = false;
-
-  userEmail:string =  '';
-
   changeEmail(email: string){
-    this.userEmail = email;
+    this.userEmail = email
   }
 
   deleteUser( email : string) {
-    this.userError = false;
-    this.userDelete = false;
+    this.userError = false
+    this.userDelete = false
     this.customer.deleteCustomer(email).subscribe({
-      next:(data: any) => {
-        this.userDelete = true;
+      next:() => {
+        this.userDelete = true
       },
       error : (err : any) => {
         console.error(err)
-        this.userError = true;
+        this.userError = true
       }
     })
   }

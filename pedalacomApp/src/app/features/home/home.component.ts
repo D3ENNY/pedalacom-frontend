@@ -1,15 +1,15 @@
-import { ImageService } from './../../shared/services/image-service.service';
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { Router } from '@angular/router';
+import { ImageService } from './../../shared/services/image-service.service'
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { SlickCarouselModule } from 'ngx-slick-carousel'
+import { Router } from '@angular/router'
 // IMPORT CUSTOM COMPONENTS
-import { CarouselComponent } from '../../model/carousel/carousel.component';
-import { CardComponent } from '../../model/homeCard/card.component';
-import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
+import { CarouselComponent } from '../../model/carousel/carousel.component'
+import { CardComponent } from '../../model/homeCard/card.component'
+import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component'
 // IMPORT SERVICES
-import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
-import { infoProduct } from '../../shared/dataModel/products';
+import { ProductApiService } from '../../shared/CRUD/product-api-service.service'
+import { infoProduct } from '../../shared/dataModel/products'
 
 
 @Component({
@@ -22,30 +22,11 @@ import { infoProduct } from '../../shared/dataModel/products';
 })
 export class HomeComponent {
 
-	constructor(private ProductService: ProductApiService, private imgService: ImageService, private router: Router) { }
-
-	load: boolean = false;
-	
-	//*ngIf="this.load == false" 
-	ngOnInit(): void {
-		this.getProductCard();
-		if (localStorage.getItem("login") === "first_access") {
-		  this.firstAccess = true;
-		  localStorage.removeItem("login");
-		} else if (localStorage.getItem("register") === "first_registration") {
-		  this.firstRegistration = true;
-		  localStorage.removeItem("register");
-		}
-		// Imposta un timeout di 1.5 secondi
-		setTimeout(() => {
-		  this.firstAccess = false;
-		  this.firstRegistration = false;
-		}, 2000);
-	}
-	firstAccess: boolean = false;
-	firstRegistration: boolean = false;
+	load: boolean = false
+	firstAccess: boolean = false
+	firstRegistration: boolean = false
 	products: infoProduct[] = []
-
+	
 	slideConfig = {
 		dots: false,
 		infinite: false,
@@ -76,34 +57,49 @@ export class HomeComponent {
 					slidesToScroll: 1
 				}
 			}
-			// You can unslick at a given breakpoint now by adding:
-			// settings: "unslick"
-			// instead of a settings object
 		]
+	}
+
+	constructor(
+		private ProductService: ProductApiService, 
+		private router: Router
+	) { }
+
+	ngOnInit(): void {
+		this.getProductCard()
+		if (localStorage.getItem("login") === "first_access") {
+		  this.firstAccess = true
+		  localStorage.removeItem("login")
+		} else if (localStorage.getItem("register") === "first_registration") {
+		  this.firstRegistration = true
+		  localStorage.removeItem("register")
+		}
+
+		setTimeout(() => {
+		  this.firstAccess = false
+		  this.firstRegistration = false
+		}, 2000)
 	}
 
 	getProductCard() {
 		this.ProductService.getProducts().subscribe({
 		  next: (data: any) => {
 			if(data){
-				this.products = data;
-				this.load = true;
+				this.products = data
+				this.load = true
 			}
-			
 		  },
 		  error: (err: any) => {
-			console.error('Error fetching products:', err);
-			this.load = true;
+			console.error('Error fetching products:', err)
+			this.load = true
 		  },
 		  complete: () => {
-			console.log('Product retrieval completed.');
+			console.log('Product retrieval completed.')
 		  }
-		});
+		})
 	}
 	  
 	navigateToProductPage(productId: number) {
 		this.router.navigate(['/product', productId])
 	} 
-	
 }
-

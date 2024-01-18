@@ -1,7 +1,7 @@
-import { ProductModel } from './../dataModel/products';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { ProductModel } from './../dataModel/products'
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +17,16 @@ export class ProductApiService {
   })
 
   // string initialization 
-  product: string = "";
+  product: string = ""
 
   // Get all products
   getProducts(): Observable<any> {
-    return this.http.get('https://localhost:7150/api/Products');
+    return this.http.get('https://localhost:7150/api/Products')
   }
 
   // Get a product by ID
   getProductById(productId: number): Observable<any> {
-    return this.http.get(`https://localhost:7150/api/Products/${productId}`);
+    return this.http.get(`https://localhost:7150/api/Products/${productId}`)
   }
   
 
@@ -34,15 +34,15 @@ export class ProductApiService {
     const params = new HttpParams()
         .set('searchData', searchData)
         .set('pageNumber', pageNumber.toString())
-        .set('order', order);
+        .set('order', order)
 
-    return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params });
+    return this.http.post(`https://localhost:7150/api/Products/info`, bodyReq, { params: params })
   }
 
   getProductByName(searchData : string, pageNumber: number = 1) : Observable<any> {
     const params = new HttpParams()
     .set('searchData', searchData)
-    .set('pageNumber', pageNumber.toString());
+    .set('pageNumber', pageNumber.toString())
     return this.http.get(`https://localhost:7150/api/Products/info`, {params : params})
   }
 
@@ -51,7 +51,7 @@ export class ProductApiService {
   }
   // Add a new product w OBJECT Injection
   postProducts(obj: Object, arr: string[]): Observable<any> {
-    return this.http.post('https://localhost:7150/api/Products', [obj, arr], { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' });
+    return this.http.post('https://localhost:7150/api/Products', [obj, arr], { headers : new HttpHeaders({ contantType: 'application/json' }), observe: 'response' })
   }
 
   // Update a product w string Injection & OBJECT Injection
@@ -81,7 +81,7 @@ export class ProductApiService {
 
   // Delete a product  w string Injection
   deleteProducts(productId: string): Observable<any> {
-    return this.http.delete(`https://localhost:7150/api/Products/${productId}`);
+    return this.http.delete(`https://localhost:7150/api/Products/${productId}`)
   }
 }
 

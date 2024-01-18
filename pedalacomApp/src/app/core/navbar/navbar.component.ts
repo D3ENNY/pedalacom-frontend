@@ -1,9 +1,7 @@
-import { Component, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavigationExtras, RouterModule } from '@angular/router';
-import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service';
-import { Router } from '@angular/router';
-
+import { Component, Renderer2 } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { Router } from '@angular/router'
 @Component({
 	selector: 'app-navbar',
 	standalone: true,
@@ -30,21 +28,20 @@ export class NavbarComponent {
 	}
 
 	checkAdmin() {
-		this.userAdmin = false;
-		if(localStorage.getItem("authorization") == btoa('Admin') || sessionStorage.getItem("authorization") == btoa('Admin')){
+		this.userAdmin = false
+		if(localStorage.getItem("authorization") == btoa('Admin') || 
+		sessionStorage.getItem("authorization") == btoa('Admin'))
 			this.userAdmin = true
-		}
-		else{
-			this.userAdmin = false
-		}
+		else this.userAdmin = false
+		
 	}
 
 	logout() {
 		sessionStorage.clear()
 		localStorage.clear()
 		this.checkLogged()
-		this.router.navigate(['/']);
-		window.location.reload();
+		this.router.navigate(['/'])
+		window.location.reload()
 	}
 
 	checkLogged() {
@@ -52,9 +49,8 @@ export class NavbarComponent {
 			this.userLogged = true
 			this.checkAdmin()
 		}
-		else {
-			this.userLogged = false
-		}
+		else this.userLogged = false
+
 	}
 
 	redirect(searchParam: string) {

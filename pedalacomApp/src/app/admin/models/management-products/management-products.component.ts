@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
-import { TableComponent } from '../table/table.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core'
+import { ProductApiService } from '../../../shared/CRUD/product-api-service.service'
+import { TableComponent } from '../table/table.component'
+import { CommonModule } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 
 
 @Component({
@@ -15,58 +15,49 @@ import { FormsModule } from '@angular/forms';
 })
 export class ManagementProductsComponent {
 
+  products : any [] = []
+  paginationInfo : any
+  totalPage: number = 49
+  page : number = 1
+  noProduct: boolean = false
+
   constructor(private productApi : ProductApiService){}
-
-  products : any [] = [];
-  paginationInfo : any;
-  totalPage: number = 49;
-  page : number = 1;
-
-  noProduct: boolean = false;
 
   ngOnInit(){
     this.getProductByName("")
-    
   }
 
   getProductByName(searchData : string){
+
     this.productApi.getProductByName(searchData, 1).subscribe({
       next: (data : any) =>{
-        console.log(data)
-        if(data == null){
-          console.log("nessun prodotto")
+
+        if(data == null)
           this.noProduct = true
-        }
         else{
           this.products = data.products
-          if(data.paginationInfo)
-            {
-              this.paginationInfo = data.paginationInfo;
-              this.totalPage = data.paginationInfo.totalPages;
-            }
+          if(data.paginationInfo){
+            this.paginationInfo = data.paginationInfo
+            this.totalPage = data.paginationInfo.totalPages
+          }
         }
       },
-      error: (err : any) => {
-        console.error(err)
-      }
+      error: (err : any) => { console.error(err) }
     })
   }
   
   changePageByName(searchData : string, pageNumber : number){
+
     this.productApi.getProductByName(searchData, pageNumber).subscribe({
       next: (data : any) =>{
         this.products = data.products
-        if(data.paginationInfo)
-					{
-						this.paginationInfo = data.paginationInfo;
-						this.totalPage = data.paginationInfo.totalPages;
-						data.paginationInfo.pageNumber = pageNumber;
-					}
+        if(data.paginationInfo){
+					this.paginationInfo = data.paginationInfo
+					this.totalPage = data.paginationInfo.totalPages
+					data.paginationInfo.pageNumber = pageNumber
+				}
       },
-      error: (err : any) => {
-        console.error(err)
-      }
+      error: (err : any) => { console.error(err) }
     })
   }
-
 }

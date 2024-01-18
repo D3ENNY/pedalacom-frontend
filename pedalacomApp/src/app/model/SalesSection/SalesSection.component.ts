@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./SalesSection.component.scss']
 })
 export class SalesSectionComponent {
-
   
 }
 

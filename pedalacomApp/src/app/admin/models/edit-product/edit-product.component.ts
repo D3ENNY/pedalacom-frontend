@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ProductApiService } from '../../../shared/CRUD/product-api-service.service';
-import { ImageService } from '../../../shared/services/image-service.service';
-import { Product } from '../../../shared/dataModel/products';
+import { Component, Input } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
+import { ProductApiService } from '../../../shared/CRUD/product-api-service.service'
+import { ImageService } from '../../../shared/services/image-service.service'
+import { Product } from '../../../shared/dataModel/products'
 @Component({
   selector: 'app-edit-product',
   standalone: true,
@@ -14,15 +14,16 @@ import { Product } from '../../../shared/dataModel/products';
 })
 
 export class EditProductComponent {
-  constructor(private productService: ProductApiService, private imgService: ImageService){}
 
   @Input () productId: number = 0
-
-  modaleId : string = '';
-  myImg: string = '';
-  okStatus: boolean = false;
-  showMessage:boolean = false;
-  product: any;
+  modaleId : string = ''
+  myImg: string = ''
+  okStatus: boolean = false
+  showMessage:boolean = false
+  product: any
+  allValueOk: boolean = false
+  errorList: string[] = []
+  priceRegex = /^\d+\,\d{2,}$/
 
   productEdit : any = {
     name: '',
@@ -41,78 +42,69 @@ export class EditProductComponent {
     descId: 0
   }
 
-  allValueOk: boolean = false;
-  errorList: string[] = [];
-  priceRegex = /^\d+\,\d{2,}$/;
+  constructor(
+    private productService: ProductApiService, 
+    private imgService: ImageService
+  ){}
 
   checkValue(Category: string, Name: string, Color: string, Code: string, ListPrice: string, StandardPrice: string, Model: string, Weight: string, Size: string, Description: string) {
-    this.allValueOk = true;
-    this.errorList = [];
+    this.allValueOk = true
+    this.errorList = []
 
     if (!Name.match(/^.{3,}$/)) {
-      this.allValueOk = false;
-      if (Name !== "") {
-        this.errorList.push("Il nome non è valido");
-      }
+      this.allValueOk = false
+      if (Name !== "") 
+        this.errorList.push("Il nome non è valido")
     }
 
     if (!Code.match(/^.{10,}$/)) {
-      this.allValueOk = false;
-      if (Code !== "") {
-        this.errorList.push("Il codice è formato in questo modo BK-R89R-58");
-      }
+      this.allValueOk = false
+      if (Code !== "") 
+        this.errorList.push("Il codice è formato in questo modo BK-R89R-58")
     }
 
     if (!this.priceRegex.test(StandardPrice)) {
-      this.allValueOk = false;
-      if (StandardPrice !== "") {
-        this.errorList.push("Il prezzo attuale è sbagliato, controlla che il formato sia 123,00");
-      }
+      this.allValueOk = false
+      if (StandardPrice !== "") 
+        this.errorList.push("Il prezzo attuale è sbagliato, controlla che il formato sia 123,00")
     }
 
     if (!this.priceRegex.test(ListPrice)) {
-      this.allValueOk = false;
-      if (ListPrice !== "") {
-        this.errorList.push("Il prezzo di listino è sbagliato, controlla che il formato sia 123,00");
-      }
+      this.allValueOk = false
+      if (ListPrice !== "") 
+        this.errorList.push("Il prezzo di listino è sbagliato, controlla che il formato sia 123,00")
     }
 
     if (!this.priceRegex.test(Weight)) {
-      this.allValueOk = false;
-      if (Weight !== "") {
-        this.errorList.push("Il peso è sbagliato, controlla che il formato sia 1100,00");
-      }
+      this.allValueOk = false
+      if (Weight !== "") 
+        this.errorList.push("Il peso è sbagliato, controlla che il formato sia 1100,00")
     }
 
     if (!Model.match(/.{4,}/)) {
-      this.allValueOk = false;
-      if (Model !== "") {
-        this.errorList.push("Il modello non è valido");
-      }
+      this.allValueOk = false
+      if (Model !== "")
+        this.errorList.push("Il modello non è valido")
     }
 
     if (!Description.match(/.{10,}/)) {
-      this.allValueOk = false;
-      if (Description !== "") {
-        this.errorList.push("La descrizione dev'essere più lunga");
-      }
+      this.allValueOk = false
+      if (Description !== "") 
+        this.errorList.push("La descrizione dev'essere più lunga")
     }
 
-    if (Color === "none") {
-      this.allValueOk = false;
-    }
+    if (Color === "none") 
+      this.allValueOk = false
 
-    if (Category === "none") {
-      this.allValueOk = false;
-    }
+    if (Category === "none") 
+      this.allValueOk = false
 
-    if (Size === "none") {
-      this.allValueOk = false;
-    }
+    if (Size === "none") 
+      this.allValueOk = false
   }
 
   reload(){
-    window.location.reload();
+    window.location.reload()
   }
   getFile(event: any) {
 		const img = event.target.files[0]
@@ -143,19 +135,15 @@ export class EditProductComponent {
     }
 
     this.productService.putProducts(this.productId, this.productEdit.descId, newProduct, Desc, Model).subscribe({
-      next: (data:any) => {
-        this.okStatus = true; 
+      next: () => {
+        this.okStatus = true 
         this.reload()
       },
       error: (err:any) =>{
-        this.okStatus = false;
-        console.error("errore", err);
+        this.okStatus = false
+        console.error("errore", err)
       }
-    });
-    /*
-    this.showMessage = true
-    this.okStatus = true;
-    */
+    })
   }
 
   getProductByID(productId: number){
@@ -182,9 +170,7 @@ export class EditProductComponent {
           descId: data.productModel != null ? data.productModel.productModelProductDescriptions[0].productDescription.productDescriptionId : null
         }
       },
-      error: (err:Error) => {
-        console.error(err)
-      }
+      error: (err:Error) => { console.error(err) }
     })
   }
 

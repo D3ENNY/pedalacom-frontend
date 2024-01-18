@@ -32,7 +32,6 @@ export class ProductModel {
 }
 
 export class infoProduct {
-
     productName: string = ""
     productId: number = 0
     productPrice: number = 0.0
@@ -41,13 +40,11 @@ export class infoProduct {
 }
 
 export class fullInfo extends infoProduct{
-    
-        productNumber: string = ''
-        color: string = ''
-        standardCost: number = 0
-        size: string = ''
-        weight: number = 0
-        productCategoryId: number = 0
-        modifiedDate: Date = new Date()
-    
+    productNumber: string = ''
+    color: string = ''
+    standardCost: number = 0
+    size: string = ''
+    weight: number = 0
+    productCategoryId: number = 0
+    modifiedDate: Date = new Date()
 }

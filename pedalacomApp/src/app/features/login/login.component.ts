@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { CustomerApiServiceService } from '../../shared/CRUD/customer-api-service.service'
+import { Router, RouterModule } from '@angular/router'
 
 
 
@@ -15,36 +15,39 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LoginComponent {
 
-  
-  needNewRegistration = false;
-
-  setDisplay = "none";
-
+  needNewRegistration = false
+  setDisplay = "none"
   userFound = "none"
+  remember: boolean = false
 
-  constructor (private loginService: CustomerApiServiceService, private router: Router) {}
+  constructor (
+    private loginService: CustomerApiServiceService, 
+    private router: Router
+  ) {}
 
-  remember: boolean = false;
+  ngOnInit(){
+    this.redirect()
+  }
 
   runLogin(event: Event, email: string, password: string) 
   {
     this.needNewRegistration = false
     this.setDisplay = "none"
     this.userFound = "none"
+    
     this.loginService.loginCustomer(email, password).subscribe({
       next:(data: any) => {
         this.loginService.setLoggedToken(email, data.body.firstName, data.body.customerId, this.remember)
-        window.location.reload();
+        window.location.reload()
         this.redirect()
       },
       error: (err: any)=>{
-        if(err.error == "wrong password"){
-          this.setDisplay = "block";
-        } else if (err.error == "user not found"){
-          this.userFound = "block";
-        } else if (err.error == "user already exist"){
+        if(err.error == "wrong password")
+          this.setDisplay = "block"
+        else if (err.error == "user not found")
+          this.userFound = "block"
+        else if (err.error == "user already exist")
           this.needNewRegistration = true
-        }
       }
     })
     event.preventDefault()
@@ -56,12 +59,10 @@ export class LoginComponent {
 
   redirect(){
     if(localStorage.getItem("username") || sessionStorage.getItem("username")){
-      localStorage.setItem("login", "first_access");
-      this.router.navigate(['/']);
+      localStorage.setItem("login", "first_access")
+      this.router.navigate(['/'])
     }
   }
 
-  ngOnInit(){
-    this.redirect()
-  }
+
 }

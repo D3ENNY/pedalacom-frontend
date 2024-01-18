@@ -21,8 +21,12 @@ import { Router, RouterModule } from '@angular/router';
 	providers: [PanelManagerService]
 })
 export class AdminPanelComponent {
+	stringPage = "";
 
-	constructor(private mainService: PanelManagerService, private router: Router) { }
+	constructor(
+		private mainService: PanelManagerService, 
+		private router: Router
+	) { }
 
 	ngOnInit(){
 		this.redirect()
@@ -34,12 +38,7 @@ export class AdminPanelComponent {
 		}
 	  }
 
-	stringPage = "";
-
-
 	insertPanel(action: string) {
-		
-		
 		this.mainService.setAction(action)
 	}
 
