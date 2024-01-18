@@ -73,7 +73,7 @@ export class RegisterComponent {
       this.valueOK = false;
       if(password != ""){
         this.errorList.push("La password deve contenere:" + "<br>" +
-      "- Almeno una lettera maiuscola" + "<br>" + "- Almeno un numero"+ "<br>" + "- Almeno un carattere speciale");
+      "- Almeno una lettera maiuscola" + "<br>" + "- Almeno un numero"+ "<br>" + "- Almeno un carattere speciale" + "<br>" + "La Password deve avere minimo 8 caratteri" );
       }
     }
 
