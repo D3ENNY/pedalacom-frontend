@@ -12,11 +12,11 @@
                     </div>
                     
                     <ng-template #withProduct>       
-                    <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2" style="cursor: pointer;" (click)="redirectProd(item.prodID)">
+                    <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2">
                         <div class="col-md-2">
                             <img [src]="item.thumbNailPhoto" [alt]="item.nameProd">
                         </div>
-                        <div class="col-md-4" (mouseenter)="setHoverIndex(i)" (mouseleave)="clearHoverIndex()" [ngStyle]="{'color': hoverIndex === i ? 'blue' : 'initial'}" (click)="redirectProd(item.prodID)">
+                        <div class="col-md-4" (mouseenter)="setHoverIndex(i)" (mouseleave)="clearHoverIndex()" style="cursor: pointer;" [ngStyle]="{'color': hoverIndex === i ? 'blue' : 'initial'}" (click)="redirectProd(item.prodID)">
                             <h5 class="card-title text-mobile"  c> {{item.nameProd}}</h5>
                         </div>
                         <div class="col-md-2">
