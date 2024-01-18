@@ -27,6 +27,9 @@ export class ProductPageComponent {
     this.fetchProductData();
   }
 
+  backPage(){
+    window.history.back();
+  }
 
   sendCart(){
     let newCart : Cart = new Cart()
