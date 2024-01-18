@@ -11,11 +11,12 @@
 
 <app-carousel></app-carousel>
 
-<div class = "loading_container" *ngIf="this.load == false" >
+<div class = "loading_container" *ngIf="this.load == false; else slickCarousel" >
   <div class="lds-dual-ring"></div>
 </div>
 
-<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+<ng-template #slickCarousel>
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
   style="background: var(--main-background)">
   <div ngxSlickItem *ngFor="let product of products" class="slide" (click)="navigateToProductPage(product.productId)">
     <div style="padding: 10px;">
@@ -23,6 +24,8 @@
     </div>
   </div>
 </ngx-slick-carousel>
+</ng-template>
+
 
 
 

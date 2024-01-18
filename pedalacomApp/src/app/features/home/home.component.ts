@@ -37,9 +37,7 @@ export class HomeComponent {
 			localStorage.removeItem("register")
 		}
 		setTimeout(() => {
-			this.load = true;
 			this.getProductCard()
-			
 		}, 2000)
 		
 	}
@@ -86,7 +84,11 @@ export class HomeComponent {
 	getProductCard() {
 		this.ProductService.getProducts().subscribe({
 		  next: (data: any) => {
-			this.products = data;
+			if(data){
+				this.products = data;
+				this.load = true;
+			}
+			
 		  },
 		  error: (err: any) => {
 			console.error('Error fetching products:', err);

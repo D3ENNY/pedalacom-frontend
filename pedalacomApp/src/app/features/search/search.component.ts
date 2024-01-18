@@ -31,6 +31,7 @@ export class SearchComponent {
 	totalPage: number = 49;
 	pageNumber : number = 1;
   	paginationInfo: any;
+	flagLoad: boolean = true;
 
 	constructor(
 		private productService: ProductApiService, 
@@ -47,7 +48,10 @@ export class SearchComponent {
 			if(param) this.searchData = param
 		})
 
-		this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
+		setTimeout(() => {
+			this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
+		},2000)
+		
 
 	}
 
@@ -98,10 +102,11 @@ export class SearchComponent {
 		const productObservable = filterParams && filterParams.length > 0 ?
 			this.productService.getProductFiltered(searchData, pageNumber, order, filterParams) :
 			this.productService.getProductFiltered(searchData, pageNumber,order);
-	
+		
 		productObservable.subscribe({
 			next: (data: any) => {
 				if (data) {
+					
 					if(data.products)
 					{
 						data.products.forEach((e: any) => e.photo = this.imgService.blobToUrl(e.photo));
@@ -113,8 +118,9 @@ export class SearchComponent {
 						this.totalPage = data.paginationInfo.totalPages;
 						this.page = data.paginationInfo.pageNumber;
 					}
+					this.flagLoad = true;
 				}
-			
+				
 				// Aggiungi la gestione delle informazioni sulla paginazione
 				this.paginationInfo = data ? data.paginationInfo : null;
 			},
