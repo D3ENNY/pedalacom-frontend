@@ -28,6 +28,7 @@ export class HomeComponent {
 	
 	//*ngIf="this.load == false" 
 	ngOnInit(): void {
+		this.getProductCard();
 		if (localStorage.getItem("login") === "first_access") {
 		  this.firstAccess = true;
 		  localStorage.removeItem("login");
@@ -35,12 +36,10 @@ export class HomeComponent {
 		  this.firstRegistration = true;
 		  localStorage.removeItem("register");
 		}
-	  
 		// Imposta un timeout di 1.5 secondi
 		setTimeout(() => {
 		  this.firstAccess = false;
 		  this.firstRegistration = false;
-		  this.getProductCard();
 		}, 2000);
 	}
 	firstAccess: boolean = false;
