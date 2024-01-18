@@ -7,12 +7,13 @@
             <!-- Example Cart Item (You can loop through your cart items dynamically) -->
             <div class="card-body">
                 <div class="row">
-                    <div *ngFor="let item of cartInfo" class="cart-item-container d-flex align-items-center py-2" style="cursor: pointer;" (click)="redirectProd(item.prodID)">
+                    <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2" style="cursor: pointer; z-index: 0;" >
+                        
                         <div class="col-md-2">
                             <img [src]="item.thumbNailPhoto" [alt]="item.nameProd">
                         </div>
-                        <div class="col-md-4">
-                            <h5 class="card-title d-inline"> {{item.nameProd}}</h5>
+                        <div class="col-md-4" (mouseenter)="setHoverIndex(i)" (mouseleave)="clearHoverIndex()" [ngStyle]="{'color': hoverIndex === i ? 'blue' : 'initial'}" (click)="redirectProd(item.prodID)">
+                            <h5 class="card-title d-inline" > {{item.nameProd}}</h5>
                         </div>
                         <div class="col-md-2">
                             <input type="number" class="form-control" [value]="item.quantity" min="1">
@@ -21,7 +22,8 @@
                         <div class="col-md-2">
                             <p class="card-text ms-2"><strong>{{item.listPrice}} €</strong></p>
                         </div>
-                        <div class="col-md-2">
+                        
+                        <div class="col-md-2" style="z-index: 1;">
                             <!-- Option to Remove Item from Cart -->
                             <button class="btn btn-danger" (click)="removeProduct(item.cartID)">Rimuovi</button>
                         </div>

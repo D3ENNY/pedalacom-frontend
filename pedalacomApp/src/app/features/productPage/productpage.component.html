@@ -6,15 +6,13 @@
     </div>
 
     <ng-template #infoProduct>
-        
+        <div *ngIf="flagNotLogged == true" class="alert alert-warning" style="bottom: 1em; margin: 0px;" role="alert">
+            Per potter comprare puoi loggarti da <a routerLink="/login" class="alert-link">qui!</a>
+        </div>        
+
         <div style="cursor: pointer;" (click)="backPage()">
             <i class="fa-solid fa-arrow-left" ></i>
         </div>
-        
-        <div *ngIf="flagNotLogged == true" class="alert alert-warning" style="bottom: 1em;" role="alert">
-            Per potter comprare puoi loggarti da <a routerLink="/login" class="alert-link">qui!</a>.
-        </div>
-    
     <div class="row" >
         <div class="col-md-5 image-container h-100">
             <!-- Use Angular binding to dynamically set the image source -->
