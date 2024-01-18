@@ -27,19 +27,21 @@ export class HomeComponent {
 	load: boolean = false;
 	
 	//*ngIf="this.load == false" 
-	ngOnInit() {
-
+	ngOnInit(): void {
+		this.getProductCard();
 		if (localStorage.getItem("login") === "first_access") {
-			this.firstAccess = true
-			localStorage.removeItem("login")
+		  this.firstAccess = true;
+		  localStorage.removeItem("login");
 		} else if (localStorage.getItem("register") === "first_registration") {
-			this.firstRegistration = true
-			localStorage.removeItem("register")
+		  this.firstRegistration = true;
+		  localStorage.removeItem("register");
 		}
+		// Imposta un timeout di 1.5 secondi
 		setTimeout(() => {
-			this.getProductCard()
-		}, 2000)
-		
+		  this.firstAccess = false;
+		  this.firstRegistration = false;
+		  this.load = true;
+		}, 2000);
 	}
 	firstAccess: boolean = false;
 	firstRegistration: boolean = false;
@@ -86,12 +88,12 @@ export class HomeComponent {
 		  next: (data: any) => {
 			if(data){
 				this.products = data;
-				this.load = true;
 			}
 			
 		  },
 		  error: (err: any) => {
 			console.error('Error fetching products:', err);
+			this.load = true;
 		  },
 		  complete: () => {
 			console.log('Product retrieval completed.');

@@ -56,25 +56,27 @@ export class ProductApiService {
 
   // Update a product w string Injection & OBJECT Injection
   putProducts(productId: number, descriptionId: number, product: Object, description: string, model: string): Observable<any> {
-    console.log(  {
-      "model" : model,
-      "description": description, 
-      "product": product
-    });
-    if(descriptionId != null)
-      return this.http.put(`https://localhost:7150/api/Products/${productId},${descriptionId}`,     
-      {
-        "model" : model,
-        "description": description, 
-        "product": product
-      })
-    else 
-    return this.http.put(`https://localhost:7150/api/Products/${productId}`,     
+  // if(descriptionId != null)
+  //     return this.http.put(`https://localhost:7150/api/Products/${productId},${descriptionId}`,     
+  //     {
+  //       "model" : model,
+  //       "description": description, 
+  //       "product": product
+  //     })
+  //   else 
+  //   return this.http.put(`https://localhost:7150/api/Products/${productId}`,     
+  //   {
+  //     "model" : model,
+  //     "description": description, 
+  //     "product": product
+  //   }) 
+
+    return this.http.put(`https://localhost:7150/api/Products/${productId}`,   
     {
       "model" : model,
       "description": description, 
       "product": product
-    }) 
+    })
   }
 
   // Delete a product  w string Injection

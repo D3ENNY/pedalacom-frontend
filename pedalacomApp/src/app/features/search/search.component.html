@@ -1,6 +1,6 @@
-<div class="header-element py-0 mb-3">
+<div class="header-element">
 	
-	<div class="d-flex flex-wrap justify-content-between align-items-center header-container mx-5 py-2">
+	<div class="d-flex flex-wrap justify-content-between align-items-center header-container mx-5 py-3">
 
 		<div *ngIf="products && products.length > 0; else noProducts">
 			<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ searchData }}</span></p>
@@ -15,15 +15,15 @@
 				Ordina per: {{ valueFilter }} <i class="fa-solid fa-chevron-down"></i>
 			</button>
 			<ul class="dropdown-menu py-0">
-				<li><a #v1 class="dropdown-item border-bottom" [style.display]="v1.text == valueFilter ? 'none' : 'block'"
+				<li><a style="cursor: pointer;" #v1 class="dropdown-item border-bottom" [style.display]="v1.text == valueFilter ? 'none' : 'block'"
 						(click)="valueFilter=v1.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v1">In Evidenza</a></li>
-				<li><a #v2 class="dropdown-item border-bottom" [style.display]="v2.text == valueFilter ? 'none' : 'block'"
+				<li><a style="cursor: pointer;" #v2 class="dropdown-item border-bottom" [style.display]="v2.text == valueFilter ? 'none' : 'block'"
 						(click)="valueFilter=v2.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v2">Prezzo: In ordine crescente</a></li>
-				<li><a #v3 class="dropdown-item border-bottom" [style.display]="v3.text == valueFilter ? 'none' : 'block'"
+				<li><a style="cursor: pointer;" #v3 class="dropdown-item border-bottom" [style.display]="v3.text == valueFilter ? 'none' : 'block'"
 						(click)="valueFilter=v3.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v3">Prezzo: In ordine decrescente</a></li>
-				<li><a #v4 class="dropdown-item" [style.display]="v4.text == valueFilter ? 'none' : 'block'"
+				<li><a style="cursor: pointer;" #v4 class="dropdown-item" [style.display]="v4.text == valueFilter ? 'none' : 'block'"
 						(click)="valueFilter=v4.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v4">Nome: In ordine crescente</a></li>
-				<li><a #v5 class="dropdown-item" [style.display]="v5.text == valueFilter ? 'none' : 'block'"
+				<li><a style="cursor: pointer;" #v5 class="dropdown-item" [style.display]="v5.text == valueFilter ? 'none' : 'block'"
 						(click)="valueFilter=v5.text; GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)" id="v5">Nome: In ordine decrescente</a></li>
 			</ul>
 		</div>
