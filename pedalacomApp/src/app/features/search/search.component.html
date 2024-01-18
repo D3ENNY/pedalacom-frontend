@@ -1,10 +1,13 @@
 <div class="header-element py-0 mb-3">
+	
 	<div class="d-flex flex-wrap justify-content-between align-items-center header-container mx-5 py-2">
+
 		<div *ngIf="products && products.length > 0; else noProducts">
 			<p class="m-0">{{ page }} - {{ totalPage }} pagine in <span class="fw-bolder">#{{ searchData }}</span></p>
 		</div>
 		<ng-template #noProducts>
 			<p class="m-0">Nessun prodotto disponibile</p>
+			
 		</ng-template>	
 		<div class="btn-group d-md-none d-sm-none d-none d-lg-block">
 			<button type="button" class="dropdown-toggle btn rounded-lg shadow p-0 px-2" data-bs-toggle="dropdown"
@@ -91,6 +94,7 @@
 		  </div>
 		<!-- MAIN DISPLAY PRODUCTS -->
 		<main class="">
+			
 			<div *ngIf="products && products.length > 0; else noPageProducts">
 				<div class="row card-container">
 					<!-- Iterate each product as product -->
@@ -102,8 +106,18 @@
 			</div>
 			<ng-template #noPageProducts>
 				<div class="d-flex justify-content-center">
+					
+					<div *ngIf="flagLoad == true; else noProduct" class = "loading_container">
+						<div class="lds-dual-ring"></div>
+					</div>
+					<ng-template #noProduct>
+						<div>
 					<h4 class="m-0">Nessun prodotto disponibile</h4>
+						</div>
+					</ng-template>	
 				</div>
+
+				
 			</ng-template>			
 
 			<!-- <input #test type="file" (change)="getFile($event)">

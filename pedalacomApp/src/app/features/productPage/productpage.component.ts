@@ -6,25 +6,29 @@ import { Cart } from '../../shared/dataModel/cart';
 import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
 import { ImageService } from '../../shared/services/image-service.service';
 import { CartApiServiceService } from '../../shared/CRUD/cart-api-service.service';
-import { SalesSectionComponent } from '../../model/SalesSection/SalesSection.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-bikepage',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './productpage.component.html',
   styleUrl: './productpage.component.scss',
   providers: [ProductApiService, ImageService, CartApiServiceService]
 
 })
 export class ProductPageComponent {
-
+  
+  flagNotLogged: boolean =  false;
   productData: any;
+  flagLoad: boolean = false;
 
   constructor(private route: ActivatedRoute, private cartService: CartApiServiceService,private productService: ProductApiService, private imgService: ImageService) { }
 
   ngOnInit() {
-    this.fetchProductData();
+    setTimeout(() => {
+      this.fetchProductData();
+    },1500)
   }
 
   backPage(){
@@ -40,6 +44,7 @@ export class ProductPageComponent {
     }else if(localStorage.getItem('id') != null){
       valuer = Number(localStorage.getItem('id'))
     }else{
+      this.flagNotLogged = true;
       return console.log("error")
     }
 
@@ -67,8 +72,11 @@ export class ProductPageComponent {
       if (!isNaN(productId)) {
         this.productService.getProductById(productId).subscribe({
           next: productData => {
+            if(productData){
             this.productData = productData;
             this.productData.thumbNailPhoto = this.imgService.blobToUrl(this.productData.thumbNailPhoto)
+            }
+            this.flagLoad = true;
           },
           error: err => {
             console.error('Error fetching product:', err);
