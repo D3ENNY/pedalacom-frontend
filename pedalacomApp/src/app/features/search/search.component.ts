@@ -48,11 +48,8 @@ export class SearchComponent {
 			if(param) this.searchData = param
 		})
 
-		setTimeout(() => {
-			this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
-		},2000)
+		this.GetProducts(this.searchData, this.pageNumber, this.valueFilter , this.filterParams)
 		
-
 	}
 
 	populateFilter(param : string){
@@ -129,6 +126,7 @@ export class SearchComponent {
 				this.flagLoad = false;
 			}
 		});
+		this.flagLoad = false
 	}
 
 	getPages(): number[] {

@@ -111,6 +111,9 @@ export class EditProductComponent {
     }
   }
 
+  reload(){
+    window.location.reload();
+  }
   getFile(event: any) {
 		const img = event.target.files[0]
 		this.imgService.imgToBlob(img).then((blob) => {
@@ -142,6 +145,7 @@ export class EditProductComponent {
     this.productService.putProducts(this.productId, this.productEdit.descId, newProduct, Desc, Model).subscribe({
       next: (data:any) => {
         this.okStatus = true; 
+        this.reload()
       },
       error: (err:any) =>{
         this.okStatus = false;

@@ -40,7 +40,6 @@ export class HomeComponent {
 		setTimeout(() => {
 		  this.firstAccess = false;
 		  this.firstRegistration = false;
-		  this.load = true;
 		}, 2000);
 	}
 	firstAccess: boolean = false;
@@ -88,6 +87,7 @@ export class HomeComponent {
 		  next: (data: any) => {
 			if(data){
 				this.products = data;
+				this.load = true;
 			}
 			
 		  },

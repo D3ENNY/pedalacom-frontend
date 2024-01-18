@@ -12,7 +12,7 @@
                     </div>
                     
                     <ng-template #withProduct>       
-                    <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2">
+                    <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2 card-cart">
                         <div class="col-md-2">
                             <img [src]="item.thumbNailPhoto" [alt]="item.nameProd" class="Img-setting" >
                         </div>
@@ -32,6 +32,7 @@
                             <button class="btn btn-danger" (click)="removeProduct(item.cartID)"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
+                    
                     </ng-template>
             </div>
         </div>

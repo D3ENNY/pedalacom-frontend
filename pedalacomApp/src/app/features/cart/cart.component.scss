@@ -6,7 +6,6 @@
     }
 
 }
-
 .image-cart{
     border-radius:8px ;
     width: auto;
@@ -18,11 +17,11 @@
     background-color: var(--main-background);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-
+    
     .btn {
         color: var(--text);
         background-color: var(--primary);
-    
+        
         &:hover {
             color: rgb(238, 236, 231);
             background-color: var(--darker-accent);   
@@ -41,9 +40,14 @@
     .input-quantity{
         width: 40px;
     }
-
+    
     .text-mobile{
         font-size: 15px;
         width: 100px;
     }
 }
+    .card-cart{
+        border-bottom: 2px dotted darkgray;
+        border-radius: 0;
+        width: 100%;
+    }

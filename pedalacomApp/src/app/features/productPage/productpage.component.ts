@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Cart } from '../../shared/dataModel/cart';
 // import Services
 import { ProductApiService } from '../../shared/CRUD/product-api-service.service';
@@ -23,12 +23,10 @@ export class ProductPageComponent {
   productData: any;
   flagLoad: boolean = false;
 
-  constructor(private route: ActivatedRoute, private cartService: CartApiServiceService,private productService: ProductApiService, private imgService: ImageService) { }
+  constructor(private route: ActivatedRoute, private cartService: CartApiServiceService,private productService: ProductApiService, private imgService: ImageService, private router: Router) { }
 
   ngOnInit() {
-    setTimeout(() => {
       this.fetchProductData();
-    },1500)
   }
 
   backPage(){
@@ -41,6 +39,7 @@ export class ProductPageComponent {
 
     if(sessionStorage.getItem('id') != null){
       valuer = Number(sessionStorage.getItem('id'))
+      this.router.navigate(['/cart'])
     }else if(localStorage.getItem('id') != null){
       valuer = Number(localStorage.getItem('id'))
     }else{
