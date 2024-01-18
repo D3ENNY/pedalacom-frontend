@@ -15,15 +15,15 @@
 .img-top {
   width: 300px;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px 0 0 8px;
   mix-blend-mode: multiply;
 
 }
+
 @media (max-width: 900px){
   .mycard{
     display: flex;
     flex-direction: column;
   }
 }
-
