@@ -27,19 +27,21 @@ export class HomeComponent {
 	load: boolean = false;
 	
 	//*ngIf="this.load == false" 
-	ngOnInit() {
-
+	ngOnInit(): void {
 		if (localStorage.getItem("login") === "first_access") {
-			this.firstAccess = true
-			localStorage.removeItem("login")
+		  this.firstAccess = true;
+		  localStorage.removeItem("login");
 		} else if (localStorage.getItem("register") === "first_registration") {
-			this.firstRegistration = true
-			localStorage.removeItem("register")
+		  this.firstRegistration = true;
+		  localStorage.removeItem("register");
 		}
+	  
+		// Imposta un timeout di 1.5 secondi
 		setTimeout(() => {
-			this.getProductCard()
-		}, 2000)
-		
+		  this.firstAccess = false;
+		  this.firstRegistration = false;
+		  this.getProductCard();
+		}, 2000);
 	}
 	firstAccess: boolean = false;
 	firstRegistration: boolean = false;
