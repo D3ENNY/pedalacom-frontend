@@ -14,7 +14,7 @@
                     <ng-template #withProduct>       
                     <div *ngFor="let item of cartInfo; let i = index" class="cart-item-container d-flex align-items-center py-2">
                         <div class="col-md-2">
-                            <img [src]="item.thumbNailPhoto" [alt]="item.nameProd">
+                            <img [src]="item.thumbNailPhoto" [alt]="item.nameProd" class="Img-setting" >
                         </div>
                         <div class="col-md-4" (mouseenter)="setHoverIndex(i)" (mouseleave)="clearHoverIndex()" style="cursor: pointer;" [ngStyle]="{'color': hoverIndex === i ? 'blue' : 'initial'}" (click)="redirectProd(item.prodID)">
                             <h5 class="card-title text-mobile"  c> {{item.nameProd}}</h5>
