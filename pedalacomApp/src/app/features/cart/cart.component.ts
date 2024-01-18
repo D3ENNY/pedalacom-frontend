@@ -4,17 +4,18 @@ import { Router } from '@angular/router';
 import { CartApiServiceService } from '../../shared/CRUD/cart-api-service.service';
 import { CartInfo } from '../../shared/dataModel/cart';
 import { ImageService } from '../../shared/services/image-service.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   providers: [CartApiServiceService, ImageService]
 })
 export class CartComponent {
 
+  hoverIndex: number | null = null;
   userLogged = false
   tot: number = 0
   cartInfo : CartInfo [] = []
@@ -27,6 +28,14 @@ export class CartComponent {
     else{
       this.userLogged = false
     }
+  }
+
+  setHoverIndex(index: number) {
+    this.hoverIndex = index;
+  }
+
+  clearHoverIndex() {
+    this.hoverIndex = null;
   }
 
   ngOnInit(): void {
