@@ -87,12 +87,12 @@ export class HomeComponent {
 		  next: (data: any) => {
 			if(data){
 				this.products = data;
-				this.load = true;
 			}
 			
 		  },
 		  error: (err: any) => {
 			console.error('Error fetching products:', err);
+			this.load = true;
 		  },
 		  complete: () => {
 			console.log('Product retrieval completed.');

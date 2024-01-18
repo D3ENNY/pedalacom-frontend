@@ -14,9 +14,9 @@
 
   <app-carousel></app-carousel>
 
-  <div class = "loading_container" *ngIf="this.load == false; else slickCarousel" >
-    <div class="lds-dual-ring"></div>
-  </div>
+<div class = "loading_container" *ngIf="!this.load; else slickCarousel" >
+  <div class="lds-dual-ring"></div>
+</div>
 
   <ng-template #slickCarousel>
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"

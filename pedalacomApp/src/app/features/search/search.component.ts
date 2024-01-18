@@ -118,7 +118,7 @@ export class SearchComponent {
 						this.totalPage = data.paginationInfo.totalPages;
 						this.page = data.paginationInfo.pageNumber;
 					}
-					this.flagLoad = true;
+					
 				}
 				
 				// Aggiungi la gestione delle informazioni sulla paginazione
@@ -126,6 +126,7 @@ export class SearchComponent {
 			},
 			error: (err: any) => {
 				console.error(err);
+				this.flagLoad = false;
 			}
 		});
 	}
