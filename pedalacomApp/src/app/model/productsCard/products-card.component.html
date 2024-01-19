@@ -6,7 +6,7 @@
                 <h5 class="card-title mb-2"> {{product.productName}}</h5>
                 <div class="card-text">
                     <b class="mb-1">ID:</b> <span class="text-muted"> {{product.productId}}</span><br>
-                    <b class="mb-1">Prezzo:</b> <span class="text-muted"> {{product.productPrice}}€</span><br>
+                    <b class="mb-1">Prezzo:</b> <span class="text-muted"> {{product.productPrice | number:'1.2-2'}}€</span><br>
                     <b>Categoria:</b> <span class="text-muted"> {{product.productCategory}}</span><br>
                 </div>
             </div>

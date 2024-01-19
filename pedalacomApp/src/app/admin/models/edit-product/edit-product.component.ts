@@ -63,24 +63,6 @@ export class EditProductComponent {
         this.errorList.push("Il codice è formato in questo modo BK-R89R-58")
     }
 
-    if (!this.priceRegex.test(StandardPrice)) {
-      this.allValueOk = false
-      if (StandardPrice !== "") 
-        this.errorList.push("Il prezzo attuale è sbagliato, controlla che il formato sia 123,00")
-    }
-
-    if (!this.priceRegex.test(ListPrice)) {
-      this.allValueOk = false
-      if (ListPrice !== "") 
-        this.errorList.push("Il prezzo di listino è sbagliato, controlla che il formato sia 123,00")
-    }
-
-    if (!this.priceRegex.test(Weight)) {
-      this.allValueOk = false
-      if (Weight !== "") 
-        this.errorList.push("Il peso è sbagliato, controlla che il formato sia 1100,00")
-    }
-
     if (!Model.match(/.{4,}/)) {
       this.allValueOk = false
       if (Model !== "")
