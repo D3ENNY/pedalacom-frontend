@@ -116,7 +116,6 @@ export class SearchComponent {
 				console.error(err)
 			}
 		})
-		this.flagLoad = false
 	}
 
 	getPages(): number[] {

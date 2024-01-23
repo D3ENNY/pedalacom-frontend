@@ -7,7 +7,7 @@
 
     <ng-template #infoProduct>
         <div *ngIf="flagNotLogged == true" class="alert alert-warning" style="bottom: 1em; margin: 0px;" role="alert">
-            Per potter comprare puoi loggarti da <a routerLink="/login" class="alert-link">qui!</a>
+            Per poter comprare puoi loggarti da <a routerLink="/login" class="alert-link">qui!</a>
         </div>        
 
         <div style="cursor: pointer;" (click)="backPage()">
@@ -24,10 +24,10 @@
                 <h2 class="mb-3">{{ productData?.name }}</h2>
                 <!-- Use Angular binding to dynamically set the product description -->
                 <div>
-                    <p class="mb-1"><strong>Prezzo: € </strong>{{ productData?.listPrice }}</p>
+                    <p class="mb-1"><strong>Prezzo: € </strong>{{ productData?.listPrice | number:'1.2-2'}}</p>
                     <p><strong>ID: </strong>{{ productData?.productId }}</p>
-                    <span *ngIf="productData?.size" class="me-2"><strong>Size:</strong> {{ productData.size }} </span>
-                    <span *ngIf="productData?.weight" class="me-2"><strong> Weight:</strong> {{ productData.weight }} gr.</span>
+                    <span *ngIf="productData?.size" class="me-2"><strong>Dimensione:</strong> {{ productData.size }} </span>
+                    <span *ngIf="productData?.weight" class="me-2"><strong> Peso:</strong> {{ productData.weight }} gr.</span>
                 </div>
                 <div class="details-container my-2">
                     <h3>Dettagli</h3>
