@@ -12,6 +12,7 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 import { AdminPanelComponent } from './admin/features/admin-panel/admin-panel.component';
 import { AddProductsComponent } from './admin/models/add-products/add-products.component';
 import { ManagementProductsComponent } from './admin/models/management-products/management-products.component';
+import { AboutComponent } from './features/about/about.component';
 
 export const routes: Routes = [
     // NAVBAR ROUTES
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'admin', component: AdminPanelComponent},
+    {path: 'about', component: AboutComponent},
     // IN-PAGE ROUTES
     {path: 'product', component: ProductPageComponent},
     // QUERY PARAM
